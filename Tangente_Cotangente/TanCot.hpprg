@@ -1,0 +1,244 @@
+%%HP: T(0)A(D)F(.);
+
+@ Autor: Erich Daniel Enamorado Aceituno
+@ E-mail: erich.enamorado@unah.hn
+
+@ VersiÛn: 10
+@ 30 de julio de 2023 1:23
+@ Creado con HPUserEdit 6 Alpha 2
+
+
+
+
+´
+{'X'} PURGE
+
+@========================= CONFIGURAR FLAGS (MODOS) ===========================@
+
+  -105 CF                                       @MODO EXACTO
+  -103. SF                                      @MODO COMPLEJO
+  -49 SF -50 CF                                 @MODO FIX (CON CIFRAS DECIMALES)
+  -45 SF -46 SF -47 CF -48 CF                   @3 CIFRAS DECIMALES
+
+@======================== Definir el tipo de funciÛn ==========================@
+
+CLLCD                                                         @BORRA LA PANTALLA
+
+"ECOJA   LA   FUNCI”N"
+{
+{ "Tangente" ´1ª }
+{ "Cotangente" ´0ª }
+}
+1
+CHOOSE
+IF
+THEN
+  EVAL
+END
+
+@=========================== INTRODUCCI”N DE DATOS ============================@
+
+
+"INTRODUZCA LOS DATOS"
+{
+{ "A" "[A]* TAN(BX+C)+D"  }
+{ "B" "A* TAN([B]X+C)+D"  }
+{ "C" "A* TAN(BX+[C])+D"  }
+{ "D" "A* TAN(BX+C)+[D]"  }
+}
+2
+{ }
+{ }
+INFORM
+
+DROP   @QUITA EL 1 DE CONFIRMACION
+çQ    @Convertie cualquier decimal a exacto
+
+IF DUP 2 GET 0 <
+THEN
+
+
+ IF 2 PICK
+  THEN
+  NEG
+  EVAL NEG 4 çLIST
+  END
+
+END
+EVAL
+
+ ç OP A B C D
+
+ ´
+@======================== CREAR CARPETA Y/O ENTRAR ============================@
+ PATH DUP
+ SIZE GET
+ VARS 'Resultados' POS
+
+  ç X Y
+  ´
+
+  IF X 'Resultados' SAME NOT     Y 0. SAME AND
+  THEN
+  'Resultados' CRDIR
+
+  END
+  Resultados
+  ª
+
+@============================= COMOPROBAR DATOS ===============================@
+
+ IF A 0 SAME B 0 SAME OR
+ THEN
+ CLLCD "°°No es funciÛn, es una constante!!
+
+a*tan(bX+c)+d" MSGBOX
+ KILL                                                        @SALIR DEL PROGRAMA
+ END
+
+@============================= COMOPROBAR DATOS ===============================@
+ #131d #72d BLANK
+
+ {#13d #21d}
+ "Espere 12 segundos"
+ 0 çGROB REPL
+
+ {#59d #36d}
+ GROB 13 23 FFF13081FFF120802080208025902A8064C0C06085300B100B108130C46060C024802A802590AAA0FFF13081FFF1
+ REPL
+
+ çLCD 0 FREEZE
+
+
+@============================ ESCRIBIR FUNCION ================================@
+
+ A B 'X' * C + EVAL
+ OP ´ TAN ª ´ TAN INV ª IFTE                            @CONDICONAL IF THEN ELSE
+  * D + EVAL  
+ 'Exp' STO
+
+@=============================== MONOTONIA ====================================@
+
+  IF A B * 0 > OP NOT ´ NOT ª IFT
+ THEN
+ 'Creciente'
+ ELSE
+ 'Decreciente'
+ END
+ 'Monot' STO
+
+@=============================== PERIODO ======================================@
+
+ á B ABS / EVAL  
+ 'Peri' STO 
+
+@=============================== DESFASE ======================================@
+
+ C B / NEG EVAL 
+ 'Desf' STO 
+
+@=============================== PASO ==============================@
+
+ Peri 4 / EVAL  'Step' STO
+
+@================================ CICLO =======================================@
+
+ B 'X' * C + 
+ OP ´ COS ª ´ SIN ª IFTE
+ SOLVEVX
+ EVAL SWAP DROP OBJç DROP2 SWAP DROP 'n1=0' lim
+
+  ç I
+    ´
+
+@################## OBTIENE LOS 5 VALORES DEL PERIODO  ################@
+
+    0 4 FOR J
+    I Step J * + EVAL
+    NEXT
+
+    5 çLIST DUP
+    Exp SWAP lim
+
+@############################ TABULA LOS DATOS  #######################@
+
+       ç A B
+         ´
+         1 5
+         FOR J
+         A J GET B J GET  @BUCLE FOR PARA ORDENAR LOS DATOS DE 'A' Y 'B'
+         NEXT
+
+         {5 2} çARRY
+           'Tab' STO
+
+         ª
+    ª
+
+@==========================Asintoas vetivxcales================================
+
+ Tab 1 GET  EVAL Peri 'N' * +
+ 'A.V' STO
+
+@============================ INTERCEPTO EN X =================================@
+
+ Exp SOLVEVX
+ EVAL OBJç DROP2 SWAP DROP
+
+ 'n1=0' lim çNUM Peri 'N' * + 
+ 'Ix' STO
+
+@============================ INTERCEPTO EN Y =================================@
+
+ Exp EVAL
+ 0 lim
+ 'Iy' STO
+
+@================================ DOMINIO =====================================@
+
+ 'R' "-" F Peri N * + 3 çLIST
+ 'Dom' STO      
+
+@================================= RANGO ======================================@
+
+ 'R' 'Ran' STO
+
+ ª
+
+@============== TERMINA LOS CALCULO Y MUESTRA LOS RESULTADOS ===================
+
+{'Exp' 'Peri' 'Desf' 'Step' 'Monot' 'A.V' 'Tab' 'Ix' 'Iy' 'Dom' 'Ran'} ORDER   
+
+{'X' 'Ampl'} PURGE
+-103. CF 
+
+
+PICT PURGE
+ #131d #72d BLANK
+
+ {#13d #17d}
+ "Datos almacenados"
+ 0 çGROB REPL
+
+ {#23d #28d}
+ "en Resultados"
+ 0 çGROB REPL
+
+ {#59d #45d}
+
+GROB 22 26 00E00000A00000A00000A00000A00000A00008130008020000110000A0000040007000009FFF701000801EFFF3110002110002900001900001500080500080300040300040100020100020FFFF10
+REPL
+
+PICT STO
+
+
+GROB 7 15 804141414141414141771414224180
+DUP NEG
+
+
+ { 2 { #66d #40d } 0.5 3 }
+ANIMATE
+ 3 DROPN
+KILL
+                                                           
+ª
