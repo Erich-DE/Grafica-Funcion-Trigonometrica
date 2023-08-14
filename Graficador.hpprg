@@ -1,0 +1,36 @@
+%%HP: T(0)A(D)F(.);
+@ Autor: Erich Daniel Enamorado Aceituno
+@ E-mail: erich.enamorado@unah.hn
+@ Creado con HPUserEdit 6 Alpha 2
+
+´
+ PICT PURGE
+
+ Exp STEQ              @Comando que guarda en la variable EQ la expresion (Exp)
+
+ (0 0)                 @Ubicacion VISUAL de los dos ejes (x,y) no afecta al plot
+ {1.571 0.5}           @Division del eje donde {x y}
+
+ 2 çLIST               @AXES ocupa una lista
+ AXES                  @Va relacionado con el comando DRAX al final
+
+
+ @Determina el dominio buscando que corte el eje Y si es posible
+ @ se basa en el primer valor de la matriz  "Tab"
+ IF Tab 1 GET  0 â
+ THEN                            @El otro perido sera positivo n=1
+ Tab 1 GET              çNUM
+ DUP 2 Peri * +         çNUM
+ ELSE                            @El otro perido sera negativo n=(-1)
+ Tab 1 GET  -1 Peri * + çNUM
+ DUP 2 Peri * +         çNUM
+ END
+ XRNG
+
+ @Determina el rango agregandole el 50% (*1.8)
+ Datos 4 GET Datos 1 GET   ABS - 1 - 1.3 * çNUM
+ Datos 4 GET Datos 1 GET   ABS + 1 + 1.1 * çNUM
+ YRNG
+
+ DRAW DRAX  PICTURE
+ª
