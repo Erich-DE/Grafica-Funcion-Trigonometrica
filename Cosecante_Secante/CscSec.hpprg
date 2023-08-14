@@ -3,23 +3,12 @@
 @ Autor: Erich Daniel Enamorado Aceituno
 @ E-mail: erich.enamorado@unah.hn   
     
-@ VersiÛn: 10
-@ 30 de julio de 2023 1:23
 @ Creado con HPUserEdit 6 Alpha 2
 
-
-@73 columanas
-
-
-
-
-
-
 ´
-
 {'X'} PURGE
 
-@========================= CONFIGURAR FLAGS (MODOS) ===================@
+@========================== Configurar modos (MODOS) ==========================@
 
   -17 SF -18 SF                         @MODO RADIAN
   -105 CF                               @MODO EXACTO
@@ -28,7 +17,7 @@
   -45 CF -46 SF -47 CF -48 CF           @3 CIFRAS DECIMALES
   -120 SF                               @NO APARECE CHOOSEBIX EN lim
 
-@======================== Definir el tipo de funciÛn ==================@
+@========================== Definir el tipo de funciÛn ========================@
 
 CLLCD                                                 @BORRA LA PANTALLA
 
@@ -44,7 +33,7 @@ THEN
   EVAL
 END
 
-@=========================== INTRODUCCI”N DE DATOS ====================@
+@============================ INTRODUCCI”N DE DATOS ===========================@
 
 
 "INTRODUZCA LOS DATOS"
@@ -62,28 +51,25 @@ DROP   @QUITA EL 1 DE CONFIRMACION
 çQ    @Convertie cualquier decimal a exacto
 
 IF DUP 2 GET 0 <
-THEN
-
+ THEN
 
   IF 2 PICK
-  THEN
-  NEG
-  EVAL NEG 4 çLIST
-  ELSE
-  DUP
-  TAIL  REVLIST TAIL 0 + REVLIST 0 + 2 * -
+   THEN
+   NEG
+   EVAL NEG 4 çLIST
+   ELSE
+   DUP
+   TAIL  REVLIST TAIL 0 + REVLIST 0 + 2 * -
   END
 
-END
+ END
+DUP 'Datos' STO @Almacena los datos del INFORM
 EVAL
-
-
-
 
  ç OP A B C D
  
  ´
-@======================== CREAR CARPETA Y/O ENTRAR ====================@
+@======================== CREAR CARPETA Y/O ENTRAR ============================@
 PATH DUP
 SIZE GET
 VARS 'Resultados' POS
@@ -99,17 +85,17 @@ VARS 'Resultados' POS
   Resultados
   ª
 
-@============================= COMOPROBAR DATOS =======================@
+@============================= COMOPROBAR DATOS ===============================@
  
  IF A 0 SAME B 0 SAME OR
  THEN
  CLLCD "°°No es funciÛn, es una constante!!
 
 a*csc(bX+c)+d" MSGBOX
- KILL                                                @SALIR DEL PROGRAMA
+ KILL                                                        @SALIR DEL PROGRAMA
  END
 
-@============================= Pantalla de espera ====================@ 
+@============================= Pantalla de espera =============================@ 
  #131d #72d BLANK
 
  {#13d #21d}
@@ -122,31 +108,29 @@ REPL
 
  çLCD 0 FREEZE
 
-@============================ ESCRIBIR FUNCION ========================@
+@============================= Escribir la funcion ============================@
                    
  A B 'X' * C + EVAL 
- OP ´ SIN INV ª ´ COS INV ª IFTE                @CONDICONAL IF THEN ELSE
+ OP ´ SIN INV ª ´ COS INV ª IFTE                        @CONDICONAL IF THEN ELSE
   * D + EVAL 'Exp' STO
 
-@=============================== PERIODO ==============================@
+@================================== PERIODO ===================================@
 
  2 á * B ABS / EVAL 'Peri' STO
      
-@=============================== DESFASE ==============================@
+@================================== DESFASE ===================================@
        
  C B / NEG EVAL 'Desf' STO 
  
-@=============================== PASO ==============================@
+@=================================== PASO =====================================@
 
  Peri 8 / EVAL  'Step' STO                         
 
  
-@================================ CICLO ===============================@
+@================================== CICLO =====================================@
 
  OP ´ á NEG ª ´ á 2 / NEG ª IFTE
- C NEG + B / EVAL                            @LIMITE IZQUIERDO
- 
- 
+ C NEG + B / EVAL                                              @LIMITE IZQUIERDO
 
    ç I
     ´
@@ -177,13 +161,12 @@ REPL
          ª              
     ª
 
-
-@==========================Asintoas vetivxcales================================
+@============================== Asintoas veticales ============================@
  
  Tab 1 GET  EVAL Peri 2 /  'N' * +
  'A.V' STO 
  
-@============================ INTERCEPTO EN X =========================@
+@============================== Intercepto en X ===============================@
 
     Exp SOLVEVX
       
@@ -204,19 +187,19 @@ REPL
     
     'Ix' STO
 
-@============================ INTERCEPTO EN Y =========================@
+@=============================== Intercepto en Y ==============================@
  
  Exp EVAL  
  0 lim  
  DUP 'ü' SAME ´ DROP 'ÿ' ª IFT 
  'Iy' STO 
 
-@================================ DOMINIO =============================@
+@=================================== DOMINIO ==================================@
  
  'R' "-" Tab 1 GET  EVAL Peri 2 /  'N' * + 1 çLIST 3 çLIST 
  'Dom' STO 
    
-@================================= RANGO ==============================@
+@==================================== RANGO ===================================@
   
  "R-]" 
  A ABS NEG D + çNUM çSTR    +   
@@ -227,21 +210,14 @@ REPL
        
  ª
 
-@============== TERMINA LOS CALCULO Y ORDENA DATOS ==========@
+@============================ Ordenar y borrar datos ======-----===============@
 
-
-
-
-
-
-
-{'Exp' 'Peri' 'Desf' 'Step' 'A.V' 'Tab' 'Ix' 'Iy' 'Dom' 'Ran'} ORDER
-
-
+{'Exp' 'Peri' 'Desf' 'Step' 'A.V' 'Tab' 'Ix' 'Iy' 'Dom' 'Ran' 'Datos'} ORDER
 {'X' 'PIf' 'Monot' 'Ampl'} PURGE
 -103. CF    @modo REAL
 
-      
+@====================== Muestra la pantalla de guardado =======================@      
+
 PICT PURGE
  #131d #72d BLANK
 
@@ -265,7 +241,7 @@ GROB 7 15 804141414141414141771414224180
 DUP NEG
 
 
- { 2 { #66d #40d } 0.5 3 }
+ { 2 { #66d #40d } 0.5 2 }
 ANIMATE
  3 DROPN
 KILL
