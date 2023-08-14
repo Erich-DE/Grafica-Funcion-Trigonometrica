@@ -1,14 +1,8 @@
 %%HP: T(0)A(D)F(.);
 
 @ Autor: Erich Daniel Enamorado Aceituno
-@ E-mail: erich.enamorado@unah.hn   
-    
-@ VersiÛn: 10
-@ 30 de julio de 2023 1:23
+@ E-mail: erich.enamorado@unah.hn
 @ Creado con HPUserEdit 6 Alpha 2
-
-
-
 
 ´
 {'X'} PURGE
@@ -16,7 +10,7 @@
 @========================= CONFIGURAR FLAGS (MODOS) ===========================@
 
   -105 CF                                       @MODO EXACTO
-  -103. SF                                      @MODO COMPLEJO
+  -103 SF                                       @MODO COMPLEJO
   -49 SF -50 CF                                 @MODO FIX (CON CIFRAS DECIMALES)
   -45 SF -46 SF -47 CF -48 CF                   @3 CIFRAS DECIMALES
 
@@ -33,7 +27,7 @@ CLLCD                                                         @BORRA LA PANTALLA
 CHOOSE
 IF
 THEN
-  EVAL 
+  EVAL
 END
 
 @=========================== INTRODUCCI”N DE DATOS ============================@
@@ -52,12 +46,12 @@ END
 INFORM
 
 DROP   @QUITA EL 1 DE CONFIRMACION
-çQ    @Convertie cualquier decimal a exacto
+çQ     @Convertie cualquier decimal a exacto
 
 IF DUP 2 GET 0 <
 THEN
-    
-  
+
+
   IF 2 PICK
   THEN
   NEG
@@ -66,31 +60,32 @@ THEN
   DUP
   TAIL  REVLIST TAIL 0 + REVLIST 0 + 2 * -
   END
-  
+
 END
+DUP 'Datos' STO @Almacena los datos del INFORM
 EVAL
 
+
+
  ç OP A B C D
- 
+
  ´
 @======================== CREAR CARPETA Y/O ENTRAR ============================@
-PATH DUP
-SIZE GET
-VARS 'Resultados' POS
+ PATH DUP
+ SIZE GET
+ VARS 'Resultados' POS
 
   ç X Y
-  ´
-
-  IF X 'Resultados' SAME NOT     Y 0. SAME AND
-  THEN
-  'Resultados' CRDIR
-
-  END
-  Resultados
-  ª
+    ´
+    IF X 'Resultados' SAME NOT Y 0. SAME AND
+    THEN
+    'Resultados' CRDIR
+    END
+    Resultados
+    ª
 
 @============================= COMOPROBAR DATOS ===============================@
- 
+
  IF A 0 SAME B 0 SAME OR
  THEN
  CLLCD "°°No es funciÛn, es una constante!!
@@ -99,7 +94,8 @@ a*sen(bX+c)+d" MSGBOX
  KILL                                                        @SALIR DEL PROGRAMA
  END
 
-@============================= COMOPROBAR DATOS ===============================@ 
+@============================= COMOPROBAR DATOS ===============================@
+
  #131d #72d BLANK
 
  {#13d #21d}
@@ -112,32 +108,32 @@ a*sen(bX+c)+d" MSGBOX
 
  çLCD 0 FREEZE
 
-@============================ ESCRIBIR FUNCION ================================@ 
-                    
- A B 'X' * C + EVAL 
- OP ´SINª ´COSª IFTE                                    @CONDICONAL IF THEN ELSE
+@============================ ESCRIBIR FUNCION ================================@
+
+ A B 'X' * C + EVAL
+ OP ´SINª ´COSª IFTE                                 @CONDICONAL IF THEN ELSE
   * D + EVAL 'Exp' STO
-  
+
 @=============================== AMPLITUD =====================================@
-                           
- A ABS 'Ampl' STO 
-      
+
+ A ABS 'Ampl' STO
+
 @=============================== PERIODO ======================================@
-       
- 2 á * B ABS / EVAL 'Peri' STO 
-    
+
+ 2 á * B ABS / EVAL 'Peri' STO
+
 @=============================== DESFASE ======================================@
-       
- C B / NEG EVAL 'Desf' STO 
+
+ C B / NEG EVAL 'Desf' STO
 
 @=============================== PASO ==============================@
 
- Peri 4 / EVAL  'Step' STO 
+ Peri 4 / EVAL  'Step' STO
 
 @================================ CICLO =======================================@
 
  0 C NEG + B / EVAL                                            @LIMITE IZQUIERDO
- 
+
 
    ç I
     ´
@@ -171,7 +167,7 @@ a*sen(bX+c)+d" MSGBOX
  Exp SOLVEVX
  EVAL
  OBJç DROP2 SWAP DROP 'n1=0' lim Peri 'N' * +
- SWAP OBJç DROP2 SWAP DROP 'n1=0' lim Peri + EVAL DUP Peri 'N' * + 
+ SWAP OBJç DROP2 SWAP DROP 'n1=0' lim Peri + EVAL DUP Peri 'N' * +
 
      IF 2 ROLL çNUM TYPE 1. SAME
      THEN
@@ -179,38 +175,31 @@ a*sen(bX+c)+d" MSGBOX
      ELSE
      {2 1} çARRY 'Ix' çTAG
      END
-'Ix' STO
+ 'Ix' STO
 
 
 @============================ INTERCEPTO EN Y =================================@
 
- Exp EVAL  
- 0 lim  
- 'Iy' STO 
+ Exp EVAL
+ 0 lim
+ 'Iy' STO
 
 @================================ DOMINIO =====================================@
- 
+
  'R' 'Dom' STO
-   
+
 @================================= RANGO ======================================@
-  
- @"Ran = ["
- @A ABS NEG D + çNUM çSTR   +
- @","                       +
- @A ABS D + çNUM çSTR       +
- @"]" + 
- @'Ran' STO  
-       
+
  A ABS NEG D +
  A ABS D +
- {1 2} çARRY  
- 'Ran' STO 
-       
- ª
+ {1 2} çARRY
+ 'Ran' STO
+
+ª
 
 @============== TERMINA LOS CALCULOS ORDENA Y ELIMINA =======================
 
-{'Exp' 'Peri' 'Desf' 'Step' 'Ampl' 'Tab' 'Ix' 'Iy' 'Dom' 'Ran'} ORDER
+{'Exp' 'Peri' 'Desf' 'Step' 'Ampl' 'Tab' 'Ix' 'Iy' 'Dom' 'Ran' 'Datos'} ORDER
 
 {'X' 'A.V' 'PIf' 'Monot' 'A.V'} PURGE
 -103. CF                                                              @MODO REAL
