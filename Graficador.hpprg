@@ -16,20 +16,28 @@
 
 
  @Determina el dominio buscando que corte el eje Y si es posible
- @ se basa en el primer valor de la matriz  "Tab"
- IF Tab 1 GET  0 â
- THEN                            @El otro perido sera positivo n=1
- Tab 1 GET              çNUM
- DUP 2 Peri * +         çNUM
- ELSE                            @El otro perido sera negativo n=(-1)
- Tab 1 GET  -1 Peri * + çNUM
- DUP 2 Peri * +         çNUM
- END
- XRNG
+
+
+IF Tab SIZE EVAL DROP 3 >
+THEN 
+@ se basa en el primer valor de la matriz  "Tab"
+   IF Tab 1 GET  0 â
+   THEN                            @El otro perido sera positivo n=1
+   Tab 1 GET              çNUM 1.2 *
+   DUP 2 Peri * +         çNUM 1.2 *
+   ELSE                            @El otro perido sera negativo n=(-1)
+   Tab 1 GET  -1 Peri * + çNUM 1.2 *
+   DUP 2 Peri * +         çNUM 1.2 *
+   END
+ELSE
+   Tab 1 GET              çNUM .2 - 1.2 *
+   Tab 5 GET              çNUM .2 + 1.2 * 
+END     
+   XRNG
 
  @Determina el rango agregandole el 50% (*1.8)
- Datos 4 GET Datos 1 GET   ABS - 1 - 1.3 * çNUM
- Datos 4 GET Datos 1 GET   ABS + 1 + 1.1 * çNUM
+ Datos 4 GET Datos 1 GET   ABS - 1 - 1.4 * çNUM
+ Datos 4 GET Datos 1 GET   ABS + 1 + 1.3 * çNUM
  YRNG
 
  DRAW DRAX  PICTURE
