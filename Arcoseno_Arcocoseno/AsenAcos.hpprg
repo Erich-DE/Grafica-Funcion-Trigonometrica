@@ -1,22 +1,10 @@
 %%HP: T(0)A(D)F(.);
 
 @ Autor: Erich Daniel Enamorado Aceituno
-@ E-mail: erich.enamorado@unah.hn   
-    
-@ VersiÛn: 10
-@ 30 de julio de 2023 1:23
+@ E-mail: erich.enamorado@unah.hn  
 @ Creado con HPUserEdit 6 Alpha 2
 
-
-@73 columanas
-
-
-
-
-
-
 ´
-
 {'X'} PURGE
 
 @========================= CONFIGURAR FLAGS (MODOS) ===================@
@@ -49,7 +37,6 @@ END
 
 @=========================== INTRODUCCI”N DE DATOS ====================@
 
-
 "INTRODUZCA LOS DATOS"
 {
 { "A" "[A]* Asen(BX+C)+D"  }
@@ -61,9 +48,9 @@ END
 { }
 { }
 INFORM 
-DROP   @QUITA EL 1 DE CONFIRMACION
-çQ    @Convertie cualquier decimal a exacto
-
+DROP            @QUITA EL 1 DE CONFIRMACION
+çQ              @Convertie cualquier decimal a exacto
+DUP 'Datos' STO @Almacena los datos del INFORM
 EVAL
 
 
@@ -71,22 +58,21 @@ EVAL
  
  ´
 @======================== CREAR CARPETA Y/O ENTRAR ====================@
-PATH DUP
-SIZE GET
-VARS 'Resultados' POS
+ 
+ PATH DUP
+ SIZE GET
+ VARS 'Resultados' POS
 
   ç X Y
-  ´
+   ´
+   IF X 'Resultados' SAME NOT Y 0. SAME AND
+   THEN
+   'Resultados' CRDIR
+   END
+   Resultados
+   ª
 
-  IF X 'Resultados' SAME NOT     Y 0. SAME AND
-  THEN
-  'Resultados' CRDIR
-
-  END
-  Resultados
-  ª
-
-@============================= COMOPROBAR DATOS =======================@
+@================================ COMOPROBAR DATOS ============================@
  
  IF A 0 SAME B 0 SAME OR
  THEN
@@ -96,7 +82,8 @@ a*Asen(bX+c)+d" MSGBOX
  KILL                                                @SALIR DEL PROGRAMA
  END
 
-@============================= Pantalla de espera ====================@ 
+@=============================== Pantalla de espera ===========================@ 
+
  #131d #72d BLANK
 
  {#13d #21d}
@@ -104,32 +91,26 @@ a*Asen(bX+c)+d" MSGBOX
  0 çGROB REPL
 
  {#59d #36d}
-GROB 13 23 FFF13081FFF120802080208025902A8064C0C06085300B100B108130C46060C024802A802590AAA0FFF13081FFF1
-REPL
+ GROB 13 23 FFF13081FFF120802080208025902A8064C0C06085300B100B108130C46060C024802A802590AAA0FFF13081FFF1
+ REPL
 
  çLCD 0 FREEZE
 
-@============================ ESCRIBIR FUNCION ========================@
+@================================ ESCRIBIR FUNCION ============================@
                    
  A B 'X' * C + EVAL 
- OP ´ ASIN ª ´ ACOS ª IFTE                @CONDICONAL IF THEN ELSE
+ OP ´ ASIN ª ´ ACOS ª IFTE   @CONDICONAL IF THEN ELSE
   * D + EVAL 'Exp' STO
 
-@=============================== PERIODO ==============================@
-
- 2 B ABS / EVAL 'Peri' STO
-
-@=============================== DESFASE ==============================@
+@=================================== DESFASE ==================================@
 
  C B / NEG EVAL 'Desf' STO
 
-@=============================== PASO ==============================@
+@==================================== PASO ====================================@
 
  Peri 2 / EVAL  'Step' STO                         
 
-
-@=============================== MONOTONIA ==============================@
-
+@================================== MONOTONIA =================================@
  
  IF A B * 0 > OP NOT ´ NOT ª IFT
  THEN
@@ -139,25 +120,17 @@ REPL
  END
  'Monot' STO
  
-@================================ CICLO EN DOMINIO ===============================@
+@=============================== CICLO EN DOMINIO =============================@
  
- IF B 0 >
- THEN
- -1
- ELSE
- 1  
- END
+ B çNUM 0 > ´ -1 ª ´ 1 ª IFTE 
  
- C NEG + B / EVAL                            @LIMITE IZQUIERDO
- 
+ C NEG + B / EVAL         @LIMITE IZQUIERDO
  
    ç I   
     ´
            
 @################## OBTIENE LOS 5 VALORES DEL PERIODO  ################@
         
-        
-
     0 2 FOR J 
     I Step J * + EVAL
     NEXT
@@ -175,47 +148,34 @@ REPL
          NEXT
 
          {3 2} çARRY 
-           'Tab' STO   
-                 
+           'Tab' STO        
          ª              
     ª
-
-
-
 
 @============================ INTERCEPTO EN X =========================@
 
     Exp SOLVEVX
   
        IF DUP TYPE 5. SAME
-        THEN
-        DROP ÿ 'Ix' çTAG 
-        ELSE
-        EVAL OBJç DROP2 SWAP DROP 
-        END
+       THEN
+       DROP ÿ 'Ix' çTAG 
+       ELSE
+       EVAL OBJç DROP2 SWAP DROP 
+       END
 
     'Ix' STO
 
 @============================ INTERCEPTO EN Y =========================@
  
- Exp  
- 0 lim
+ Exp 0 lim
+ DUP çNUM TYPE 1. SAME  ´ DROP 'ÿ' ª  ´ EVAL ª IFTE
  
-  
- IF DUP çNUM TYPE 1. SAME
- THEN
- DROP ÿ 'Iy' çTAG
- ELSE
- EVAL
- END
-
-   
- 'Iy' çTAG
  'Iy' STO 
 
 @================================ DOMINIO =============================@
  
  Tab 1 GET  Tab 5 GET {1 2} çARRY
+ 
  'Dom' STO 
    
 @================================= RANGO ==============================@
@@ -223,6 +183,7 @@ REPL
  Tab 2 GET  Tab 6 GET 
  Monot 'Decreciente' SAME ´ SWAP ª IFT  
  {1 2} çARRY                   
+ 
  'Ran' STO
        
  ª
@@ -254,8 +215,8 @@ REPL
 PICT STO
 
 
-GROB 7 15 804141414141414141771414224180
-DUP NEG
+GROB 7 15 804141414141414141771414224180 @Grafico 1
+DUP NEG                                  @Grafico 2
 
 { 2 { #66d #40d } 0.5 3 }
 ANIMATE
