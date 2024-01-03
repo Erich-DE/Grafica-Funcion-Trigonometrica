@@ -62,7 +62,7 @@ THEN
   END
 
 END
-DUP 'Datos' STO @Almacena los datos del INFORM
+@DUP 'Datos' STO Almacena los datos del INFORM
 EVAL
 
 
@@ -198,7 +198,7 @@ a*sen(bX+c)+d" MSGBOX
 
 @============== TERMINA LOS CALCULOS ORDENA Y ELIMINA =======================
 
-{'Exp' 'Peri' 'Desf' 'Step' 'Ampl' 'Tab' 'Ix' 'Iy' 'Dom' 'Ran' 'Datos'} ORDER
+{'Exp' 'Peri' 'Desf' 'Step' 'Ampl' 'Tab' 'Ix' 'Iy' 'Dom' 'Ran' } ORDER
 
 {'X' 'A.V' 'PIf' 'Monot' 'A.V'} PURGE
 -103. CF                                                              @MODO REAL

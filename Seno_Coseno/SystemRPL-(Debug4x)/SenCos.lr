@@ -1,0 +1,200 @@
+Saturn Loader, Ver. version 3.0.9, 08/03/10
+
+
+Output Module:
+Module=SenCos.o
+  Start=00000 End=01D2A Length=01D2B   Symbols= 120 References= 505
+  Date=Wed Jan 03 00:34:41 2024   Title=
+
+
+Source modules:
+Module=sen-cos.o
+  Start=00000 End=01D2A Length=01D2B
+  Date=Wed Jan 03 00:34:41 2024   Title=                                        Wed Jan 03 00:34:41 2024
+
+Saturn Cross Reference Listing
+
+%0                               *       - 00073
+%0<                              *       - 01389
+%1                               *       - 01B64
+%2                               *       - 0191F 01B69
+%6                               *       - 01924
+%CHS                             *       - 013B9 013C8 013D7 01404 01413
+
+'                                *       - 00B89 00BBE 015A5 015DE 0162D 01675
+                                 + 0170F 0173D 01799 017DC 0181A 018A7 018BF
+                                 + 0193A 01964 019D3 019F2 01A1F 01A92 01AC6
+                                 + 01AF1 01B7F 01B98 01BAC 01BC0 01BD4 01BE8
+                                 + 01BFC 01C12 01C22 01C32 01C46
+'DROPFALSE                       *       - 0110D 0118A 01207 01284 01315
+
+?SKIP                            *       - 0135C
+
+ABND                             *       - 00BF3 0136B 01468 01585 01C69
+
+BEGIN                            *       - 00B61
+BIND                             *       - 0008F 014A8
+BINT10                           *       - 01555 01C5A 01D01
+BINT103                          *       - 0002D
+BINT105                          *       - 00023
+BINT15                           *       - 01550 01CFC
+BINT17                           *       - 0000F
+BINT18                           *       - 00019
+BINT2                            *       - 00B75 01A83
+BINT3                            *       - 01A57
+BINT4                            *       - 013AF 013BE 013CD 013DC 013F0 013FA
+                                 + 01409 01418 0143B
+BINT45                           *       - 0004B
+BINT46                           *       - 00055
+BINT47                           *       - 0005F 00BDF
+BINT48                           *       - 00069
+BINT49                           *       - 00037
+BINT5                            *       - 00BAA 0142C 01833 01898 018DC
+BINT50                           *       - 00041
+BINT6                            *       - 018FA
+BINT7                            *       - 018CD
+
+CHECKPICT                        *       - 00B52
+CK0NOLASTWD                      *       - 00005
+CLEARLCD                         *       - 01C73
+CREATERRP_                       *       - 01643
+ClrDA1IsStat                     *       - 00094
+ClrSysFlag                       *       - 00028 00046 00064 0006E
+
+DOBINT                           *       - 00E1A 00E24 0100C 01016 01071 0107B
+                                 + 01093 0109D 010B5 010BF 010D7 010E1 010F9
+                                 + 01103 01112 0111C 01126 01130 01144 0118F
+                                 + 01199 011A3 011AD 011C1 0120C 01216 01220
+                                 + 0122A 0123E 01289 01293 0129D 012A7 012BB
+                                 + 01301 0130B 0137A
+DOCOL                            *       - 00000 00B66 00B7F 00BB4 00BE9 00C11
+                                 + 00C41 00E33 01361 01393 013AA 013EB 01436
+                                 + 014E9 015C5 015D9 015FE 01628 016B6 016CC
+                                 + 0183D 018E6 01999 019BF
+DOCSTR                           *       - 01085 010A7 010C9 010EB 01158 011D5
+                                 + 01252 012CF 0131A 014EE 0199E 01ADB 01C78
+DOFLASHP                         *       - 01350 01445 01599 01683 01698 016BB
+                                 + 016D1 016E2 016F7 01703 01731 0175B 01767
+                                 + 0177C 01788 017C4 017D0 01809 01865 01871
+                                 + 0187D 01904 0192E 01972 01983 019E1 01A07
+                                 + 01A13 01A3C 01A61 01A72 01B13 01B24 01B39
+                                 + 01B53 01B73
+DOGROB                           *       - 00099 00C46 00E38 01025
+DOIDNT                           *       - 015AA 015E3 01608 01632 01648 0167A
+                                 + 01714 01742 0179E 017E1 017F5 0181F 01842
+                                 + 01851 018AC 018C4 018EB 0193F 01955 01969
+                                 + 019C4 019D8 019F7 01A24 01A2D 01A97 01AA7
+                                 + 01ACB 01AF6 01B84 01B9D 01BB1 01BC5 01BD9
+                                 + 01BED 01C01 01C17 01C27 01C37 01C4B
+DOINT                            *       - 014B6 014CF
+DOLAM                            *       - 0007D 00B8E 00BC3 00C2F 01398 0145B
+                                 + 01472 0147B 01484 0148D 01496 014AD 014C6
+                                 + 01663 0166C 0168F 016A4 016EE 01728 01773
+                                 + 017B2 017BB 01B0A 01B30 01B4A
+DOLIST                           *       - 00078 0113F 011BC 01239 012B6 0146D
+                                 + 0191A 01B5F
+DOROMP                           *       - 0155A 01565 01570 01ABB 01D0B 01D16
+DOVARS                           *       - 015CA 01619
+DROP                             *       - 00B70 00BF8 0157B 01603 01D21
+DROPTRUE                         *       - 00BA0 00BD5 00C07
+DUP                              *       - 018A2 01B1F
+DoBadKey                         *       - 00C16
+
+EQUAL                            *       - 015BB
+
+FALSE                            *       - 00BB9 00C1B
+FOUR                             *       - 01153 011D0 0124D 012CA
+
+GROB>GDISP                       *       - 00B4D
+
+INCOMPDROP                       *       - 018BA 018D7 01A4D 01A52
+INDEX@                           *       - 01860
+IT                               *       - 0138E 014E4
+ITE                              *       - 00C3C 013A5 015C0 015F9 016B1 01994
+
+LOOP                             *       - 01456 01893 01915
+
+MINUSONE                         *       - 01176 0117B 01180 01185 011F3 011F8
+                                 + 011FD 01202 01270 01275 0127A 0127F 012ED
+                                 + 012F2 012F7 012FC 01D06
+
+ONE                              *       - 0113A 011B7 01234 012B1
+ONE_DO                           *       - 01431
+OR                               *       - 014DF
+OVER#=case                       *       - 00B7A 00BAF 00BE4
+
+PATHDIR                          *       - 01594
+PICK                             *       - 01384 01A5C
+
+ROLL                             *       - 013B4 013C3 013D2 013E1 013F5 013FF
+                                 + 0140E 0141D 01440 018D2 018FF
+RestoreSysFlags                  *       - 00BEE 01366 01580 01C6E
+
+SAFE@                            *       - 015F4
+SAFESTO                          *       - 01723 01751 017AD 017F0 0182E 01950
+                                 + 01AA2 01AD6 01B05 01B93
+SEMI                             *       - 0008A 00BA5 00BDA 00C02 00C20 00C25
+                                 + 00E2E 01020 0114E 011CB 01248 012C5 01375
+                                 + 013E6 01422 01427 01451 014A3 0158F 015D4
+                                 + 01623 01659 0165E 016C7 016DD 0188E 01910
+                                 + 01929 019BA 01A8D 01B6E 01D26
+STO                              *       - 00B9B 00BD0
+SWAP                             *       - 01A48 01A7E 01B45
+SWAPDROP                         *       - 0197E 019ED
+SaveSysFlags                     *       - 0000A
+SetSysFlag                       *       - 00014 0001E 00032 0003C 00050 0005A
+
+TOGDISP                          *       - 00B57
+TRUE                             *       - 00B84
+TURNMENUOFF                      *       - 00B5C
+TYPECMP?                         *       - 0198F
+
+UNROT                            *       - 018B5
+UNROTSWAP                        *       - 01A6D
+UNTIL                            *       - 00C2A
+
+WaitForKey                       *       - 00B6B
+
+XEQORDER                         *       - 01C64
+
+Z0_                              *       - 01A02 01AB6
+Z2_                              *       - 01756
+Z4_                              *       - 01804
+Z=                               *       - 014C1 014DA
+ZERO_DO                          *       - 01838 018E1
+
+^#>Z                             *       - 0186A
+^CASCRUNCH                       *       - 01988
+^EvalNoCKx+                      *       - 01A66 01A77
+^ISOL1                           *       - 01977
+^ISOLALL                         *       - 019E6
+^IfMain                          *       - 01355
+^LASTCOMP                        *       - 0159E
+^QAdd                            *       - 0169D 016FC 01882 01B3E 01B58
+^QDiv                            *       - 0178D 017C9 0180E
+^QMul                            *       - 01688 016E7 0176C 01876 01A41
+^QNeg                            *       - 017D5 01B29
+^R>Z                             *       - 0144A
+^SIMPLIFY                        *       - 01708
+^SYMLIMIT                        *       - 01909 01A18
+^XEQ>ARRY                        *       - 01933 01B78
+^ZAbs                            *       - 01736 01781 01B18
+^pi                              *       - 01760
+^x=ext                           *       - 01A0C
+^xCOSext                         *       - 016D6
+^xSINext                         *       - 016C0
+
+case                             *       - 00C0C
+
+xEVAL                            *       - 01794 01815 01889
+xKILL                            *       - 00BFD 01370 0158A
+xPURGE                           *       - 015CF 0161E
+
+{}N                              *       - 0189D 01A88 01C5F
+
+~DoMsgBox                        *       - 01575 01D1B
+~MsgBoxMenu                      *       - 0156A 01D10
+~grobAlertIcon                   *       - 0155F
+~xLIMIT                          *       - 01AC0
+
+/SLOAD:  End of Saturn Loader Execution
