@@ -1,4 +1,4 @@
-Saturn Assembler                                       Wed Jan 03 00:34:41 2024
+Saturn Assembler                                       Wed Jan 03 22:03:57 2024
 V3.0.9 (04/15/2007)                                      sen-cos.a      Page    1
 
     1               * File  sen-cos.s       1
@@ -599,1688 +599,1781 @@ V3.0.9 (04/15/2007)                                      sen-cos.a      Page    
   256 00B43 FFF1000         NIBHEX  FFF1000000
             000
   257               * File  sen-cos.s       32
-  258
-  259               * File  sen-cos.s       33
-  260 00B4D 00000           CON(5)  =GROB>GDISP
-  261               * GROB STO > PICT
-  262               * File  sen-cos.s       34
-  263 00B52 00000           CON(5)  =CHECKPICT
-  264               * Comprobacion del GROB
-  265               * File  sen-cos.s       35
-  266 00B57 00000           CON(5)  =TOGDISP
-  267               * Mostra el GBUFF
+  258 00B4D 00000           CON(5)  =GROB>GDISP
+  259               * GROB STO>GBUFF
+  260               * File  sen-cos.s       33
+  261 00B52 00000           CON(5)  =CHECKPICT
+  262               * GBUFF->131x80?
+  263               * File  sen-cos.s       34
+  264 00B57 00000           CON(5)  =TOGDISP
+  265               * Dibujar GBUFF
+  266               * File  sen-cos.s       35
+  267 00B5C 00000           CON(5)  =TURNMENUOFF
   268               * File  sen-cos.s       36
-  269 00B5C 00000           CON(5)  =TURNMENUOFF
+  269
   270               * File  sen-cos.s       37
-  271
+  271 00B61 00000           CON(5)  =BEGIN
   272               * File  sen-cos.s       38
-  273 00B61 00000           CON(5)  =BEGIN
-  274               * File  sen-cos.s       39
-  275 00B66 00000           CON(5)  =DOCOL
-  276               * File  sen-cos.s       40
-  277               * Key -> Op1=T TRUE
-  278               * File  sen-cos.s       41
-  279               * Key -> Op1=F TRUE
-  280               * File  sen-cos.s       42
-  281               * Key -> FALSE
-  282               * File  sen-cos.s       43
-  283
-  284               * File  sen-cos.s       44
-  285 00B6B 00000           CON(5)  =WaitForKey
-  286               * -> #ct #p
-  287               * File  sen-cos.s       45
-  288 00B70 00000           CON(5)  =DROP
-  289               * #ct
-  290               * File  sen-cos.s       46
-  291
-  292               * File  sen-cos.s       47
-  293
-  294               * CasoSeno:   Op1=1
-  295               * File  sen-cos.s       49
-  296 00B75 00000           CON(5)  =BINT2
-  297               * File  sen-cos.s       50
-  298 00B7A 00000           CON(5)  =OVER#=case
-  299               * File  sen-cos.s       51
-  300 00B7F 00000           CON(5)  =DOCOL
-  301               * File  sen-cos.s       52
-  302 00B84 00000           CON(5)  =TRUE
-  303 00B89 00000           CON(5)  ='
-  304 00B8E 00000           CON(5)  =DOLAM
-  305 00B93 30              CON(2)  3
-  306 00B95 F40713          NIBASC  \Op1\
-  307 00B9B 00000           CON(5)  =STO
-  308               * File  sen-cos.s       53
-  309 00BA0 00000           CON(5)  =DROPTRUE
-  310               * File  sen-cos.s       54
-  311 00BA5 00000           CON(5)  =SEMI
-  312               * File  sen-cos.s       55
-  313
-  314               * CasoCoseno: Op1=2
-  315               * File  sen-cos.s       57
-  316 00BAA 00000           CON(5)  =BINT5
-  317               * File  sen-cos.s       58
-  318 00BAF 00000           CON(5)  =OVER#=case
-  319               * File  sen-cos.s       59
-  320 00BB4 00000           CON(5)  =DOCOL
-  321               * File  sen-cos.s       60
-  322 00BB9 00000           CON(5)  =FALSE
-  323 00BBE 00000           CON(5)  ='
-  324 00BC3 00000           CON(5)  =DOLAM
-  325 00BC8 30              CON(2)  3
-  326 00BCA F40713          NIBASC  \Op1\
-  327 00BD0 00000           CON(5)  =STO
-  328               * File  sen-cos.s       61
-  329 00BD5 00000           CON(5)  =DROPTRUE
-  330               * File  sen-cos.s       62
-  331 00BDA 00000           CON(5)  =SEMI
-  332               * File  sen-cos.s       63
-  333
-  334               *CasoCancel: ON
-  335               * File  sen-cos.s       65
-  336 00BDF 00000           CON(5)  =BINT47
-  337               * File  sen-cos.s       66
-  338 00BE4 00000           CON(5)  =OVER#=case
+  273 00B66 00000           CON(5)  =DOCOL
+  274               *       Bucle para comprobar     ( Key -> Op1=T TRUE  )
+  275               * la tecla que se ha       ( Key -> Op1=F TRUE  )
+  276               * pulsado                  ( Key -> FALSE       )
+  277               * File  sen-cos.s       42
+  278
+  279               * File  sen-cos.s       43
+  280 00B6B 00000           CON(5)  =WaitForKey
+  281               * #ct #p
+  282               * File  sen-cos.s       44
+  283 00B70 00000           CON(5)  =DROP
+  284               * #ct
+  285               * File  sen-cos.s       45
+  286
+  287               * CasoSeno:   Op1=1
+  288               * File  sen-cos.s       47
+  289 00B75 00000           CON(5)  =BINT2
+  290               * File  sen-cos.s       48
+  291 00B7A 00000           CON(5)  =OVER#=case
+  292               * File  sen-cos.s       49
+  293 00B7F 00000           CON(5)  =DOCOL
+  294               * File  sen-cos.s       50
+  295 00B84 00000           CON(5)  =TRUE
+  296 00B89 00000           CON(5)  ='
+  297 00B8E 00000           CON(5)  =DOLAM
+  298 00B93 30              CON(2)  3
+  299 00B95 F40713          NIBASC  \Op1\
+  300 00B9B 00000           CON(5)  =STO
+  301               * File  sen-cos.s       51
+  302 00BA0 00000           CON(5)  =DROPTRUE
+  303               * File  sen-cos.s       52
+  304 00BA5 00000           CON(5)  =SEMI
+  305               * File  sen-cos.s       53
+  306
+  307               * CasoCoseno: Op1=2
+  308               * File  sen-cos.s       55
+  309 00BAA 00000           CON(5)  =BINT5
+  310               * File  sen-cos.s       56
+  311 00BAF 00000           CON(5)  =OVER#=case
+  312               * File  sen-cos.s       57
+  313 00BB4 00000           CON(5)  =DOCOL
+  314               * File  sen-cos.s       58
+  315 00BB9 00000           CON(5)  =FALSE
+  316 00BBE 00000           CON(5)  ='
+  317 00BC3 00000           CON(5)  =DOLAM
+  318 00BC8 30              CON(2)  3
+  319 00BCA F40713          NIBASC  \Op1\
+  320 00BD0 00000           CON(5)  =STO
+  321               * File  sen-cos.s       59
+  322 00BD5 00000           CON(5)  =DROPTRUE
+  323               * File  sen-cos.s       60
+  324 00BDA 00000           CON(5)  =SEMI
+  325               * File  sen-cos.s       61
+  326
+  327               *CasoCancel: ON
+  328               * File  sen-cos.s       63
+  329 00BDF 00000           CON(5)  =BINT47
+  330               * File  sen-cos.s       64
+  331 00BE4 00000           CON(5)  =OVER#=case
+  332               * File  sen-cos.s       65
+  333 00BE9 00000           CON(5)  =DOCOL
+  334               * File  sen-cos.s       66
+  335 00BEE 00000           CON(5)  =RestoreSysFlags
+  336 00BF3 00000           CON(5)  =ABND
+  337 00BF8 00000           CON(5)  =DROP
+  338 00BFD 00000           CON(5)  =xKILL
   339               * File  sen-cos.s       67
-  340 00BE9 00000           CON(5)  =DOCOL
+  340 00C02 00000           CON(5)  =SEMI
   341               * File  sen-cos.s       68
-  342 00BEE 00000           CON(5)  =RestoreSysFlags
-  343 00BF3 00000           CON(5)  =ABND
-  344 00BF8 00000           CON(5)  =DROP
-  345 00BFD 00000           CON(5)  =xKILL
-  346               * File  sen-cos.s       69
-  347 00C02 00000           CON(5)  =SEMI
-  348               * File  sen-cos.s       70
-  349
-  350               * CasoTeclaErronea: Reiniciar bucle
-  351               * File  sen-cos.s       72
-  352 00C07 00000           CON(5)  =DROPTRUE
+  342
+  343               * CasoTeclaErronea: Reiniciar bucle
+  344               * File  sen-cos.s       70
+  345 00C07 00000           CON(5)  =DROPTRUE
+  346               * File  sen-cos.s       71
+  347 00C0C 00000           CON(5)  =case
+  348               * File  sen-cos.s       72
+  349 00C11 00000           CON(5)  =DOCOL
+  350 00C16 00000           CON(5)  =DoBadKey
+  351 00C1B 00000           CON(5)  =FALSE
+  352 00C20 00000           CON(5)  =SEMI
   353               * File  sen-cos.s       73
-  354 00C0C 00000           CON(5)  =case
+  354 00C25 00000           CON(5)  =SEMI
   355               * File  sen-cos.s       74
-  356 00C11 00000           CON(5)  =DOCOL
-  357 00C16 00000           CON(5)  =DoBadKey
-  358 00C1B 00000           CON(5)  =FALSE
-  359 00C20 00000           CON(5)  =SEMI
-  360               * File  sen-cos.s       75
-  361 00C25 00000           CON(5)  =SEMI
-  362               * File  sen-cos.s       76
-  363 00C2A 00000           CON(5)  =UNTIL
-  364               * File  sen-cos.s       77
-  365
-  366               * File  sen-cos.s       78
-  367
-  368               *====================== INTRODUCCION DE DATOS ========================
-  369               * File  sen-cos.s       80
-  370
-  371               *Grafica de la funcion------------------------------------------------
-  372               * File  sen-cos.s       82
-  373 00C2F 00000           CON(5)  =DOLAM
-  374 00C34 30              CON(2)  3
-  375 00C36 F40713          NIBASC  \Op1\
-  376               * Op1=TRUE=SEN / Op1=FLASE=COS
-  377               * File  sen-cos.s       83
-  378 00C3C 00000           CON(5)  =ITE
-  379               *Caso Seno
-  380               * File  sen-cos.s       85
-  381 00C41 00000           CON(5)  =DOCOL
-  382               * File  sen-cos.s       86
-  383 00C46 00000           CON(5)  =DOGROB
-  384 00C4B FC100           CON(5)  463
-  385 00C50 E0000B7         NIBHEX  E0000B7000083000
+  356 00C2A 00000           CON(5)  =UNTIL
+  357               * File  sen-cos.s       75
+  358
+  359               * File  sen-cos.s       76
+  360
+  361               *====================== INTRODUCCION DE DATOS ========================
+  362               * File  sen-cos.s       78
+  363
+  364               *---------------------------- Labels ---------------------------------
+  365               * File  sen-cos.s       80
+  366
+  367               *############ Funcion   ( Label 0 )  ( 123x14 )  ( 4,3 )
+  368               * File  sen-cos.s       82
+  369 00C2F 00000           CON(5)  =DOLAM
+  370 00C34 30              CON(2)  3
+  371 00C36 F40713          NIBASC  \Op1\
+  372               * Op1=TRUE=SEN / Op1=FLASE=COS
+  373               * File  sen-cos.s       83
+  374 00C3C 00000           CON(5)  =ITE
+  375               *Caso Seno
+  376               * File  sen-cos.s       85
+  377 00C41 00000           CON(5)  =DOCOL
+  378               * File  sen-cos.s       86
+  379 00C46 00000           CON(5)  =DOGROB
+  380 00C4B FC100           CON(5)  463
+  381 00C50 E0000B7         NIBHEX  E0000B7000083000
             0000830
             00
-  386 00C60 000008D         NIBHEX  000008DF3000000C
+  382 00C60 000008D         NIBHEX  000008DF3000000C
             F300000
             0C
-  387 00C70 F91000E         NIBHEX  F91000EF10083000
+  383 00C70 F91000E         NIBHEX  F91000EF10083000
             F100830
             00
-  388 00C80 00000C8         NIBHEX  00000C8970006006
+  384 00C80 00000C8         NIBHEX  00000C8970006006
             9700060
             06
-  389 00C90 8B1030C         NIBHEX  8B1030C9300C3000
+  385 00C90 8B1030C         NIBHEX  8B1030C9300C3000
             9300C30
             00
-  390 00CA0 0000068         NIBHEX  0000068170006083
+  386 00CA0 0000068         NIBHEX  0000068170006083
             1700060
             83
-  391 00CB0 813030C         NIBHEX  813030C0600E30E3
+  387 00CB0 813030C         NIBHEX  813030C0600E30E3
             0600E30
             E3
-  392 00CC0 C36703C         NIBHEX  C36703C137C06081
+  388 00CC0 C36703C         NIBHEX  C36703C137C06081
             137C060
             81
-  393 00CD0 803030C         NIBHEX  803030C0600B3033
+  389 00CD0 803030C         NIBHEX  803030C0600B3033
             0600B30
             33
-  394 00CE0 36EC81C         NIBHEX  36EC81C81F6060C1
+  390 00CE0 36EC81C         NIBHEX  36EC81C81F6060C1
             81F6060
             C1
-  395 00CF0 003030E         NIBHEX  003030E060093839
+  391 00CF0 003030E         NIBHEX  003030E060093839
             0600938
             39
-  396 00D00 366C81C         NIBHEX  366C81CF1C3EF7C0
+  392 00D00 366C81C         NIBHEX  366C81CF1C3EF7C0
             F1C3EF7
             C0
-  397 00D10 003FF36         NIBHEX  003FF36070883078
+  393 00D10 003FF36         NIBHEX  003FF36070883078
             0708830
             78
-  398 00D20 F76CC1E         NIBHEX  F76CC1E83C1EF7E0
+  394 00D20 F76CC1E         NIBHEX  F76CC1E83C1EF7E0
             83C1EF7
             E0
-  399 00D30 083FF36         NIBHEX  083FF36030CF30EC
+  395 00D30 083FF36         NIBHEX  083FF36030CF30EC
             030CF30
             EC
-  400 00D40 1036C06         NIBHEX  1036C0683C1060E0
+  396 00D40 1036C06         NIBHEX  1036C0683C1060E0
             83C1060
             E0
-  401 00D50 0810307         NIBHEX  081030783068308D
+  397 00D50 0810307         NIBHEX  081030783068308D
             8306830
             8D
-  402 00D60 1036C06         NIBHEX  1036C0681E1060E0
+  398 00D60 1036C06         NIBHEX  1036C0681E1060E0
             81E1060
             E0
-  403 00D70 EC10303         NIBHEX  EC10303810603CCD
+  399 00D70 EC10303         NIBHEX  EC10303810603CCD
             810603C
             CD
-  404 00D80 1336C0F         NIBHEX  1336C0FC1B3060C0
+  400 00D80 1336C0F         NIBHEX  1336C0FC1B3060C0
             C1B3060
             C0
-  405 00D90 3C00383         NIBHEX  3C00383E007C7CF8
+  401 00D90 3C00383         NIBHEX  3C00383E007C7CF8
             E007C7C
             F8
-  406 00DA0 F83ECCF         NIBHEX  F83ECCF78360608F
+  402 00DA0 F83ECCF         NIBHEX  F83ECCF78360608F
             7836060
             8F
-  407 00DB0 16003CF         NIBHEX  16003CF300000000
+  403 00DB0 16003CF         NIBHEX  16003CF300000000
             3000000
             00
-  408 00DC0 0000C00         NIBHEX  0000C00000000000
+  404 00DC0 0000C00         NIBHEX  0000C00000000000
             0000000
             00
-  409 00DD0 0700000         NIBHEX  0700000000000000
+  405 00DD0 0700000         NIBHEX  0700000000000000
             0000000
             00
-  410 00DE0 0000C10         NIBHEX  0000C10000000000
+  406 00DE0 0000C10         NIBHEX  0000C10000000000
             0000000
             00
-  411 00DF0 8100000         NIBHEX  8100000000000000
+  407 00DF0 8100000         NIBHEX  8100000000000000
             0000000
             00
-  412 00E00 0000020         NIBHEX  0000020000000000
+  408 00E00 0000020         NIBHEX  0000020000000000
             0000000
             00
-  413 00E10 8100000         NIBHEX  8100000000
+  409 00E10 8100000         NIBHEX  8100000000
             000
-  414               * File  sen-cos.s       87
-  415 00E1A 00000           CON(5)  =DOBINT
-  416 00E1F 40000           CON(5)  4
-  417 00E24 00000           CON(5)  =DOBINT
-  418 00E29 90000           CON(5)  9
-  419               * File  sen-cos.s       88
-  420 00E2E 00000           CON(5)  =SEMI
-  421               * File  sen-cos.s       89
-  422
-  423               *Caso Coseno
-  424               * File  sen-cos.s       91
-  425 00E33 00000           CON(5)  =DOCOL
-  426               * File  sen-cos.s       92
-  427 00E38 00000           CON(5)  =DOGROB
-  428 00E3D FC100           CON(5)  463
-  429 00E42 E0000B7         NIBHEX  E0000B7000083000
+  410               * File  sen-cos.s       87
+  411 00E1A 00000           CON(5)  =BINT4
+  412 00E1F 00000           CON(5)  =BINT9
+  413               * File  sen-cos.s       88
+  414 00E24 00000           CON(5)  =SEMI
+  415               *Caso Coseno
+  416               * File  sen-cos.s       90
+  417 00E29 00000           CON(5)  =DOCOL
+  418               * File  sen-cos.s       91
+  419 00E2E 00000           CON(5)  =DOGROB
+  420 00E33 FC100           CON(5)  463
+  421 00E38 E0000B7         NIBHEX  E0000B7000083000
             0000830
             00
-  430 00E52 000008D         NIBHEX  000008DF3000000C
+  422 00E48 000008D         NIBHEX  000008DF3000000C
             F300000
             0C
-  431 00E62 F91000E         NIBHEX  F91000EF10083000
+  423 00E58 F91000E         NIBHEX  F91000EF10083000
             F100830
             00
-  432 00E72 00000C8         NIBHEX  00000C8970006006
+  424 00E68 00000C8         NIBHEX  00000C8970006006
             9700060
             06
-  433 00E82 8B1030C         NIBHEX  8B1030C9300C3000
+  425 00E78 8B1030C         NIBHEX  8B1030C9300C3000
             9300C30
             00
-  434 00E92 0000068         NIBHEX  0000068170006083
+  426 00E88 0000068         NIBHEX  0000068170006083
             1700060
             83
-  435 00EA2 813030C         NIBHEX  813030C0600E30C3
+  427 00E98 813030C         NIBHEX  813030C0600E30C3
             0600E30
             C3
-  436 00EB2 878F03C         NIBHEX  878F03C137C06081
+  428 00EA8 878F03C         NIBHEX  878F03C137C06081
             137C060
             81
-  437 00EC2 803030C         NIBHEX  803030C0600B3064
+  429 00EB8 803030C         NIBHEX  803030C0600B3064
             0600B30
             64
-  438 00ED2 ECCC91C         NIBHEX  ECCC91C81F6060C1
+  430 00EC8 ECCC91C         NIBHEX  ECCC91C81F6060C1
             81F6060
             C1
-  439 00EE2 003030E         NIBHEX  003030E060093034
+  431 00ED8 003030E         NIBHEX  003030E060093034
             0600930
             34
-  440 00EF2 7CE481C         NIBHEX  7CE481CF1C3EF7C0
+  432 00EE8 7CE481C         NIBHEX  7CE481CF1C3EF7C0
             F1C3EF7
             C0
-  441 00F02 003FF36         NIBHEX  003FF36070883830
+  433 00EF8 003FF36         NIBHEX  003FF36070883830
             0708838
             30
-  442 00F12 3CC1C1E         NIBHEX  3CC1C1E83C1EF7E0
+  434 00F08 3CC1C1E         NIBHEX  3CC1C1E83C1EF7E0
             83C1EF7
             E0
-  443 00F22 083FF36         NIBHEX  083FF36030CF3810
+  435 00F18 083FF36         NIBHEX  083FF36030CF3810
             030CF38
             10
-  444 00F32 3E83C06         NIBHEX  3E83C0683C1060E0
+  436 00F28 3E83C06         NIBHEX  3E83C0683C1060E0
             83C1060
             E0
-  445 00F42 0810307         NIBHEX  0810307830683C18
+  437 00F38 0810307         NIBHEX  0810307830683C18
             830683C
             18
-  446 00F52 3606C06         NIBHEX  3606C0681E1060E0
+  438 00F48 3606C06         NIBHEX  3606C0681E1060E0
             81E1060
             E0
-  447 00F62 EC10303         NIBHEX  EC10303810603C1B
+  439 00F58 EC10303         NIBHEX  EC10303810603C1B
             810603C
             1B
-  448 00F72 3736C0F         NIBHEX  3736C0FC1B3060C0
+  440 00F68 3736C0F         NIBHEX  3736C0FC1B3060C0
             C1B3060
             C0
-  449 00F82 3C003C3         NIBHEX  3C003C3E007C78F1
+  441 00F78 3C003C3         NIBHEX  3C003C3E007C78F1
             E007C78
             F1
-  450 00F92 F1F3CCF         NIBHEX  F1F3CCF78360608F
+  442 00F88 F1F3CCF         NIBHEX  F1F3CCF78360608F
             7836060
             8F
-  451 00FA2 16003CF         NIBHEX  16003CF300000000
+  443 00F98 16003CF         NIBHEX  16003CF300000000
             3000000
             00
-  452 00FB2 0000C00         NIBHEX  0000C00000000000
+  444 00FA8 0000C00         NIBHEX  0000C00000000000
             0000000
             00
-  453 00FC2 0700000         NIBHEX  0700000000000000
+  445 00FB8 0700000         NIBHEX  0700000000000000
             0000000
             00
-  454 00FD2 0000C10         NIBHEX  0000C10000000000
+  446 00FC8 0000C10         NIBHEX  0000C10000000000
             0000000
             00
-  455 00FE2 8100000         NIBHEX  8100000000000000
+  447 00FD8 8100000         NIBHEX  8100000000000000
             0000000
             00
-  456 00FF2 0000010         NIBHEX  0000010000000000
+  448 00FE8 0000010         NIBHEX  0000010000000000
             0000000
             00
-  457 01002 C000000         NIBHEX  C000000000
+  449 00FF8 C000000         NIBHEX  C000000000
             000
-  458               * File  sen-cos.s       93
-  459 0100C 00000           CON(5)  =DOBINT
-  460 01011 40000           CON(5)  4
-  461 01016 00000           CON(5)  =DOBINT
-  462 0101B 90000           CON(5)  9
-  463               * File  sen-cos.s       94
-  464 01020 00000           CON(5)  =SEMI
-  465               * File  sen-cos.s       95
-  466
-  467               * File  sen-cos.s       96
-  468 01025 00000           CON(5)  =DOGROB
-  469 0102A 74000           CON(5)  71
-  470 0102F E0000A0         NIBHEX  E0000A0000020005
+  450               * File  sen-cos.s       92
+  451 01002 00000           CON(5)  =BINT4
+  452 01007 00000           CON(5)  =BINT9
+  453               * File  sen-cos.s       93
+  454 0100C 00000           CON(5)  =SEMI
+  455               * File  sen-cos.s       94
+  456
+  457               *############ Cursor    ( Label 1 )  ( 10x14 )  ( n,n )
+  458               * File  sen-cos.s       96
+  459 01011 00000           CON(5)  =DOGROB
+  460 01016 74000           CON(5)  71
+  461 0101B E0000A0         NIBHEX  E0000A0000020005
             0000200
             05
-  471 0103F 0005000         NIBHEX  0005000500850065
+  462 0102B 0005000         NIBHEX  0005000500850065
             5008500
             65
-  472 0104F 105D205         NIBHEX  105D205420102010
+  463 0103B 105D205         NIBHEX  105D205420102010
             4201020
             10
-  473 0105F 1010101         NIBHEX  10101018002800E7
+  464 0104B 1010101         NIBHEX  10101018002800E7
             8002800
             E7
-  474 0106F 00              NIBHEX  00
-  475               * File  sen-cos.s       97
-  476 01071 00000           CON(5)  =DOBINT
-  477 01076 50000           CON(5)  5
-  478 0107B 00000           CON(5)  =DOBINT
-  479 01080 61000           CON(5)  22
-  480               * A
-  481               *51 22  ( B )
-  482               *85 22  ( C )
-  483               *115 22  ( D )
-  484               * File  sen-cos.s       101
-  485
-  486               * File  sen-cos.s       102
-  487
-  488               * File  sen-cos.s       103
-  489 01085 00000           CON(5)  =DOCSTR
-  490 0108A 90000           CON(5)  9
-  491 0108F 14A3            NIBASC  \A:\
-  492 01093 00000           CON(5)  =DOBINT
-  493 01098 B0000           CON(5)  11
-  494 0109D 00000           CON(5)  =DOBINT
-  495 010A2 B2000           CON(5)  43
-  496               * File  sen-cos.s       104
-  497 010A7 00000           CON(5)  =DOCSTR
-  498 010AC 90000           CON(5)  9
-  499 010B1 24A3            NIBASC  \B:\
-  500 010B5 00000           CON(5)  =DOBINT
-  501 010BA 84000           CON(5)  72
-  502 010BF 00000           CON(5)  =DOBINT
-  503 010C4 B2000           CON(5)  43
-  504               * File  sen-cos.s       105
-  505 010C9 00000           CON(5)  =DOCSTR
-  506 010CE 90000           CON(5)  9
-  507 010D3 34A3            NIBASC  \C:\
-  508 010D7 00000           CON(5)  =DOBINT
-  509 010DC B0000           CON(5)  11
-  510 010E1 00000           CON(5)  =DOBINT
-  511 010E6 83000           CON(5)  56
-  512               * File  sen-cos.s       106
-  513 010EB 00000           CON(5)  =DOCSTR
-  514 010F0 90000           CON(5)  9
-  515 010F5 44A3            NIBASC  \D:\
-  516 010F9 00000           CON(5)  =DOBINT
-  517 010FE 84000           CON(5)  72
-  518 01103 00000           CON(5)  =DOBINT
-  519 01108 83000           CON(5)  56
-  520               * File  sen-cos.s       107
-  521
-  522               * MsgHan    X  Y  a  h  tipo   ObjPermi  Decompile  Help          ChooData  ChooDec   VaReset  VaInic
-  523               * File  sen-cos.s       109
-  524 0110D 00000           CON(5)  ='DROPFALSE
-  525 01112 00000           CON(5)  =DOBINT
-  526 01117 51000           CON(5)  21
-  527 0111C 00000           CON(5)  =DOBINT
-  528 01121 92000           CON(5)  41
-  529 01126 00000           CON(5)  =DOBINT
-  530 0112B 91000           CON(5)  25
-  531 01130 00000           CON(5)  =DOBINT
-  532 01135 90000           CON(5)  9
-  533 0113A 00000           CON(5)  =ONE
-  534 0113F 00000           CON(5)  =DOLIST
-  535 01144 00000           CON(5)  =DOBINT
-  536 01149 00000           CON(5)  0
-  537 0114E 00000           CON(5)  =SEMI
-  538 01153 00000           CON(5)  =FOUR
-  539 01158 00000           CON(5)  =DOCSTR
-  540 0115D 91000           CON(5)  25
-  541 01162 6516C6F         NIBASC  \Valor de A\
+  465 0105B 00              NIBHEX  00
+  466               * File  sen-cos.s       97
+  467 0105D 00000           CON(5)  =BINT5
+  468 01062 00000           CON(5)  =BINT23
+  469               * File  sen-cos.s       98
+  470
+  471               * File  sen-cos.s       99
+  472 01067 00000           CON(5)  =DOCSTR
+  473 0106C 90000           CON(5)  9
+  474 01071 14A3            NIBASC  \A:\
+  475 01075 00000           CON(5)  =BINT11
+  476 0107A 00000           CON(5)  =BINT43
+  477               * Label 2
+  478               * 11,43
+  479               * File  sen-cos.s       100
+  480 0107F 00000           CON(5)  =DOCSTR
+  481 01084 90000           CON(5)  9
+  482 01089 24A3            NIBASC  \B:\
+  483 0108D 00000           CON(5)  =BINT72
+  484 01092 00000           CON(5)  =BINT43
+  485               * Label 3
+  486               * 72,43
+  487               * File  sen-cos.s       101
+  488 01097 00000           CON(5)  =DOCSTR
+  489 0109C 90000           CON(5)  9
+  490 010A1 34A3            NIBASC  \C:\
+  491 010A5 00000           CON(5)  =BINT11
+  492 010AA 00000           CON(5)  =BINT56
+  493               * Label 4
+  494               * 11,56
+  495               * File  sen-cos.s       102
+  496 010AF 00000           CON(5)  =DOCSTR
+  497 010B4 90000           CON(5)  9
+  498 010B9 44A3            NIBASC  \D:\
+  499 010BD 00000           CON(5)  =BINT72
+  500 010C2 00000           CON(5)  =BINT56
+  501               * Label 5
+  502               * 72,56
+  503               * File  sen-cos.s       103
+  504
+  505               * File  sen-cos.s       104
+  506
+  507               *----------------------------- Campos --------------------------------
+  508               * File  sen-cos.s       106
+  509
+  510               * MsgHan    X  Y  a  h  tipo   ObjPermi  Decompile  Help          ChooData  ChooDec   VaReset  VaInic
+  511               * File  sen-cos.s       108
+  512 010C7 00000           CON(5)  ='DROPFALSE
+  513 010CC 00000           CON(5)  =DOBINT
+  514 010D1 51000           CON(5)  21
+  515 010D6 00000           CON(5)  =DOBINT
+  516 010DB 92000           CON(5)  41
+  517 010E0 00000           CON(5)  =DOBINT
+  518 010E5 91000           CON(5)  25
+  519 010EA 00000           CON(5)  =DOBINT
+  520 010EF 90000           CON(5)  9
+  521 010F4 00000           CON(5)  =ONE
+  522 010F9 00000           CON(5)  =DOLIST
+  523 010FE 00000           CON(5)  =DOBINT
+  524 01103 00000           CON(5)  0
+  525 01108 00000           CON(5)  =SEMI
+  526 0110D 00000           CON(5)  =FOUR
+  527 01112 00000           CON(5)  =DOCSTR
+  528 01117 91000           CON(5)  25
+  529 0111C 6516C6F         NIBASC  \Valor de A\
             6270246
             560214
-  542 01176 00000           CON(5)  =MINUSONE
-  543 0117B 00000           CON(5)  =MINUSONE
-  544 01180 00000           CON(5)  =MINUSONE
-  545 01185 00000           CON(5)  =MINUSONE
-  546               * File  sen-cos.s       110
-  547
-  548               * File  sen-cos.s       111
-  549 0118A 00000           CON(5)  ='DROPFALSE
-  550 0118F 00000           CON(5)  =DOBINT
-  551 01194 15000           CON(5)  81
-  552 01199 00000           CON(5)  =DOBINT
-  553 0119E 92000           CON(5)  41
-  554 011A3 00000           CON(5)  =DOBINT
-  555 011A8 91000           CON(5)  25
-  556 011AD 00000           CON(5)  =DOBINT
-  557 011B2 90000           CON(5)  9
-  558 011B7 00000           CON(5)  =ONE
-  559 011BC 00000           CON(5)  =DOLIST
-  560 011C1 00000           CON(5)  =DOBINT
-  561 011C6 00000           CON(5)  0
-  562 011CB 00000           CON(5)  =SEMI
-  563 011D0 00000           CON(5)  =FOUR
-  564 011D5 00000           CON(5)  =DOCSTR
-  565 011DA 91000           CON(5)  25
-  566 011DF 6516C6F         NIBASC  \Valor de B\
+  530 01130 00000           CON(5)  =MINUSONE
+  531 01135 00000           CON(5)  =MINUSONE
+  532 0113A 00000           CON(5)  =MINUSONE
+  533 0113F 00000           CON(5)  =MINUSONE
+  534               * File  sen-cos.s       109
+  535
+  536               * File  sen-cos.s       110
+  537 01144 00000           CON(5)  ='DROPFALSE
+  538 01149 00000           CON(5)  =DOBINT
+  539 0114E 15000           CON(5)  81
+  540 01153 00000           CON(5)  =DOBINT
+  541 01158 92000           CON(5)  41
+  542 0115D 00000           CON(5)  =DOBINT
+  543 01162 91000           CON(5)  25
+  544 01167 00000           CON(5)  =DOBINT
+  545 0116C 90000           CON(5)  9
+  546 01171 00000           CON(5)  =ONE
+  547 01176 00000           CON(5)  =DOLIST
+  548 0117B 00000           CON(5)  =DOBINT
+  549 01180 00000           CON(5)  0
+  550 01185 00000           CON(5)  =SEMI
+  551 0118A 00000           CON(5)  =FOUR
+  552 0118F 00000           CON(5)  =DOCSTR
+  553 01194 91000           CON(5)  25
+  554 01199 6516C6F         NIBASC  \Valor de B\
             6270246
             560224
-  567 011F3 00000           CON(5)  =MINUSONE
-  568 011F8 00000           CON(5)  =MINUSONE
-  569 011FD 00000           CON(5)  =MINUSONE
-  570 01202 00000           CON(5)  =MINUSONE
-  571               * File  sen-cos.s       112
-  572
-  573               * File  sen-cos.s       113
-  574 01207 00000           CON(5)  ='DROPFALSE
-  575 0120C 00000           CON(5)  =DOBINT
-  576 01211 51000           CON(5)  21
-  577 01216 00000           CON(5)  =DOBINT
-  578 0121B 63000           CON(5)  54
-  579 01220 00000           CON(5)  =DOBINT
-  580 01225 91000           CON(5)  25
-  581 0122A 00000           CON(5)  =DOBINT
-  582 0122F 90000           CON(5)  9
-  583 01234 00000           CON(5)  =ONE
-  584 01239 00000           CON(5)  =DOLIST
-  585 0123E 00000           CON(5)  =DOBINT
-  586 01243 00000           CON(5)  0
-  587 01248 00000           CON(5)  =SEMI
-  588 0124D 00000           CON(5)  =FOUR
-  589 01252 00000           CON(5)  =DOCSTR
-  590 01257 91000           CON(5)  25
-  591 0125C 6516C6F         NIBASC  \Valor de C\
+  555 011AD 00000           CON(5)  =MINUSONE
+  556 011B2 00000           CON(5)  =MINUSONE
+  557 011B7 00000           CON(5)  =MINUSONE
+  558 011BC 00000           CON(5)  =MINUSONE
+  559               * File  sen-cos.s       111
+  560
+  561               * File  sen-cos.s       112
+  562 011C1 00000           CON(5)  ='DROPFALSE
+  563 011C6 00000           CON(5)  =DOBINT
+  564 011CB 51000           CON(5)  21
+  565 011D0 00000           CON(5)  =DOBINT
+  566 011D5 63000           CON(5)  54
+  567 011DA 00000           CON(5)  =DOBINT
+  568 011DF 91000           CON(5)  25
+  569 011E4 00000           CON(5)  =DOBINT
+  570 011E9 90000           CON(5)  9
+  571 011EE 00000           CON(5)  =ONE
+  572 011F3 00000           CON(5)  =DOLIST
+  573 011F8 00000           CON(5)  =DOBINT
+  574 011FD 00000           CON(5)  0
+  575 01202 00000           CON(5)  =SEMI
+  576 01207 00000           CON(5)  =FOUR
+  577 0120C 00000           CON(5)  =DOCSTR
+  578 01211 91000           CON(5)  25
+  579 01216 6516C6F         NIBASC  \Valor de C\
             6270246
             560234
-  592 01270 00000           CON(5)  =MINUSONE
-  593 01275 00000           CON(5)  =MINUSONE
-  594 0127A 00000           CON(5)  =MINUSONE
-  595 0127F 00000           CON(5)  =MINUSONE
-  596               * File  sen-cos.s       114
-  597
-  598               * File  sen-cos.s       115
-  599 01284 00000           CON(5)  ='DROPFALSE
-  600 01289 00000           CON(5)  =DOBINT
-  601 0128E 15000           CON(5)  81
-  602 01293 00000           CON(5)  =DOBINT
-  603 01298 63000           CON(5)  54
-  604 0129D 00000           CON(5)  =DOBINT
-  605 012A2 91000           CON(5)  25
-  606 012A7 00000           CON(5)  =DOBINT
-  607 012AC 90000           CON(5)  9
-  608 012B1 00000           CON(5)  =ONE
-  609 012B6 00000           CON(5)  =DOLIST
-  610 012BB 00000           CON(5)  =DOBINT
-  611 012C0 00000           CON(5)  0
-  612 012C5 00000           CON(5)  =SEMI
-  613 012CA 00000           CON(5)  =FOUR
-  614 012CF 00000           CON(5)  =DOCSTR
-  615 012D4 91000           CON(5)  25
-  616 012D9 6516C6F         NIBASC  \Valor de D\
+  580 0122A 00000           CON(5)  =MINUSONE
+  581 0122F 00000           CON(5)  =MINUSONE
+  582 01234 00000           CON(5)  =MINUSONE
+  583 01239 00000           CON(5)  =MINUSONE
+  584               * File  sen-cos.s       113
+  585
+  586               * File  sen-cos.s       114
+  587 0123E 00000           CON(5)  ='DROPFALSE
+  588 01243 00000           CON(5)  =DOBINT
+  589 01248 15000           CON(5)  81
+  590 0124D 00000           CON(5)  =DOBINT
+  591 01252 63000           CON(5)  54
+  592 01257 00000           CON(5)  =DOBINT
+  593 0125C 91000           CON(5)  25
+  594 01261 00000           CON(5)  =DOBINT
+  595 01266 90000           CON(5)  9
+  596 0126B 00000           CON(5)  =ONE
+  597 01270 00000           CON(5)  =DOLIST
+  598 01275 00000           CON(5)  =DOBINT
+  599 0127A 00000           CON(5)  0
+  600 0127F 00000           CON(5)  =SEMI
+  601 01284 00000           CON(5)  =FOUR
+  602 01289 00000           CON(5)  =DOCSTR
+  603 0128E 91000           CON(5)  25
+  604 01293 6516C6F         NIBASC  \Valor de D\
             6270246
             560244
-  617 012ED 00000           CON(5)  =MINUSONE
-  618 012F2 00000           CON(5)  =MINUSONE
-  619 012F7 00000           CON(5)  =MINUSONE
-  620 012FC 00000           CON(5)  =MINUSONE
-  621               * File  sen-cos.s       116
-  622
-  623               * File  sen-cos.s       117
-  624 01301 00000           CON(5)  =DOBINT
-  625 01306 60000           CON(5)  6
-  626 0130B 00000           CON(5)  =DOBINT
-  627 01310 40000           CON(5)  4
-  628               * #Etiquetas #Campos
-  629               * File  sen-cos.s       118
-  630 01315 00000           CON(5)  ='DROPFALSE
-  631               * Message Handler
-  632               * File  sen-cos.s       119
-  633 0131A 00000           CON(5)  =DOCSTR
-  634 0131F 13000           CON(5)  49
-  635 01324 94E4452         NIBASC  \INTRODUZCA LOS VALOR\
+  605 012A7 00000           CON(5)  =MINUSONE
+  606 012AC 00000           CON(5)  =MINUSONE
+  607 012B1 00000           CON(5)  =MINUSONE
+  608 012B6 00000           CON(5)  =MINUSONE
+  609               * File  sen-cos.s       115
+  610
+  611               * File  sen-cos.s       116
+  612
+  613               * File  sen-cos.s       117
+  614 012BB 00000           CON(5)  =BINT6
+  615 012C0 00000           CON(5)  =BINT4
+  616               * #Etiquetas #Campos
+  617               * File  sen-cos.s       118
+  618
+  619               * File  sen-cos.s       119
+  620
+  621               *----------------- Messege-Handler del Formulario --------------------
+  622               * File  sen-cos.s       121
+  623
+  624               * File  sen-cos.s       122
+  625 012C5 00000           CON(5)  ='
+  626 012CA 00000           CON(5)  =DOCOL
+  627               * File  sen-cos.s       123
+  628 012CF 00000           CON(5)  =BINT2
+  629 012D4 00000           CON(5)  =#=casedrop
+  630               * Cuando un field ha recibido un enfoque
+  631               * File  sen-cos.s       124
+  632 012D9 00000           CON(5)  =DOCOL
+  633               * File  sen-cos.s       125
+  634 012DE 00000           CON(5)  =4GETLAM
+  635               * LAM 'CurrentField
+  636               *     Caso letra A
+  637               * File  sen-cos.s       127
+  638 012E3 00000           CON(5)  =BINT0
+  639 012E8 00000           CON(5)  =OVER#=case
+  640               * File  sen-cos.s       128
+  641 012ED 00000           CON(5)  =DOCOL
+  642               * File  sen-cos.s       129
+  643 012F2 00000           CON(5)  =BINT1
+  644 012F7 00000           CON(5)  =FALSE
+  645 012FC 00000           CON(5)  =BINT5
+  646 01301 00000           CON(5)  =BINT23
+  647 01306 00000           CON(5)  =BINT10
+  648 0130B 00000           CON(5)  =BINT14
+  649 01310 00000           CON(5)  =DOFLASHP
+  650 01315 0000000         CON(7)  =^IfSetFieldPos
+  651               * File  sen-cos.s       130
+  652 0131C 00000           CON(5)  =SEMI
+  653               * File  sen-cos.s       131
+  654
+  655               *                Caso letra B
+  656               * File  sen-cos.s       133
+  657 01321 00000           CON(5)  =BINT1
+  658 01326 00000           CON(5)  =OVER#=case
+  659               * File  sen-cos.s       134
+  660 0132B 00000           CON(5)  =DOCOL
+  661               * File  sen-cos.s       135
+  662 01330 00000           CON(5)  =BINT1
+  663 01335 00000           CON(5)  =FALSE
+  664 0133A 00000           CON(5)  =BINT51
+  665 0133F 00000           CON(5)  =BINT23
+  666 01344 00000           CON(5)  =BINT10
+  667 01349 00000           CON(5)  =BINT14
+  668 0134E 00000           CON(5)  =DOFLASHP
+  669 01353 0000000         CON(7)  =^IfSetFieldPos
+  670               * File  sen-cos.s       136
+  671 0135A 00000           CON(5)  =SEMI
+  672               * File  sen-cos.s       137
+  673
+  674               *                       Caso letra C
+  675               * File  sen-cos.s       139
+  676 0135F 00000           CON(5)  =BINT2
+  677 01364 00000           CON(5)  =OVER#=case
+  678               * File  sen-cos.s       140
+  679 01369 00000           CON(5)  =DOCOL
+  680               * File  sen-cos.s       141
+  681 0136E 00000           CON(5)  =BINT1
+  682 01373 00000           CON(5)  =FALSE
+  683 01378 00000           CON(5)  =BINT85
+  684 0137D 00000           CON(5)  =BINT23
+  685 01382 00000           CON(5)  =BINT10
+  686 01387 00000           CON(5)  =BINT14
+  687 0138C 00000           CON(5)  =DOFLASHP
+  688 01391 0000000         CON(7)  =^IfSetFieldPos
+  689               * File  sen-cos.s       142
+  690 01398 00000           CON(5)  =SEMI
+  691               * File  sen-cos.s       143
+  692
+  693               *                Caso letra D
+  694               * File  sen-cos.s       145
+  695 0139D 00000           CON(5)  =BINT3
+  696 013A2 00000           CON(5)  =OVER#=case
+  697               * File  sen-cos.s       146
+  698 013A7 00000           CON(5)  =DOCOL
+  699               * File  sen-cos.s       147
+  700 013AC 00000           CON(5)  =BINT1
+  701 013B1 00000           CON(5)  =FALSE
+  702 013B6 00000           CON(5)  =BINT115
+  703 013BB 00000           CON(5)  =BINT23
+  704 013C0 00000           CON(5)  =BINT10
+  705 013C5 00000           CON(5)  =BINT14
+  706 013CA 00000           CON(5)  =DOFLASHP
+  707 013CF 0000000         CON(7)  =^IfSetFieldPos
+  708               * File  sen-cos.s       148
+  709 013D6 00000           CON(5)  =SEMI
+  710               * File  sen-cos.s       149
+  711 013DB 00000           CON(5)  =TRUE
+  712               * File  sen-cos.s       150
+  713 013E0 00000           CON(5)  =SEMI
+  714               * File  sen-cos.s       151
+  715
+  716               * File  sen-cos.s       152
+  717 013E5 00000           CON(5)  =DROPFALSE
+  718               * File  sen-cos.s       153
+  719 013EA 00000           CON(5)  =SEMI
+  720               * File  sen-cos.s       154
+  721
+  722               * File  sen-cos.s       155
+  723
+  724               * File  sen-cos.s       156
+  725 013EF 00000           CON(5)  =DOCSTR
+  726 013F4 13000           CON(5)  49
+  727 013F9 94E4452         NIBASC  \INTRODUZCA LOS VALOR\
             5F44455
             A5341402C4F435026514C4F425
 
-  636 0134C 5435            NIBASC  \ES\
-  637               * TITULO
-  638               * File  sen-cos.s       120
-  639
-  640               * File  sen-cos.s       121
-  641 01350 00000           CON(5)  =DOFLASHP
-  642 01355 0000000         CON(7)  =^IfMain
-  643               * -> %A %B %C %D TRUE / -> FALSE
-  644               * File  sen-cos.s       122
-  645
-  646               * File  sen-cos.s       123
-  647
-  648               * File  sen-cos.s       124
-  649 0135C 00000           CON(5)  =?SKIP
-  650               * -> FLAG  , NOT_IT
-  651               * File  sen-cos.s       125
-  652 01361 00000           CON(5)  =DOCOL
-  653 01366 00000           CON(5)  =RestoreSysFlags
-  654 0136B 00000           CON(5)  =ABND
-  655 01370 00000           CON(5)  =xKILL
-  656 01375 00000           CON(5)  =SEMI
-  657               * File  sen-cos.s       126
-  658
-  659               * File  sen-cos.s       127
-  660
-  661               * File  sen-cos.s       128
-  662
-  663               * File  sen-cos.s       129
-  664
-  665               *======================== MANEJO DE DATOS ============================
-  666               * File  sen-cos.s       131
-  667
-  668               * File  sen-cos.s       132
-  669               * 4: 3: 2: 1:
-  670               * File  sen-cos.s       133
-  671 0137A 00000           CON(5)  =DOBINT
-  672 0137F 30000           CON(5)  3
-  673 01384 00000           CON(5)  =PICK
-  674 01389 00000           CON(5)  =%0<
-  675 0138E 00000           CON(5)  =IT
-  676               * %A %B %C %D
-  677               * File  sen-cos.s       134
-  678 01393 00000           CON(5)  =DOCOL
-  679               * File  sen-cos.s       135
-  680 01398 00000           CON(5)  =DOLAM
-  681 0139D 30              CON(2)  3
-  682 0139F F40713          NIBASC  \Op1\
-  683 013A5 00000           CON(5)  =ITE
-  684               *CasoSeno: Modifica A, B y C
-  685               * File  sen-cos.s       137
-  686 013AA 00000           CON(5)  =DOCOL
-  687               * 4:  3:  2:  1:
-  688               * File  sen-cos.s       138
-  689 013AF 00000           CON(5)  =BINT4
-  690 013B4 00000           CON(5)  =ROLL
-  691 013B9 00000           CON(5)  =%CHS
-  692               * %B  %C  %D  -%A
-  693               * File  sen-cos.s       139
-  694 013BE 00000           CON(5)  =BINT4
-  695 013C3 00000           CON(5)  =ROLL
-  696 013C8 00000           CON(5)  =%CHS
-  697               * %C  %D  -%A -%B
-  698               * File  sen-cos.s       140
-  699 013CD 00000           CON(5)  =BINT4
-  700 013D2 00000           CON(5)  =ROLL
-  701 013D7 00000           CON(5)  =%CHS
-  702               * %D  -%A -%B -%C
-  703               * File  sen-cos.s       141
-  704 013DC 00000           CON(5)  =BINT4
-  705 013E1 00000           CON(5)  =ROLL
-  706               * -%A -%B -%C %D
-  707               * File  sen-cos.s       142
-  708 013E6 00000           CON(5)  =SEMI
-  709               * File  sen-cos.s       143
-  710
-  711               *CasoCoseno: Modifica B y C
-  712               * File  sen-cos.s       145
-  713 013EB 00000           CON(5)  =DOCOL
-  714               * File  sen-cos.s       146
-  715 013F0 00000           CON(5)  =BINT4
-  716 013F5 00000           CON(5)  =ROLL
-  717               * %B  %C  %D  %A
-  718               * File  sen-cos.s       147
-  719 013FA 00000           CON(5)  =BINT4
-  720 013FF 00000           CON(5)  =ROLL
-  721 01404 00000           CON(5)  =%CHS
-  722               * %C  %D  %A  -%B
-  723               * File  sen-cos.s       148
-  724 01409 00000           CON(5)  =BINT4
-  725 0140E 00000           CON(5)  =ROLL
-  726 01413 00000           CON(5)  =%CHS
-  727               * %D  %A  -%B -%C
-  728               * File  sen-cos.s       149
-  729 01418 00000           CON(5)  =BINT4
-  730 0141D 00000           CON(5)  =ROLL
-  731               * %A -%B  -%C %D
-  732               * File  sen-cos.s       150
-  733 01422 00000           CON(5)  =SEMI
-  734               * File  sen-cos.s       151
-  735 01427 00000           CON(5)  =SEMI
-  736               * File  sen-cos.s       152
-  737
-  738               * File  sen-cos.s       153
-  739 0142C 00000           CON(5)  =BINT5
-  740 01431 00000           CON(5)  =ONE_DO
-  741               * %A %B %C %D -> ZA ZB ZC ZD
-  742               * File  sen-cos.s       154
-  743 01436 00000           CON(5)  =DOCOL
-  744               * File  sen-cos.s       155
-  745 0143B 00000           CON(5)  =BINT4
-  746 01440 00000           CON(5)  =ROLL
-  747               * File  sen-cos.s       156
-  748 01445 00000           CON(5)  =DOFLASHP
-  749 0144A 0000000         CON(7)  =^R>Z
-  750               * File  sen-cos.s       157
-  751 01451 00000           CON(5)  =SEMI
-  752               * File  sen-cos.s       158
-  753 01456 00000           CON(5)  =LOOP
-  754               *| sen-cos.s: 158: error: Unmatched control word: LOOP
-  755
-  756               * File  sen-cos.s       159
-  757
-  758               * File  sen-cos.s       160
-  759
-  760               *========================== VARIABLES ================================
-  761               * File  sen-cos.s       162
-  762
-  763               * File  sen-cos.s       163
-  764 0145B 00000           CON(5)  =DOLAM
-  765 01460 30              CON(2)  3
-  766 01462 F40713          NIBASC  \Op1\
-  767 01468 00000           CON(5)  =ABND
-  768               * File  sen-cos.s       164
-  769 0146D 00000           CON(5)  =DOLIST
-  770 01472 00000           CON(5)  =DOLAM
-  771 01477 10              CON(2)  1
-  772 01479 14              NIBASC  \A\
-  773 0147B 00000           CON(5)  =DOLAM
-  774 01480 10              CON(2)  1
-  775 01482 24              NIBASC  \B\
-  776 01484 00000           CON(5)  =DOLAM
-  777 01489 10              CON(2)  1
-  778 0148B 34              NIBASC  \C\
-  779 0148D 00000           CON(5)  =DOLAM
-  780 01492 10              CON(2)  1
-  781 01494 44              NIBASC  \D\
-  782 01496 00000           CON(5)  =DOLAM
-  783 0149B 30              CON(2)  3
-  784 0149D F40713          NIBASC  \Op1\
-  785 014A3 00000           CON(5)  =SEMI
-  786 014A8 00000           CON(5)  =BIND
-  787               * File  sen-cos.s       165
-  788
-  789               * File  sen-cos.s       166
-  790
-  791               *========================= COMPROBACION ==============================
-  792               * File  sen-cos.s       168
-  793
-  794               * File  sen-cos.s       169
-  795 014AD 00000           CON(5)  =DOLAM
-  796 014B2 10              CON(2)  1
-  797 014B4 14              NIBASC  \A\
-  798 014B6 00000           CON(5)  =DOINT
-  799 014BB 600000          CON(6)  6
-  800 014C1 00000           CON(5)  =Z=
-  801 014C6 00000           CON(5)  =DOLAM
-  802 014CB 10              CON(2)  1
-  803 014CD 24              NIBASC  \B\
-  804 014CF 00000           CON(5)  =DOINT
-  805 014D4 600000          CON(6)  6
-  806 014DA 00000           CON(5)  =Z=
-  807 014DF 00000           CON(5)  =OR
-  808 014E4 00000           CON(5)  =IT
-  809               * File  sen-cos.s       170
-  810 014E9 00000           CON(5)  =DOCOL
-  811               * File  sen-cos.s       171
-  812 014EE 00000           CON(5)  =DOCSTR
-  813 014F3 D5000           CON(5)  93
-  814 014F8 542525F         NIBASC  \ERROR:\
+  728 01421 5435            NIBASC  \ES\
+  729               * Titulo de IfMain
+  730               * File  sen-cos.s       157
+  731 01425 00000           CON(5)  =DOFLASHP
+  732 0142A 0000000         CON(7)  =^IfMain
+  733               *En la pila               ( %A %B %C %D TRUE / FALSE  )
+  734               * File  sen-cos.s       159
+  735
+  736               * File  sen-cos.s       160
+  737 01431 00000           CON(5)  =?SKIP
+  738               * En caso de obtener FALSE en IfMain
+  739               * File  sen-cos.s       161
+  740 01436 00000           CON(5)  =DOCOL
+  741 0143B 00000           CON(5)  =RestoreSysFlags
+  742 01440 00000           CON(5)  =ABND
+  743 01445 00000           CON(5)  =xKILL
+  744 0144A 00000           CON(5)  =SEMI
+  745               * File  sen-cos.s       162
+  746
+  747               * File  sen-cos.s       163
+  748
+  749               *======================== MANEJO DE DATOS ============================
+  750               * File  sen-cos.s       165
+  751
+  752               * File  sen-cos.s       166
+  753 0144F 00000           CON(5)  =DOBINT
+  754 01454 30000           CON(5)  3
+  755 01459 00000           CON(5)  =PICK
+  756 0145E 00000           CON(5)  =%0<
+  757 01463 00000           CON(5)  =IT
+  758               * %A %B %C %D
+  759               * File  sen-cos.s       167
+  760 01468 00000           CON(5)  =DOCOL
+  761               * File  sen-cos.s       168
+  762 0146D 00000           CON(5)  =DOLAM
+  763 01472 30              CON(2)  3
+  764 01474 F40713          NIBASC  \Op1\
+  765 0147A 00000           CON(5)  =ITE
+  766               *CasoSeno: Modifica A, B y C
+  767               * File  sen-cos.s       170
+  768 0147F 00000           CON(5)  =DOCOL
+  769               * 4:  3:  2:  1:
+  770               * File  sen-cos.s       171
+  771 01484 00000           CON(5)  =BINT4
+  772 01489 00000           CON(5)  =ROLL
+  773 0148E 00000           CON(5)  =%CHS
+  774               * %B  %C  %D  %-A
+  775               * File  sen-cos.s       172
+  776 01493 00000           CON(5)  =BINT4
+  777 01498 00000           CON(5)  =ROLL
+  778 0149D 00000           CON(5)  =%CHS
+  779               * %C  %D  %-A %-B
+  780               * File  sen-cos.s       173
+  781 014A2 00000           CON(5)  =BINT4
+  782 014A7 00000           CON(5)  =ROLL
+  783 014AC 00000           CON(5)  =%CHS
+  784               * %D  %-A %-B %-C
+  785               * File  sen-cos.s       174
+  786 014B1 00000           CON(5)  =BINT4
+  787 014B6 00000           CON(5)  =ROLL
+  788               * %-A %-B %-C %D
+  789               * File  sen-cos.s       175
+  790 014BB 00000           CON(5)  =SEMI
+  791               * File  sen-cos.s       176
+  792
+  793               *CasoCoseno: Modifica B y C
+  794               * File  sen-cos.s       178
+  795 014C0 00000           CON(5)  =DOCOL
+  796               * 4:  3:  2:  1:
+  797               * File  sen-cos.s       179
+  798 014C5 00000           CON(5)  =BINT4
+  799 014CA 00000           CON(5)  =ROLL
+  800               * %B  %C  %D  %A
+  801               * File  sen-cos.s       180
+  802 014CF 00000           CON(5)  =BINT4
+  803 014D4 00000           CON(5)  =ROLL
+  804 014D9 00000           CON(5)  =%CHS
+  805               * %C  %D  %A  %-B
+  806               * File  sen-cos.s       181
+  807 014DE 00000           CON(5)  =BINT4
+  808 014E3 00000           CON(5)  =ROLL
+  809 014E8 00000           CON(5)  =%CHS
+  810               * %D  %A  %-B %-C
+  811               * File  sen-cos.s       182
+  812 014ED 00000           CON(5)  =BINT4
+  813 014F2 00000           CON(5)  =ROLL
+  814               * %A  %-B %-C %D
+  815               * File  sen-cos.s       183
+  816 014F7 00000           CON(5)  =SEMI
+  817               * File  sen-cos.s       184
+  818 014FC 00000           CON(5)  =SEMI
+  819               * File  sen-cos.s       185
+  820
+  821               * File  sen-cos.s       186
+  822
+  823               * Bucle para convertir  ( %A %B %C %D -> ZA ZB ZC ZD )
+  824               * reales a enteros
+  825               * File  sen-cos.s       189
+  826 01501 00000           CON(5)  =BINT5
+  827 01506 00000           CON(5)  =ONE_DO
+  828               * File  sen-cos.s       190
+  829 0150B 00000           CON(5)  =DOCOL
+  830               * File  sen-cos.s       191
+  831 01510 00000           CON(5)  =BINT4
+  832 01515 00000           CON(5)  =ROLL
+  833               * File  sen-cos.s       192
+  834 0151A 00000           CON(5)  =DOFLASHP
+  835 0151F 0000000         CON(7)  =^R>Z
+  836               * File  sen-cos.s       193
+  837 01526 00000           CON(5)  =SEMI
+  838               * File  sen-cos.s       194
+  839 0152B 00000           CON(5)  =LOOP
+  840               *| sen-cos.s: 194: error: Unmatched control word: LOOP
+  841
+  842               ****En la pila   ( ZA ZB ZC ZD )
+  843               * File  sen-cos.s       196
+  844
+  845               *========================== VARIABLES ================================
+  846               * File  sen-cos.s       198
+  847
+  848               * File  sen-cos.s       199
+  849 01530 00000           CON(5)  =DOLAM
+  850 01535 30              CON(2)  3
+  851 01537 F40713          NIBASC  \Op1\
+  852 0153D 00000           CON(5)  =ABND
+  853               * File  sen-cos.s       200
+  854 01542 00000           CON(5)  =DOLIST
+  855 01547 00000           CON(5)  =DOLAM
+  856 0154C 10              CON(2)  1
+  857 0154E 14              NIBASC  \A\
+  858 01550 00000           CON(5)  =DOLAM
+  859 01555 10              CON(2)  1
+  860 01557 24              NIBASC  \B\
+  861 01559 00000           CON(5)  =DOLAM
+  862 0155E 10              CON(2)  1
+  863 01560 34              NIBASC  \C\
+  864 01562 00000           CON(5)  =DOLAM
+  865 01567 10              CON(2)  1
+  866 01569 44              NIBASC  \D\
+  867 0156B 00000           CON(5)  =DOLAM
+  868 01570 30              CON(2)  3
+  869 01572 F40713          NIBASC  \Op1\
+  870 01578 00000           CON(5)  =SEMI
+  871 0157D 00000           CON(5)  =BIND
+  872               * File  sen-cos.s       201
+  873
+  874               * File  sen-cos.s       202
+  875
+  876               *========================= COMPROBACION ==============================
+  877               * File  sen-cos.s       204
+  878
+  879               * File  sen-cos.s       205
+  880 01582 00000           CON(5)  =DOLAM
+  881 01587 10              CON(2)  1
+  882 01589 14              NIBASC  \A\
+  883 0158B 00000           CON(5)  =DOINT
+  884 01590 600000          CON(6)  6
+  885 01596 00000           CON(5)  =Z=
+  886 0159B 00000           CON(5)  =DOLAM
+  887 015A0 10              CON(2)  1
+  888 015A2 24              NIBASC  \B\
+  889 015A4 00000           CON(5)  =DOINT
+  890 015A9 600000          CON(6)  6
+  891 015AF 00000           CON(5)  =Z=
+  892 015B4 00000           CON(5)  =OR
+  893 015B9 00000           CON(5)  =IT
+  894               * File  sen-cos.s       206
+  895 015BE 00000           CON(5)  =DOCOL
+  896               * File  sen-cos.s       207
+  897 015C3 00000           CON(5)  =DOCSTR
+  898 015C8 D5000           CON(5)  93
+  899 015CD 542525F         NIBASC  \ERROR:\
             425A3
-  815 01504 A0              CON(2)  #A
-  816 01506 A0              CON(2)  #A
-  817 01508 1402970         NIBASC  \A y B tiene que ser \
+  900 015D9 A0              CON(2)  #A
+  901 015DB A0              CON(2)  #A
+  902 015DD 1402970         NIBASC  \A y B tiene que ser \
             2240247
             9656E656021757560237562702
 
-  818 01530 4696E64         NIBASC  \dintinto de cero\
+  903 01605 4696E64         NIBASC  \dintinto de cero\
             796E647
             F602465602365627F6
 
-  819               * File  sen-cos.s       172
-  820 01550 00000           CON(5)  =BINT15
-  821 01555 00000           CON(5)  =BINT10
-  822               * File  sen-cos.s       173
-  823 0155A 00000           CON(5)  =DOROMP
-  824 0155F 000000          CON(6)  =~grobAlertIcon
-  825               * File  sen-cos.s       174
-  826 01565 00000           CON(5)  =DOROMP
-  827 0156A 000000          CON(6)  =~MsgBoxMenu
-  828               * File  sen-cos.s       175
-  829 01570 00000           CON(5)  =DOROMP
-  830 01575 000000          CON(6)  =~DoMsgBox
-  831               * File  sen-cos.s       176
-  832 0157B 00000           CON(5)  =DROP
-  833 01580 00000           CON(5)  =RestoreSysFlags
-  834 01585 00000           CON(5)  =ABND
-  835 0158A 00000           CON(5)  =xKILL
-  836               * File  sen-cos.s       177
-  837 0158F 00000           CON(5)  =SEMI
-  838               * File  sen-cos.s       178
-  839
-  840               * File  sen-cos.s       179
-  841
-  842               *===================== CREACION DE CARPETA ===========================
-  843               * File  sen-cos.s       181
-  844
-  845               * File  sen-cos.s       182
-  846 01594 00000           CON(5)  =PATHDIR
-  847               * { xHOME Dir.. DirActual }
-  848               * File  sen-cos.s       183
-  849 01599 00000           CON(5)  =DOFLASHP
-  850 0159E 0000000         CON(7)  =^LASTCOMP
-  851               * DirActual
-  852               * File  sen-cos.s       184
-  853 015A5 00000           CON(5)  ='
-  854 015AA 00000           CON(5)  =DOIDNT
-  855 015AF 50              CON(2)  5
-  856 015B1 2554355         NIBASC  \RESUL\
+  904               * File  sen-cos.s       208
+  905 01625 00000           CON(5)  =BINT15
+  906 0162A 00000           CON(5)  =BINT10
+  907               * File  sen-cos.s       209
+  908 0162F 00000           CON(5)  =DOROMP
+  909 01634 000000          CON(6)  =~grobAlertIcon
+  910               * File  sen-cos.s       210
+  911 0163A 00000           CON(5)  =DOROMP
+  912 0163F 000000          CON(6)  =~MsgBoxMenu
+  913               * File  sen-cos.s       211
+  914 01645 00000           CON(5)  =DOROMP
+  915 0164A 000000          CON(6)  =~DoMsgBox
+  916               * File  sen-cos.s       212
+  917 01650 00000           CON(5)  =DROP
+  918 01655 00000           CON(5)  =RestoreSysFlags
+  919 0165A 00000           CON(5)  =ABND
+  920 0165F 00000           CON(5)  =xKILL
+  921               * File  sen-cos.s       213
+  922 01664 00000           CON(5)  =SEMI
+  923               * File  sen-cos.s       214
+  924
+  925               * File  sen-cos.s       215
+  926
+  927               *===================== CREACION DE CARPETA ===========================
+  928               * File  sen-cos.s       217
+  929
+  930               * File  sen-cos.s       218
+  931 01669 00000           CON(5)  =PATHDIR
+  932               * { xHOME Dir.. DirActual }
+  933               * File  sen-cos.s       219
+  934 0166E 00000           CON(5)  =DOFLASHP
+  935 01673 0000000         CON(7)  =^LASTCOMP
+  936               * DirActual
+  937               * File  sen-cos.s       220
+  938 0167A 00000           CON(5)  ='
+  939 0167F 00000           CON(5)  =DOIDNT
+  940 01684 50              CON(2)  5
+  941 01686 2554355         NIBASC  \RESUL\
             5C4
-  857 015BB 00000           CON(5)  =EQUAL
-  858               * DirActual = Resul ?
-  859               * File  sen-cos.s       185
-  860 015C0 00000           CON(5)  =ITE
-  861               *Caso Dir igual a 'Resul'
-  862               * File  sen-cos.s       187
-  863 015C5 00000           CON(5)  =DOCOL
-  864               * File  sen-cos.s       188
-  865 015CA 00000           CON(5)  =DOVARS
-  866 015CF 00000           CON(5)  =xPURGE
-  867               * Borrrar variables locales
-  868               * File  sen-cos.s       189
-  869 015D4 00000           CON(5)  =SEMI
-  870               * File  sen-cos.s       190
-  871
-  872               *Caso Dir distinto de 'Resul'
-  873               * File  sen-cos.s       192
-  874 015D9 00000           CON(5)  =DOCOL
-  875               * File  sen-cos.s       193
-  876 015DE 00000           CON(5)  ='
-  877 015E3 00000           CON(5)  =DOIDNT
-  878 015E8 50              CON(2)  5
-  879 015EA 2554355         NIBASC  \RESUL\
+  942 01690 00000           CON(5)  =EQUAL
+  943               * DirActual = Resul ?
+  944               * File  sen-cos.s       221
+  945 01695 00000           CON(5)  =ITE
+  946               *Caso Dir igual a 'Resul'
+  947               * File  sen-cos.s       223
+  948 0169A 00000           CON(5)  =DOCOL
+  949               * File  sen-cos.s       224
+  950 0169F 00000           CON(5)  =DOVARS
+  951 016A4 00000           CON(5)  =xPURGE
+  952               * Borrrar variables locales
+  953               * File  sen-cos.s       225
+  954 016A9 00000           CON(5)  =SEMI
+  955               * File  sen-cos.s       226
+  956
+  957               *Caso Dir distinto de 'Resul'
+  958               * File  sen-cos.s       228
+  959 016AE 00000           CON(5)  =DOCOL
+  960               * File  sen-cos.s       229
+  961 016B3 00000           CON(5)  ='
+  962 016B8 00000           CON(5)  =DOIDNT
+  963 016BD 50              CON(2)  5
+  964 016BF 2554355         NIBASC  \RESUL\
             5C4
-  880 015F4 00000           CON(5)  =SAFE@
-  881               * existe resul?
-  882               * File  sen-cos.s       194
-  883 015F9 00000           CON(5)  =ITE
-  884               *Existe RESUL
-  885               * File  sen-cos.s       196
-  886 015FE 00000           CON(5)  =DOCOL
-  887 01603 00000           CON(5)  =DROP
-  888 01608 00000           CON(5)  =DOIDNT
-  889 0160D 50              CON(2)  5
-  890 0160F 2554355         NIBASC  \RESUL\
+  965 016C9 00000           CON(5)  =SAFE@
+  966               * existe resul?
+  967               * File  sen-cos.s       230
+  968 016CE 00000           CON(5)  =ITE
+  969               *Existe RESUL
+  970               * File  sen-cos.s       232
+  971 016D3 00000           CON(5)  =DOCOL
+  972 016D8 00000           CON(5)  =DROP
+  973 016DD 00000           CON(5)  =DOIDNT
+  974 016E2 50              CON(2)  5
+  975 016E4 2554355         NIBASC  \RESUL\
             5C4
-  891 01619 00000           CON(5)  =DOVARS
-  892 0161E 00000           CON(5)  =xPURGE
-  893 01623 00000           CON(5)  =SEMI
-  894               *No existe RESUL
-  895               * File  sen-cos.s       198
-  896 01628 00000           CON(5)  =DOCOL
-  897 0162D 00000           CON(5)  ='
-  898 01632 00000           CON(5)  =DOIDNT
-  899 01637 50              CON(2)  5
-  900 01639 2554355         NIBASC  \RESUL\
+  976 016EE 00000           CON(5)  =DOVARS
+  977 016F3 00000           CON(5)  =xPURGE
+  978 016F8 00000           CON(5)  =SEMI
+  979               *No existe RESUL
+  980               * File  sen-cos.s       234
+  981 016FD 00000           CON(5)  =DOCOL
+  982 01702 00000           CON(5)  ='
+  983 01707 00000           CON(5)  =DOIDNT
+  984 0170C 50              CON(2)  5
+  985 0170E 2554355         NIBASC  \RESUL\
             5C4
-  901 01643 00000           CON(5)  =CREATERRP_
-  902 01648 00000           CON(5)  =DOIDNT
-  903 0164D 50              CON(2)  5
-  904 0164F 2554355         NIBASC  \RESUL\
+  986 01718 00000           CON(5)  =CREATERRP_
+  987 0171D 00000           CON(5)  =DOIDNT
+  988 01722 50              CON(2)  5
+  989 01724 2554355         NIBASC  \RESUL\
             5C4
-  905 01659 00000           CON(5)  =SEMI
-  906               * File  sen-cos.s       199
-  907 0165E 00000           CON(5)  =SEMI
-  908               * File  sen-cos.s       200
-  909
-  910               * File  sen-cos.s       201
-  911
-  912               *======================== OPERACIONES ================================
-  913               * File  sen-cos.s       203
-  914
-  915               *##################### Escribir expresion
-  916               * File  sen-cos.s       205
-  917 01663 00000           CON(5)  =DOLAM
-  918 01668 10              CON(2)  1
-  919 0166A 14              NIBASC  \A\
-  920               * A
-  921               * File  sen-cos.s       206
-  922 0166C 00000           CON(5)  =DOLAM
-  923 01671 10              CON(2)  1
-  924 01673 24              NIBASC  \B\
-  925 01675 00000           CON(5)  ='
-  926 0167A 00000           CON(5)  =DOIDNT
-  927 0167F 10              CON(2)  1
-  928 01681 85              NIBASC  \X\
-  929 01683 00000           CON(5)  =DOFLASHP
-  930 01688 0000000         CON(7)  =^QMul
-  931               * A B*X
-  932               * File  sen-cos.s       207
-  933 0168F 00000           CON(5)  =DOLAM
-  934 01694 10              CON(2)  1
-  935 01696 34              NIBASC  \C\
-  936 01698 00000           CON(5)  =DOFLASHP
-  937 0169D 0000000         CON(7)  =^QAdd
-  938               * A B*X+C
-  939               * File  sen-cos.s       208
-  940
-  941               * File  sen-cos.s       209
-  942 016A4 00000           CON(5)  =DOLAM
-  943 016A9 30              CON(2)  3
-  944 016AB F40713          NIBASC  \Op1\
-  945 016B1 00000           CON(5)  =ITE
-  946               * A SIN/COS[B*X+C]
-  947               *CasoSeno:
-  948               * File  sen-cos.s       211
-  949 016B6 00000           CON(5)  =DOCOL
-  950 016BB 00000           CON(5)  =DOFLASHP
-  951 016C0 0000000         CON(7)  =^xSINext
-  952 016C7 00000           CON(5)  =SEMI
-  953               *CasoSeno:
-  954               * File  sen-cos.s       213
-  955 016CC 00000           CON(5)  =DOCOL
-  956 016D1 00000           CON(5)  =DOFLASHP
-  957 016D6 0000000         CON(7)  =^xCOSext
-  958 016DD 00000           CON(5)  =SEMI
-  959               * File  sen-cos.s       214
-  960
-  961               * File  sen-cos.s       215
-  962 016E2 00000           CON(5)  =DOFLASHP
-  963 016E7 0000000         CON(7)  =^QMul
-  964               * A*[SIN/COS[B*X+C]]
-  965               * File  sen-cos.s       216
-  966 016EE 00000           CON(5)  =DOLAM
-  967 016F3 10              CON(2)  1
-  968 016F5 44              NIBASC  \D\
-  969 016F7 00000           CON(5)  =DOFLASHP
-  970 016FC 0000000         CON(7)  =^QAdd
-  971               * A*[SIN/COS[B*X+C]+D
-  972               * File  sen-cos.s       217
-  973 01703 00000           CON(5)  =DOFLASHP
-  974 01708 0000000         CON(7)  =^SIMPLIFY
-  975               * [Evaluar]
-  976               * File  sen-cos.s       218
-  977
-  978               * File  sen-cos.s       219
-  979 0170F 00000           CON(5)  ='
-  980 01714 00000           CON(5)  =DOIDNT
-  981 01719 40              CON(2)  4
-  982 0171B 6457E63         NIBASC  \Func\
+  990 0172E 00000           CON(5)  =SEMI
+  991               * File  sen-cos.s       235
+  992 01733 00000           CON(5)  =SEMI
+  993               * File  sen-cos.s       236
+  994
+  995               * File  sen-cos.s       237
+  996
+  997               *======================== OPERACIONES ================================
+  998               * File  sen-cos.s       239
+  999
+ 1000               *##################### Escribir expresion
+ 1001               * File  sen-cos.s       241
+ 1002 01738 00000           CON(5)  =DOLAM
+ 1003 0173D 10              CON(2)  1
+ 1004 0173F 14              NIBASC  \A\
+ 1005               * A
+ 1006               * File  sen-cos.s       242
+ 1007 01741 00000           CON(5)  =DOLAM
+ 1008 01746 10              CON(2)  1
+ 1009 01748 24              NIBASC  \B\
+ 1010 0174A 00000           CON(5)  ='
+ 1011 0174F 00000           CON(5)  =DOIDNT
+ 1012 01754 10              CON(2)  1
+ 1013 01756 85              NIBASC  \X\
+ 1014 01758 00000           CON(5)  =DOFLASHP
+ 1015 0175D 0000000         CON(7)  =^QMul
+ 1016               * A B*X
+ 1017               * File  sen-cos.s       243
+ 1018 01764 00000           CON(5)  =DOLAM
+ 1019 01769 10              CON(2)  1
+ 1020 0176B 34              NIBASC  \C\
+ 1021 0176D 00000           CON(5)  =DOFLASHP
+ 1022 01772 0000000         CON(7)  =^QAdd
+ 1023               * A B*X+C
+ 1024               * File  sen-cos.s       244
+ 1025 01779 00000           CON(5)  =DOFLASHP
+ 1026 0177E 0000000         CON(7)  =^SIMPLIFY
+ 1027               * A B*X켅
+ 1028               * File  sen-cos.s       245
+ 1029
+ 1030               * File  sen-cos.s       246
+ 1031 01785 00000           CON(5)  =DOLAM
+ 1032 0178A 30              CON(2)  3
+ 1033 0178C F40713          NIBASC  \Op1\
+ 1034 01792 00000           CON(5)  =ITE
+ 1035               * A SIN/COS[B*X켅]
+ 1036               *CasoSeno:
+ 1037               * File  sen-cos.s       248
+ 1038 01797 00000           CON(5)  =DOCOL
+ 1039 0179C 00000           CON(5)  =DOFLASHP
+ 1040 017A1 0000000         CON(7)  =^xSINext
+ 1041 017A8 00000           CON(5)  =SEMI
+ 1042               *CasoSeno:
+ 1043               * File  sen-cos.s       250
+ 1044 017AD 00000           CON(5)  =DOCOL
+ 1045 017B2 00000           CON(5)  =DOFLASHP
+ 1046 017B7 0000000         CON(7)  =^xCOSext
+ 1047 017BE 00000           CON(5)  =SEMI
+ 1048               * File  sen-cos.s       251
+ 1049
+ 1050               * File  sen-cos.s       252
+ 1051 017C3 00000           CON(5)  =DOFLASHP
+ 1052 017C8 0000000         CON(7)  =^QMul
+ 1053               * A*[SIN/COS[B*X켅]]
+ 1054               * File  sen-cos.s       253
+ 1055 017CF 00000           CON(5)  =DOLAM
+ 1056 017D4 10              CON(2)  1
+ 1057 017D6 44              NIBASC  \D\
+ 1058 017D8 00000           CON(5)  =DOFLASHP
+ 1059 017DD 0000000         CON(7)  =^QAdd
+ 1060               * A*[SIN/COS[B*X켅]+D
+ 1061               * File  sen-cos.s       254
+ 1062 017E4 00000           CON(5)  =DOFLASHP
+ 1063 017E9 0000000         CON(7)  =^SIMPLIFY
+ 1064               * A*[SIN/COS[B*X켅]켆
+ 1065               * File  sen-cos.s       255
+ 1066
+ 1067               * File  sen-cos.s       256
+ 1068 017F0 00000           CON(5)  ='
+ 1069 017F5 00000           CON(5)  =DOIDNT
+ 1070 017FA 40              CON(2)  4
+ 1071 017FC 6457E63         NIBASC  \Func\
             6
-  983 01723 00000           CON(5)  =SAFESTO
-  984               * obj -> 'Func' STO
-  985               * File  sen-cos.s       220
-  986
-  987               * File  sen-cos.s       221
-  988
-  989               *################ Amplitud
-  990               * File  sen-cos.s       223
-  991 01728 00000           CON(5)  =DOLAM
-  992 0172D 10              CON(2)  1
-  993 0172F 14              NIBASC  \A\
-  994 01731 00000           CON(5)  =DOFLASHP
-  995 01736 0000000         CON(7)  =^ZAbs
-  996               * A -> |A|
-  997               * File  sen-cos.s       224
-  998 0173D 00000           CON(5)  ='
-  999 01742 00000           CON(5)  =DOIDNT
- 1000 01747 40              CON(2)  4
- 1001 01749 14D607C         NIBASC  \Ampl\
+ 1072 01804 00000           CON(5)  =SAFESTO
+ 1073               * obj -> 'Func' STO
+ 1074               * File  sen-cos.s       257
+ 1075
+ 1076               * File  sen-cos.s       258
+ 1077
+ 1078               *################ Amplitud
+ 1079               * File  sen-cos.s       260
+ 1080 01809 00000           CON(5)  =DOLAM
+ 1081 0180E 10              CON(2)  1
+ 1082 01810 14              NIBASC  \A\
+ 1083 01812 00000           CON(5)  =DOFLASHP
+ 1084 01817 0000000         CON(7)  =^ZAbs
+ 1085               * A -> |A|
+ 1086               * File  sen-cos.s       261
+ 1087 0181E 00000           CON(5)  ='
+ 1088 01823 00000           CON(5)  =DOIDNT
+ 1089 01828 40              CON(2)  4
+ 1090 0182A 14D607C         NIBASC  \Ampl\
             6
- 1002 01751 00000           CON(5)  =SAFESTO
- 1003               * obj -> 'Ampl' STO
- 1004               * File  sen-cos.s       225
- 1005
- 1006               * File  sen-cos.s       226
- 1007
- 1008               *################ Periodo
- 1009               * File  sen-cos.s       228
- 1010 01756 00000           CON(5)  =Z2_
- 1011 0175B 00000           CON(5)  =DOFLASHP
- 1012 01760 0000000         CON(7)  =^pi
- 1013 01767 00000           CON(5)  =DOFLASHP
- 1014 0176C 0000000         CON(7)  =^QMul
- 1015               * 2pi
- 1016               * File  sen-cos.s       229
- 1017 01773 00000           CON(5)  =DOLAM
- 1018 01778 10              CON(2)  1
- 1019 0177A 24              NIBASC  \B\
- 1020 0177C 00000           CON(5)  =DOFLASHP
- 1021 01781 0000000         CON(7)  =^ZAbs
- 1022               * 2pi |B|
- 1023               * File  sen-cos.s       230
- 1024 01788 00000           CON(5)  =DOFLASHP
- 1025 0178D 0000000         CON(7)  =^QDiv
- 1026               * 2pi/|B|
- 1027               * File  sen-cos.s       231
- 1028 01794 00000           CON(5)  =xEVAL
- 1029               * File  sen-cos.s       232
- 1030 01799 00000           CON(5)  ='
- 1031 0179E 00000           CON(5)  =DOIDNT
- 1032 017A3 40              CON(2)  4
- 1033 017A5 0556279         NIBASC  \Peri\
+ 1091 01832 00000           CON(5)  =SAFESTO
+ 1092               * obj -> 'Ampl' STO
+ 1093               * File  sen-cos.s       262
+ 1094
+ 1095               * File  sen-cos.s       263
+ 1096
+ 1097               *################ Periodo
+ 1098               * File  sen-cos.s       265
+ 1099 01837 00000           CON(5)  =Z2_
+ 1100 0183C 00000           CON(5)  =DOFLASHP
+ 1101 01841 0000000         CON(7)  =^pi
+ 1102 01848 00000           CON(5)  =DOFLASHP
+ 1103 0184D 0000000         CON(7)  =^QMul
+ 1104               * 2pi
+ 1105               * File  sen-cos.s       266
+ 1106 01854 00000           CON(5)  =DOLAM
+ 1107 01859 10              CON(2)  1
+ 1108 0185B 24              NIBASC  \B\
+ 1109 0185D 00000           CON(5)  =DOFLASHP
+ 1110 01862 0000000         CON(7)  =^ZAbs
+ 1111               * 2pi |B|
+ 1112               * File  sen-cos.s       267
+ 1113 01869 00000           CON(5)  =DOFLASHP
+ 1114 0186E 0000000         CON(7)  =^QDiv
+ 1115               * 2pi/|B|
+ 1116               * File  sen-cos.s       268
+ 1117 01875 00000           CON(5)  =DOFLASHP
+ 1118 0187A 0000000         CON(7)  =^SIMPLIFY
+ 1119               * xEVAL
+ 1120               * File  sen-cos.s       269
+ 1121 01881 00000           CON(5)  ='
+ 1122 01886 00000           CON(5)  =DOIDNT
+ 1123 0188B 40              CON(2)  4
+ 1124 0188D 0556279         NIBASC  \Peri\
             6
- 1034 017AD 00000           CON(5)  =SAFESTO
- 1035               * obj -> 'Peri' STO
- 1036               * File  sen-cos.s       233
- 1037
- 1038               * File  sen-cos.s       234
- 1039
- 1040               *################ Desfase
- 1041               * File  sen-cos.s       236
- 1042 017B2 00000           CON(5)  =DOLAM
- 1043 017B7 10              CON(2)  1
- 1044 017B9 34              NIBASC  \C\
- 1045 017BB 00000           CON(5)  =DOLAM
- 1046 017C0 10              CON(2)  1
- 1047 017C2 24              NIBASC  \B\
- 1048 017C4 00000           CON(5)  =DOFLASHP
- 1049 017C9 0000000         CON(7)  =^QDiv
- 1050               * C/B
- 1051               * File  sen-cos.s       237
- 1052 017D0 00000           CON(5)  =DOFLASHP
- 1053 017D5 0000000         CON(7)  =^QNeg
- 1054               * -C/B
- 1055               * File  sen-cos.s       238
- 1056 017DC 00000           CON(5)  ='
- 1057 017E1 00000           CON(5)  =DOIDNT
- 1058 017E6 40              CON(2)  4
- 1059 017E8 4456376         NIBASC  \Desf\
+ 1125 01895 00000           CON(5)  =SAFESTO
+ 1126               * obj -> 'Peri' STO
+ 1127               * File  sen-cos.s       270
+ 1128
+ 1129               * File  sen-cos.s       271
+ 1130
+ 1131               *################ Desfase
+ 1132               * File  sen-cos.s       273
+ 1133 0189A 00000           CON(5)  =DOLAM
+ 1134 0189F 10              CON(2)  1
+ 1135 018A1 34              NIBASC  \C\
+ 1136 018A3 00000           CON(5)  =DOLAM
+ 1137 018A8 10              CON(2)  1
+ 1138 018AA 24              NIBASC  \B\
+ 1139 018AC 00000           CON(5)  =DOFLASHP
+ 1140 018B1 0000000         CON(7)  =^QDiv
+ 1141               * C/B
+ 1142               * File  sen-cos.s       274
+ 1143 018B8 00000           CON(5)  =DOFLASHP
+ 1144 018BD 0000000         CON(7)  =^QNeg
+ 1145               * -C/B
+ 1146               * File  sen-cos.s       275
+ 1147 018C4 00000           CON(5)  ='
+ 1148 018C9 00000           CON(5)  =DOIDNT
+ 1149 018CE 40              CON(2)  4
+ 1150 018D0 4456376         NIBASC  \Desf\
             6
- 1060 017F0 00000           CON(5)  =SAFESTO
- 1061               * obj -> 'Desf' STO
- 1062               * File  sen-cos.s       239
- 1063
- 1064               * File  sen-cos.s       240
- 1065
- 1066               *################ PASO
- 1067               * File  sen-cos.s       242
- 1068 017F5 00000           CON(5)  =DOIDNT
- 1069 017FA 40              CON(2)  4
- 1070 017FC 0556279         NIBASC  \Peri\
+ 1151 018D8 00000           CON(5)  =SAFESTO
+ 1152               * obj -> 'Desf' STO
+ 1153               * File  sen-cos.s       276
+ 1154
+ 1155               * File  sen-cos.s       277
+ 1156
+ 1157               *################ PASO
+ 1158               * File  sen-cos.s       279
+ 1159 018DD 00000           CON(5)  =DOIDNT
+ 1160 018E2 40              CON(2)  4
+ 1161 018E4 0556279         NIBASC  \Peri\
             6
- 1071               * 'Peri'
- 1072               * File  sen-cos.s       243
- 1073 01804 00000           CON(5)  =Z4_
- 1074 01809 00000           CON(5)  =DOFLASHP
- 1075 0180E 0000000         CON(7)  =^QDiv
- 1076               * 'Peri'/4
- 1077               * File  sen-cos.s       244
- 1078 01815 00000           CON(5)  =xEVAL
- 1079               * File  sen-cos.s       245
- 1080 0181A 00000           CON(5)  ='
- 1081 0181F 00000           CON(5)  =DOIDNT
- 1082 01824 40              CON(2)  4
- 1083 01826 3547560         NIBASC  \Step\
+ 1162               * 'Peri'
+ 1163               * File  sen-cos.s       280
+ 1164 018EC 00000           CON(5)  =Z4_
+ 1165 018F1 00000           CON(5)  =DOFLASHP
+ 1166 018F6 0000000         CON(7)  =^QDiv
+ 1167               * 'Peri'/4
+ 1168               * File  sen-cos.s       281
+ 1169 018FD 00000           CON(5)  =DOFLASHP
+ 1170 01902 0000000         CON(7)  =^SIMPLIFY
+ 1171               * xEVAL
+ 1172               * File  sen-cos.s       282
+ 1173 01909 00000           CON(5)  ='
+ 1174 0190E 00000           CON(5)  =DOIDNT
+ 1175 01913 40              CON(2)  4
+ 1176 01915 3547560         NIBASC  \Step\
             7
- 1084 0182E 00000           CON(5)  =SAFESTO
- 1085               * obj -> 'Step' STO
- 1086               * File  sen-cos.s       246
- 1087
- 1088               * File  sen-cos.s       247
- 1089
- 1090               *################ Tabulacion
- 1091               * File  sen-cos.s       249
- 1092
- 1093               *Obtiene 5 preimagenes para el periodo
- 1094               * File  sen-cos.s       251
- 1095
- 1096               * File  sen-cos.s       252
- 1097
- 1098               * File  sen-cos.s       253
- 1099 01833 00000           CON(5)  =BINT5
- 1100 01838 00000           CON(5)  =ZERO_DO
- 1101               * File  sen-cos.s       254
- 1102 0183D 00000           CON(5)  =DOCOL
- 1103               * File  sen-cos.s       255
- 1104 01842 00000           CON(5)  =DOIDNT
- 1105 01847 40              CON(2)  4
- 1106 01849 4456376         NIBASC  \Desf\
+ 1177 0191D 00000           CON(5)  =SAFESTO
+ 1178               * obj -> 'Step' STO
+ 1179               * File  sen-cos.s       283
+ 1180
+ 1181               * File  sen-cos.s       284
+ 1182
+ 1183               *################ Tabulacion
+ 1184               * File  sen-cos.s       286
+ 1185
+ 1186               * Bucle para obtener        ( -> Z1 Z2 Z3 Z4 Z5 )
+ 1187               * 5 preimagenes
+ 1188               * File  sen-cos.s       289
+ 1189 01922 00000           CON(5)  =BINT5
+ 1190 01927 00000           CON(5)  =ZERO_DO
+ 1191               * File  sen-cos.s       290
+ 1192 0192C 00000           CON(5)  =DOCOL
+ 1193               * File  sen-cos.s       291
+ 1194 01931 00000           CON(5)  =DOIDNT
+ 1195 01936 40              CON(2)  4
+ 1196 01938 4456376         NIBASC  \Desf\
             6
- 1107               * 'Desf'
- 1108               * File  sen-cos.s       256
- 1109 01851 00000           CON(5)  =DOIDNT
- 1110 01856 40              CON(2)  4
- 1111 01858 3547560         NIBASC  \Step\
+ 1197               * 'Desf'
+ 1198               * File  sen-cos.s       292
+ 1199 01940 00000           CON(5)  =DOIDNT
+ 1200 01945 40              CON(2)  4
+ 1201 01947 3547560         NIBASC  \Step\
             7
- 1112               * 'Desf' 'Step'
- 1113               * File  sen-cos.s       257
- 1114 01860 00000           CON(5)  =INDEX@
- 1115 01865 00000           CON(5)  =DOFLASHP
- 1116 0186A 0000000         CON(7)  =^#>Z
- 1117 01871 00000           CON(5)  =DOFLASHP
- 1118 01876 0000000         CON(7)  =^QMul
- 1119               * 'Desf' Step*Contador
- 1120               * File  sen-cos.s       258
- 1121 0187D 00000           CON(5)  =DOFLASHP
- 1122 01882 0000000         CON(7)  =^QAdd
- 1123               * 'Desf'+[Step*Contador]
- 1124               * File  sen-cos.s       259
- 1125 01889 00000           CON(5)  =xEVAL
- 1126               * File  sen-cos.s       260
- 1127 0188E 00000           CON(5)  =SEMI
- 1128               * File  sen-cos.s       261
- 1129 01893 00000           CON(5)  =LOOP
- 1130               *| sen-cos.s: 261: error: Unmatched control word: LOOP
- 1131
- 1132               * Z1 Z2 Z3 Z4 Z5
- 1133               * File  sen-cos.s       262
- 1134
- 1135               * File  sen-cos.s       263
- 1136
- 1137               * File  sen-cos.s       264
- 1138
- 1139               * File  sen-cos.s       265
- 1140
- 1141               * File  sen-cos.s       266
- 1142 01898 00000           CON(5)  =BINT5
- 1143 0189D 00000           CON(5)  ={}N
- 1144               * {Z1 Z2 Z3 Z4 Z5}
- 1145               * File  sen-cos.s       267
- 1146 018A2 00000           CON(5)  =DUP
- 1147               * {} {}
- 1148               * File  sen-cos.s       268
- 1149 018A7 00000           CON(5)  ='
- 1150 018AC 00000           CON(5)  =DOIDNT
- 1151 018B1 10              CON(2)  1
- 1152 018B3 85              NIBASC  \X\
- 1153 018B5 00000           CON(5)  =UNROT
- 1154               * 'X' {} {}
- 1155               * File  sen-cos.s       269
- 1156 018BA 00000           CON(5)  =INCOMPDROP
- 1157               * 'X' {} Z1 Z2 Z3 Z4 Z5
- 1158               * File  sen-cos.s       270
- 1159
- 1160               * File  sen-cos.s       271
- 1161 018BF 00000           CON(5)  ='
- 1162 018C4 00000           CON(5)  =DOIDNT
- 1163 018C9 10              CON(2)  1
- 1164 018CB 95              NIBASC  \Y\
- 1165               * 'X' {} Z1 Z2 Z3 Z4 Z5 'Y'
- 1166               * File  sen-cos.s       272
- 1167 018CD 00000           CON(5)  =BINT7
- 1168 018D2 00000           CON(5)  =ROLL
- 1169 018D7 00000           CON(5)  =INCOMPDROP
- 1170               * 'X' Z1 Z2 Z3 Z4 Z5 'Y' Z1 Z2 Z3 Z4 Z5
- 1171               * File  sen-cos.s       273
- 1172
- 1173               * File  sen-cos.s       274
- 1174
- 1175               * File  sen-cos.s       275
- 1176
- 1177               *Obtiene 5 imaganes de las preimagenes anteriores
- 1178               * File  sen-cos.s       277
- 1179 018DC 00000           CON(5)  =BINT5
- 1180 018E1 00000           CON(5)  =ZERO_DO
- 1181               * File  sen-cos.s       278
- 1182 018E6 00000           CON(5)  =DOCOL
- 1183               * File  sen-cos.s       279
- 1184 018EB 00000           CON(5)  =DOIDNT
- 1185 018F0 40              CON(2)  4
- 1186 018F2 6457E63         NIBASC  \Func\
+ 1202               * 'Desf' 'Step'
+ 1203               * File  sen-cos.s       293
+ 1204 0194F 00000           CON(5)  =INDEX@
+ 1205 01954 00000           CON(5)  =DOFLASHP
+ 1206 01959 0000000         CON(7)  =^#>Z
+ 1207               * 'Desf' 'Step' #Contador>Z
+ 1208               * File  sen-cos.s       294
+ 1209 01960 00000           CON(5)  =DOFLASHP
+ 1210 01965 0000000         CON(7)  =^QMul
+ 1211               * 'Desf' Step*Contador
+ 1212               * File  sen-cos.s       295
+ 1213 0196C 00000           CON(5)  =DOFLASHP
+ 1214 01971 0000000         CON(7)  =^QAdd
+ 1215               * 'Desf'+[Step*Contador]
+ 1216               * File  sen-cos.s       296
+ 1217 01978 00000           CON(5)  =DOFLASHP
+ 1218 0197D 0000000         CON(7)  =^SIMPLIFY
+ 1219               * File  sen-cos.s       297
+ 1220 01984 00000           CON(5)  =SEMI
+ 1221               * File  sen-cos.s       298
+ 1222 01989 00000           CON(5)  =LOOP
+ 1223               *| sen-cos.s: 298: error: Unmatched control word: LOOP
+ 1224
+ 1225               ****En la pila   ( Z1 Z2 Z3 Z4 Z5 )
+ 1226               * File  sen-cos.s       300
+ 1227
+ 1228               * File  sen-cos.s       301
+ 1229
+ 1230               * File  sen-cos.s       302
+ 1231 0198E 00000           CON(5)  =BINT5
+ 1232 01993 00000           CON(5)  ={}N
+ 1233               * {Z1 Z2 Z3 Z4 Z5}
+ 1234               * File  sen-cos.s       303
+ 1235 01998 00000           CON(5)  =DUP
+ 1236               * {} {}
+ 1237               * File  sen-cos.s       304
+ 1238 0199D 00000           CON(5)  ='
+ 1239 019A2 00000           CON(5)  =DOIDNT
+ 1240 019A7 10              CON(2)  1
+ 1241 019A9 85              NIBASC  \X\
+ 1242 019AB 00000           CON(5)  =UNROT
+ 1243               * 'X' {} {}
+ 1244               * File  sen-cos.s       305
+ 1245 019B0 00000           CON(5)  =INCOMPDROP
+ 1246               * 'X' {} Z1 Z2 Z3 Z4 Z5
+ 1247               * File  sen-cos.s       306
+ 1248 019B5 00000           CON(5)  ='
+ 1249 019BA 00000           CON(5)  =DOIDNT
+ 1250 019BF 10              CON(2)  1
+ 1251 019C1 95              NIBASC  \Y\
+ 1252               * 'X' {} Z1 Z2 Z3 Z4 Z5 'Y'
+ 1253               * File  sen-cos.s       307
+ 1254 019C3 00000           CON(5)  =BINT7
+ 1255 019C8 00000           CON(5)  =ROLL
+ 1256 019CD 00000           CON(5)  =INCOMPDROP
+ 1257               * 'X' Z1 Z2 Z3 Z4 Z5 'Y' Z1 Z2 Z3 Z4 Z5
+ 1258               * File  sen-cos.s       308
+ 1259
+ 1260               * File  sen-cos.s       309
+ 1261
+ 1262               * Bucle pata obtiener 5 imaganes   ( Z -> Z' )
+ 1263               * a partir de las preimagenes
+ 1264               * File  sen-cos.s       312
+ 1265 019D2 00000           CON(5)  =BINT5
+ 1266 019D7 00000           CON(5)  =ZERO_DO
+ 1267               * File  sen-cos.s       313
+ 1268 019DC 00000           CON(5)  =DOCOL
+ 1269               * File  sen-cos.s       314
+ 1270 019E1 00000           CON(5)  =DOIDNT
+ 1271 019E6 40              CON(2)  4
+ 1272 019E8 6457E63         NIBASC  \Func\
             6
- 1187 018FA 00000           CON(5)  =BINT6
- 1188 018FF 00000           CON(5)  =ROLL
- 1189               * 'Func' Z
- 1190               * File  sen-cos.s       280
- 1191 01904 00000           CON(5)  =DOFLASHP
- 1192 01909 0000000         CON(7)  =^SYMLIMIT
- 1193               * Z'
- 1194               * File  sen-cos.s       281
- 1195 01910 00000           CON(5)  =SEMI
- 1196               * File  sen-cos.s       282
- 1197
- 1198               * File  sen-cos.s       283
- 1199 01915 00000           CON(5)  =LOOP
- 1200               *| sen-cos.s: 283: error: Unmatched control word: LOOP
- 1201
- 1202               * File  sen-cos.s       284
- 1203               * 'X' Z1 Z2 Z3 Z4 Z5 'Y' Z1' Z2' Z3' Z4' Z5'
- 1204               * File  sen-cos.s       285
- 1205
- 1206               * File  sen-cos.s       286
- 1207
- 1208               * File  sen-cos.s       287
- 1209
- 1210               * File  sen-cos.s       288
- 1211
- 1212               * File  sen-cos.s       289
- 1213
- 1214               *Creacion del ARRY
- 1215               * File  sen-cos.s       291
- 1216 0191A 00000           CON(5)  =DOLIST
- 1217 0191F 00000           CON(5)  =%2
- 1218 01924 00000           CON(5)  =%6
- 1219 01929 00000           CON(5)  =SEMI
- 1220 0192E 00000           CON(5)  =DOFLASHP
- 1221 01933 0000000         CON(7)  =^XEQ>ARRY
- 1222               * File  sen-cos.s       292
- 1223
- 1224               * File  sen-cos.s       293
- 1225 0193A 00000           CON(5)  ='
- 1226 0193F 00000           CON(5)  =DOIDNT
- 1227 01944 50              CON(2)  5
- 1228 01946 451626C         NIBASC  \Tabla\
+ 1273 019F0 00000           CON(5)  =BINT6
+ 1274 019F5 00000           CON(5)  =ROLL
+ 1275               * 'Func' Z
+ 1276               * File  sen-cos.s       315
+ 1277 019FA 00000           CON(5)  =DOFLASHP
+ 1278 019FF 0000000         CON(7)  =^SYMLIMIT
+ 1279               * Z'
+ 1280               * File  sen-cos.s       316
+ 1281 01A06 00000           CON(5)  =SEMI
+ 1282               * File  sen-cos.s       317
+ 1283 01A0B 00000           CON(5)  =LOOP
+ 1284               *| sen-cos.s: 317: error: Unmatched control word: LOOP
+ 1285
+ 1286               ****En la pila   ( 'X' Z1 Z2 Z3 Z4 Z5 'Y' Z1' Z2' Z3' Z4' Z5' )
+ 1287               * File  sen-cos.s       319
+ 1288
+ 1289               * File  sen-cos.s       320
+ 1290
+ 1291               *Creacion del ARRY
+ 1292               * File  sen-cos.s       322
+ 1293 01A10 00000           CON(5)  =DOLIST
+ 1294 01A15 00000           CON(5)  =%2
+ 1295 01A1A 00000           CON(5)  =%6
+ 1296 01A1F 00000           CON(5)  =SEMI
+ 1297 01A24 00000           CON(5)  =DOFLASHP
+ 1298 01A29 0000000         CON(7)  =^XEQ>ARRY
+ 1299               * File  sen-cos.s       323
+ 1300 01A30 00000           CON(5)  ='
+ 1301 01A35 00000           CON(5)  =DOIDNT
+ 1302 01A3A 50              CON(2)  5
+ 1303 01A3C 451626C         NIBASC  \Tabla\
             616
- 1229 01950 00000           CON(5)  =SAFESTO
- 1230               * obj -> 'Tabla' STO
- 1231               * File  sen-cos.s       294
- 1232
- 1233               * File  sen-cos.s       295
- 1234
- 1235               *################ Intercepto en X
- 1236               * File  sen-cos.s       297
- 1237 01955 00000           CON(5)  =DOIDNT
- 1238 0195A 40              CON(2)  4
- 1239 0195C 6457E63         NIBASC  \Func\
+ 1304 01A46 00000           CON(5)  =SAFESTO
+ 1305               * obj -> 'Tabla' STO
+ 1306               * File  sen-cos.s       324
+ 1307
+ 1308               * File  sen-cos.s       325
+ 1309
+ 1310               *################ Intercepto en X
+ 1311               * File  sen-cos.s       327
+ 1312 01A4B 00000           CON(5)  =DOIDNT
+ 1313 01A50 40              CON(2)  4
+ 1314 01A52 6457E63         NIBASC  \Func\
             6
- 1240 01964 00000           CON(5)  ='
- 1241 01969 00000           CON(5)  =DOIDNT
- 1242 0196E 10              CON(2)  1
- 1243 01970 85              NIBASC  \X\
- 1244               * 'Func' 'X'
- 1245               * File  sen-cos.s       298
- 1246 01972 00000           CON(5)  =DOFLASHP
- 1247 01977 0000000         CON(7)  =^ISOL1
- 1248               * 'X' 'UnInterceptoEnX'
- 1249               * File  sen-cos.s       299
- 1250 0197E 00000           CON(5)  =SWAPDROP
- 1251               * 'UnInterceptoEnX'
- 1252               * File  sen-cos.s       300
- 1253 01983 00000           CON(5)  =DOFLASHP
- 1254 01988 0000000         CON(7)  =^CASCRUNCH
- 1255               * Symb -> %/C%
- 1256               * File  sen-cos.s       301
- 1257 0198F 00000           CON(5)  =TYPECMP?
- 1258               * C%? FLAG
- 1259               * File  sen-cos.s       302
- 1260
- 1261               * File  sen-cos.s       303
- 1262 01994 00000           CON(5)  =ITE
- 1263               *CasoSolucionCompejo: No existe Intercepto en X
- 1264               * File  sen-cos.s       305
- 1265 01999 00000           CON(5)  =DOCOL
- 1266               * File  sen-cos.s       306
- 1267 0199E 00000           CON(5)  =DOCSTR
- 1268 019A3 71000           CON(5)  23
- 1269 019A8 E4F6025         NIBASC  \No existe\
+ 1315 01A5A 00000           CON(5)  ='
+ 1316 01A5F 00000           CON(5)  =DOIDNT
+ 1317 01A64 10              CON(2)  1
+ 1318 01A66 85              NIBASC  \X\
+ 1319               * 'Func' 'X'
+ 1320               * File  sen-cos.s       328
+ 1321 01A68 00000           CON(5)  =DOFLASHP
+ 1322 01A6D 0000000         CON(7)  =^ISOL1
+ 1323               * 'X' 'UnInterceptoEnX'
+ 1324               * File  sen-cos.s       329
+ 1325 01A74 00000           CON(5)  =SWAPDROP
+ 1326               * 'UnInterceptoEnX'
+ 1327               * File  sen-cos.s       330
+ 1328 01A79 00000           CON(5)  =DOFLASHP
+ 1329 01A7E 0000000         CON(7)  =^CASCRUNCH
+ 1330               * Symb -> %/C%
+ 1331               * File  sen-cos.s       331
+ 1332 01A85 00000           CON(5)  =TYPECMP?
+ 1333               * C%? FLAG
+ 1334               * File  sen-cos.s       332
+ 1335
+ 1336               * File  sen-cos.s       333
+ 1337 01A8A 00000           CON(5)  =ITE
+ 1338               *CasoSolucionCompejo: No existe Intercepto en X
+ 1339               * File  sen-cos.s       335
+ 1340 01A8F 00000           CON(5)  =DOCOL
+ 1341               * File  sen-cos.s       336
+ 1342 01A94 00000           CON(5)  =DOCSTR
+ 1343 01A99 71000           CON(5)  23
+ 1344 01A9E E4F6025         NIBASC  \No existe\
             6879637
             4756
- 1270               * File  sen-cos.s       307
- 1271 019BA 00000           CON(5)  =SEMI
- 1272               * File  sen-cos.s       308
- 1273
- 1274               * File  sen-cos.s       309
- 1275
- 1276               *!!!!!!!!!##############!!!!!!!!!!##########!!!!!!!!!!!!! BUCAR UNA FORMA DE SIMPLIFICAR ESTE PROCESO :(
- 1277               *CasoSolucionReal: Existe Intercepto en X
- 1278               * File  sen-cos.s       312
- 1279 019BF 00000           CON(5)  =DOCOL
- 1280               * File  sen-cos.s       313
- 1281 019C4 00000           CON(5)  =DOIDNT
- 1282 019C9 40              CON(2)  4
- 1283 019CB 6457E63         NIBASC  \Func\
+ 1345               * File  sen-cos.s       337
+ 1346 01AB0 00000           CON(5)  =SEMI
+ 1347               * File  sen-cos.s       338
+ 1348
+ 1349               *!!!!!!!!!##############!!!!!!!!!!##########!!!!!!!!!!!!! BUSCAR UNA FORMA DE SIMPLIFICAR ESTE PROCESO :( CON PILA VIRTUAL
+ 1350               *CasoSolucionReal: Existe Intercepto en X
+ 1351               * File  sen-cos.s       341
+ 1352 01AB5 00000           CON(5)  =DOCOL
+ 1353               * File  sen-cos.s       342
+ 1354 01ABA 00000           CON(5)  =DOIDNT
+ 1355 01ABF 40              CON(2)  4
+ 1356 01AC1 6457E63         NIBASC  \Func\
             6
- 1284 019D3 00000           CON(5)  ='
- 1285 019D8 00000           CON(5)  =DOIDNT
- 1286 019DD 10              CON(2)  1
- 1287 019DF 85              NIBASC  \X\
- 1288               * 'Func' 'X'
- 1289               * File  sen-cos.s       314
- 1290 019E1 00000           CON(5)  =DOFLASHP
- 1291 019E6 0000000         CON(7)  =^ISOLALL
- 1292               * 'X' {DosInterceptoEnX}
- 1293               * File  sen-cos.s       315
- 1294 019ED 00000           CON(5)  =SWAPDROP
- 1295               * {DosInterceptoEnX}
- 1296               * File  sen-cos.s       316
- 1297 019F2 00000           CON(5)  ='
- 1298 019F7 00000           CON(5)  =DOIDNT
- 1299 019FC 20              CON(2)  2
- 1300 019FE E613            NIBASC  \n1\
- 1301 01A02 00000           CON(5)  =Z0_
- 1302 01A07 00000           CON(5)  =DOFLASHP
- 1303 01A0C 0000000         CON(7)  =^x=ext
- 1304               * {DosInterceptoEnX} n1=0
- 1305               * File  sen-cos.s       317
- 1306 01A13 00000           CON(5)  =DOFLASHP
- 1307 01A18 0000000         CON(7)  =^SYMLIMIT
- 1308               * {{DosInterceptoEnX}}'
- 1309               * File  sen-cos.s       318
- 1310 01A1F 00000           CON(5)  ='
- 1311 01A24 00000           CON(5)  =DOIDNT
- 1312 01A29 10              CON(2)  1
- 1313 01A2B 85              NIBASC  \X\
- 1314 01A2D 00000           CON(5)  =DOIDNT
- 1315 01A32 40              CON(2)  4
- 1316 01A34 0556279         NIBASC  \Peri\
+ 1357 01AC9 00000           CON(5)  ='
+ 1358 01ACE 00000           CON(5)  =DOIDNT
+ 1359 01AD3 10              CON(2)  1
+ 1360 01AD5 85              NIBASC  \X\
+ 1361               * 'Func' 'X'
+ 1362               * File  sen-cos.s       343
+ 1363 01AD7 00000           CON(5)  =DOFLASHP
+ 1364 01ADC 0000000         CON(7)  =^ISOLALL
+ 1365               * 'X' {DosInterceptoEnX}
+ 1366               * File  sen-cos.s       344
+ 1367 01AE3 00000           CON(5)  =SWAPDROP
+ 1368               * {DosInterceptoEnX}
+ 1369               * File  sen-cos.s       345
+ 1370 01AE8 00000           CON(5)  ='
+ 1371 01AED 00000           CON(5)  =DOIDNT
+ 1372 01AF2 20              CON(2)  2
+ 1373 01AF4 E613            NIBASC  \n1\
+ 1374 01AF8 00000           CON(5)  =Z0_
+ 1375 01AFD 00000           CON(5)  =DOFLASHP
+ 1376 01B02 0000000         CON(7)  =^x=ext
+ 1377               * {DosInterceptoEnX} n1=0
+ 1378               * File  sen-cos.s       346
+ 1379 01B09 00000           CON(5)  =DOFLASHP
+ 1380 01B0E 0000000         CON(7)  =^SYMLIMIT
+ 1381               * {{DosInterceptoEnX}}'
+ 1382               * File  sen-cos.s       347
+ 1383 01B15 00000           CON(5)  ='
+ 1384 01B1A 00000           CON(5)  =DOIDNT
+ 1385 01B1F 10              CON(2)  1
+ 1386 01B21 85              NIBASC  \X\
+ 1387 01B23 00000           CON(5)  =DOIDNT
+ 1388 01B28 40              CON(2)  4
+ 1389 01B2A 0556279         NIBASC  \Peri\
             6
- 1317 01A3C 00000           CON(5)  =DOFLASHP
- 1318 01A41 0000000         CON(7)  =^QMul
- 1319               * {{DosInterceptoEnX}}' 'Peri'*X
- 1320               * File  sen-cos.s       319
- 1321 01A48 00000           CON(5)  =SWAP
- 1322 01A4D 00000           CON(5)  =INCOMPDROP
- 1323 01A52 00000           CON(5)  =INCOMPDROP
- 1324               * 'Peri'*X InterX1 InterX2
- 1325               * File  sen-cos.s       320
- 1326 01A57 00000           CON(5)  =BINT3
- 1327 01A5C 00000           CON(5)  =PICK
- 1328               * 'Peri'*X InterX1 InterX2 'Peri'*X
- 1329               * File  sen-cos.s       321
- 1330 01A61 00000           CON(5)  =DOFLASHP
- 1331 01A66 0000000         CON(7)  =^EvalNoCKx+
- 1332               * 'Peri'*X InterX1 InterX2'
- 1333               * File  sen-cos.s       322
- 1334 01A6D 00000           CON(5)  =UNROTSWAP
- 1335               * InterX2' InterX1 'Peri'*X
- 1336               * File  sen-cos.s       323
- 1337 01A72 00000           CON(5)  =DOFLASHP
- 1338 01A77 0000000         CON(7)  =^EvalNoCKx+
- 1339               * InterX2' InterX1'
- 1340               * File  sen-cos.s       324
- 1341 01A7E 00000           CON(5)  =SWAP
- 1342               * InterX2' InterX1'
- 1343               * File  sen-cos.s       325
- 1344 01A83 00000           CON(5)  =BINT2
- 1345 01A88 00000           CON(5)  ={}N
- 1346               * {Interceptos}
- 1347               * File  sen-cos.s       326
- 1348 01A8D 00000           CON(5)  =SEMI
- 1349               *!!!!!!!!!##############!!!!!!!!!!##########!!!!!!!!!!!!! BUCAR UNA FORMA DE SIMPLIFICAR ESTE PROCESO :(
- 1350               * File  sen-cos.s       328
- 1351
- 1352               * File  sen-cos.s       329
- 1353 01A92 00000           CON(5)  ='
- 1354 01A97 00000           CON(5)  =DOIDNT
- 1355 01A9C 20              CON(2)  2
- 1356 01A9E 9487            NIBASC  \Ix\
- 1357 01AA2 00000           CON(5)  =SAFESTO
- 1358               * obj -> 'Ix' STO
- 1359               * File  sen-cos.s       330
- 1360
- 1361               * File  sen-cos.s       331
- 1362
- 1363               *################ Intercepto en Y
- 1364               * File  sen-cos.s       333
- 1365 01AA7 00000           CON(5)  =DOIDNT
- 1366 01AAC 40              CON(2)  4
- 1367 01AAE 6457E63         NIBASC  \Func\
+ 1390 01B32 00000           CON(5)  =DOFLASHP
+ 1391 01B37 0000000         CON(7)  =^QMul
+ 1392               * {{DosInterceptoEnX}}' 'Peri'*X
+ 1393               * File  sen-cos.s       348
+ 1394 01B3E 00000           CON(5)  =SWAP
+ 1395 01B43 00000           CON(5)  =INCOMPDROP
+ 1396 01B48 00000           CON(5)  =INCOMPDROP
+ 1397               * 'Peri'*X InterX1 InterX2
+ 1398               * File  sen-cos.s       349
+ 1399 01B4D 00000           CON(5)  =BINT3
+ 1400 01B52 00000           CON(5)  =PICK
+ 1401               * 'Peri'*X InterX1 InterX2 'Peri'*X
+ 1402               * File  sen-cos.s       350
+ 1403 01B57 00000           CON(5)  =DOFLASHP
+ 1404 01B5C 0000000         CON(7)  =^EvalNoCKx+
+ 1405               * 'Peri'*X InterX1 InterX2'
+ 1406               * File  sen-cos.s       351
+ 1407 01B63 00000           CON(5)  =UNROTSWAP
+ 1408               * InterX2' InterX1 'Peri'*X
+ 1409               * File  sen-cos.s       352
+ 1410 01B68 00000           CON(5)  =DOFLASHP
+ 1411 01B6D 0000000         CON(7)  =^EvalNoCKx+
+ 1412               * InterX2' InterX1'
+ 1413               * File  sen-cos.s       353
+ 1414 01B74 00000           CON(5)  =SWAP
+ 1415               * InterX2' InterX1'
+ 1416               * File  sen-cos.s       354
+ 1417 01B79 00000           CON(5)  =BINT2
+ 1418 01B7E 00000           CON(5)  ={}N
+ 1419               * {Interceptos}
+ 1420               * File  sen-cos.s       355
+ 1421 01B83 00000           CON(5)  =SEMI
+ 1422               *!!!!!!!!!##############!!!!!!!!!!##########!!!!!!!!!!!!! BUSCAR UNA FORMA DE SIMPLIFICAR ESTE PROCESO :( CON PILA VIRTUAL
+ 1423               * File  sen-cos.s       357
+ 1424 01B88 00000           CON(5)  ='
+ 1425 01B8D 00000           CON(5)  =DOIDNT
+ 1426 01B92 20              CON(2)  2
+ 1427 01B94 9487            NIBASC  \Ix\
+ 1428 01B98 00000           CON(5)  =SAFESTO
+ 1429               * obj -> 'Ix' STO
+ 1430               * File  sen-cos.s       358
+ 1431
+ 1432               * File  sen-cos.s       359
+ 1433
+ 1434               *################ Intercepto en Y
+ 1435               * File  sen-cos.s       361
+ 1436 01B9D 00000           CON(5)  =DOIDNT
+ 1437 01BA2 40              CON(2)  4
+ 1438 01BA4 6457E63         NIBASC  \Func\
             6
- 1368               * 'Func'
- 1369               * File  sen-cos.s       334
- 1370 01AB6 00000           CON(5)  =Z0_
- 1371 01ABB 00000           CON(5)  =DOROMP
- 1372 01AC0 000000          CON(6)  =~xLIMIT
- 1373               * limites cuando x=0
- 1374               * File  sen-cos.s       335
- 1375 01AC6 00000           CON(5)  ='
- 1376 01ACB 00000           CON(5)  =DOIDNT
- 1377 01AD0 20              CON(2)  2
- 1378 01AD2 9497            NIBASC  \Iy\
- 1379 01AD6 00000           CON(5)  =SAFESTO
- 1380               * obj -> 'Iy' STO
- 1381               * File  sen-cos.s       336
- 1382
- 1383               * File  sen-cos.s       337
- 1384
- 1385               *################ Dominio
- 1386               * File  sen-cos.s       339
- 1387 01ADB 00000           CON(5)  =DOCSTR
- 1388 01AE0 11000           CON(5)  17
- 1389 01AE5 255616C         NIBASC  \Reales\
-            65637
- 1390               * File  sen-cos.s       340
- 1391 01AF1 00000           CON(5)  ='
- 1392 01AF6 00000           CON(5)  =DOIDNT
- 1393 01AFB 40              CON(2)  4
- 1394 01AFD 44F6D6E         NIBASC  \Domn\
-            6
- 1395 01B05 00000           CON(5)  =SAFESTO
- 1396               * $ -> 'Domn' STO
- 1397               * File  sen-cos.s       341
- 1398
- 1399               * File  sen-cos.s       342
- 1400
- 1401               *################ Rango
- 1402               * File  sen-cos.s       344
- 1403 01B0A 00000           CON(5)  =DOLAM
- 1404 01B0F 10              CON(2)  1
- 1405 01B11 14              NIBASC  \A\
- 1406 01B13 00000           CON(5)  =DOFLASHP
- 1407 01B18 0000000         CON(7)  =^ZAbs
- 1408 01B1F 00000           CON(5)  =DUP
- 1409               * |A| |A|
- 1410               * File  sen-cos.s       345
- 1411 01B24 00000           CON(5)  =DOFLASHP
- 1412 01B29 0000000         CON(7)  =^QNeg
- 1413               * |A| -|A|
- 1414               * File  sen-cos.s       346
- 1415 01B30 00000           CON(5)  =DOLAM
- 1416 01B35 10              CON(2)  1
- 1417 01B37 44              NIBASC  \D\
- 1418               * |A| -|A| D
- 1419               * File  sen-cos.s       347
- 1420 01B39 00000           CON(5)  =DOFLASHP
- 1421 01B3E 0000000         CON(7)  =^QAdd
- 1422               * |A| Z
- 1423               * File  sen-cos.s       348
- 1424 01B45 00000           CON(5)  =SWAP
- 1425               * Z |A|
- 1426               * File  sen-cos.s       349
- 1427 01B4A 00000           CON(5)  =DOLAM
- 1428 01B4F 10              CON(2)  1
- 1429 01B51 44              NIBASC  \D\
- 1430               * Z |A| D
- 1431               * File  sen-cos.s       350
- 1432 01B53 00000           CON(5)  =DOFLASHP
- 1433 01B58 0000000         CON(7)  =^QAdd
- 1434               * Z Z'
- 1435               * File  sen-cos.s       351
- 1436
- 1437               * File  sen-cos.s       352
- 1438 01B5F 00000           CON(5)  =DOLIST
- 1439 01B64 00000           CON(5)  =%1
- 1440 01B69 00000           CON(5)  =%2
- 1441 01B6E 00000           CON(5)  =SEMI
- 1442               * Z Z' #f #c
- 1443               * File  sen-cos.s       353
- 1444 01B73 00000           CON(5)  =DOFLASHP
- 1445 01B78 0000000         CON(7)  =^XEQ>ARRY
- 1446               * [  ]
- 1447               * File  sen-cos.s       354
- 1448 01B7F 00000           CON(5)  ='
- 1449 01B84 00000           CON(5)  =DOIDNT
- 1450 01B89 40              CON(2)  4
- 1451 01B8B 2516E67         NIBASC  \Rang\
-            6
- 1452 01B93 00000           CON(5)  =SAFESTO
- 1453               * ARRAY -> 'Rang' STO
- 1454               * File  sen-cos.s       355
+ 1439               * 'Func'
+ 1440               * File  sen-cos.s       362
+ 1441 01BAC 00000           CON(5)  =Z0_
+ 1442 01BB1 00000           CON(5)  =DOROMP
+ 1443 01BB6 000000          CON(6)  =~xLIMIT
+ 1444               * limites cuando x=0
+ 1445               * File  sen-cos.s       363
+ 1446 01BBC 00000           CON(5)  ='
+ 1447 01BC1 00000           CON(5)  =DOIDNT
+ 1448 01BC6 20              CON(2)  2
+ 1449 01BC8 9497            NIBASC  \Iy\
+ 1450 01BCC 00000           CON(5)  =SAFESTO
+ 1451               * obj -> 'Iy' STO
+ 1452               * File  sen-cos.s       364
+ 1453
+ 1454               * File  sen-cos.s       365
  1455
- 1456               * File  sen-cos.s       356
- 1457
- 1458               * File  sen-cos.s       357
- 1459
- 1460               *======================== ORDENAR VARIABLES ==========================
- 1461               * File  sen-cos.s       359
- 1462
- 1463               *Pag1
- 1464               *    F1        F2        F3        F4        F5        F6
- 1465               * File  sen-cos.s       362
- 1466 01B98 00000           CON(5)  ='
- 1467 01B9D 00000           CON(5)  =DOIDNT
- 1468 01BA2 40              CON(2)  4
- 1469 01BA4 6457E63         NIBASC  \Func\
+ 1456               *################ Dominio
+ 1457               * File  sen-cos.s       367
+ 1458 01BD1 00000           CON(5)  =DOCSTR
+ 1459 01BD6 11000           CON(5)  17
+ 1460 01BDB 255616C         NIBASC  \Reales\
+            65637
+ 1461               * File  sen-cos.s       368
+ 1462 01BE7 00000           CON(5)  ='
+ 1463 01BEC 00000           CON(5)  =DOIDNT
+ 1464 01BF1 40              CON(2)  4
+ 1465 01BF3 44F6D6E         NIBASC  \Domn\
             6
- 1470 01BAC 00000           CON(5)  ='
- 1471 01BB1 00000           CON(5)  =DOIDNT
- 1472 01BB6 40              CON(2)  4
- 1473 01BB8 0556279         NIBASC  \Peri\
+ 1466 01BFB 00000           CON(5)  =SAFESTO
+ 1467               * $ -> 'Domn' STO
+ 1468               * File  sen-cos.s       369
+ 1469
+ 1470               * File  sen-cos.s       370
+ 1471
+ 1472               *################ Rango
+ 1473               * File  sen-cos.s       372
+ 1474 01C00 00000           CON(5)  =DOLAM
+ 1475 01C05 10              CON(2)  1
+ 1476 01C07 14              NIBASC  \A\
+ 1477 01C09 00000           CON(5)  =DOFLASHP
+ 1478 01C0E 0000000         CON(7)  =^ZAbs
+ 1479 01C15 00000           CON(5)  =DUP
+ 1480               * |A| |A|
+ 1481               * File  sen-cos.s       373
+ 1482 01C1A 00000           CON(5)  =DOFLASHP
+ 1483 01C1F 0000000         CON(7)  =^QNeg
+ 1484               * |A| -|A|
+ 1485               * File  sen-cos.s       374
+ 1486 01C26 00000           CON(5)  =DOLAM
+ 1487 01C2B 10              CON(2)  1
+ 1488 01C2D 44              NIBASC  \D\
+ 1489               * |A| -|A| D
+ 1490               * File  sen-cos.s       375
+ 1491 01C2F 00000           CON(5)  =DOFLASHP
+ 1492 01C34 0000000         CON(7)  =^QAdd
+ 1493               * |A| Z
+ 1494               * File  sen-cos.s       376
+ 1495 01C3B 00000           CON(5)  =SWAP
+ 1496               * Z |A|
+ 1497               * File  sen-cos.s       377
+ 1498 01C40 00000           CON(5)  =DOLAM
+ 1499 01C45 10              CON(2)  1
+ 1500 01C47 44              NIBASC  \D\
+ 1501               * Z |A| D
+ 1502               * File  sen-cos.s       378
+ 1503 01C49 00000           CON(5)  =DOFLASHP
+ 1504 01C4E 0000000         CON(7)  =^QAdd
+ 1505               * Z Z'
+ 1506               * File  sen-cos.s       379
+ 1507 01C55 00000           CON(5)  =DOLIST
+ 1508 01C5A 00000           CON(5)  =%1
+ 1509 01C5F 00000           CON(5)  =%2
+ 1510 01C64 00000           CON(5)  =SEMI
+ 1511               * Z Z' #f #c
+ 1512               * File  sen-cos.s       380
+ 1513 01C69 00000           CON(5)  =DOFLASHP
+ 1514 01C6E 0000000         CON(7)  =^XEQ>ARRY
+ 1515               * [  ]
+ 1516               * File  sen-cos.s       381
+ 1517 01C75 00000           CON(5)  ='
+ 1518 01C7A 00000           CON(5)  =DOIDNT
+ 1519 01C7F 40              CON(2)  4
+ 1520 01C81 2516E67         NIBASC  \Rang\
             6
- 1474 01BC0 00000           CON(5)  ='
- 1475 01BC5 00000           CON(5)  =DOIDNT
- 1476 01BCA 40              CON(2)  4
- 1477 01BCC 4456376         NIBASC  \Desf\
-            6
- 1478 01BD4 00000           CON(5)  ='
- 1479 01BD9 00000           CON(5)  =DOIDNT
- 1480 01BDE 40              CON(2)  4
- 1481 01BE0 3547560         NIBASC  \Step\
-            7
- 1482 01BE8 00000           CON(5)  ='
- 1483 01BED 00000           CON(5)  =DOIDNT
- 1484 01BF2 40              CON(2)  4
- 1485 01BF4 14D607C         NIBASC  \Ampl\
-            6
- 1486 01BFC 00000           CON(5)  ='
- 1487 01C01 00000           CON(5)  =DOIDNT
- 1488 01C06 50              CON(2)  5
- 1489 01C08 451626C         NIBASC  \Tabla\
-            616
- 1490               * File  sen-cos.s       363
- 1491 01C12 00000           CON(5)  ='
- 1492 01C17 00000           CON(5)  =DOIDNT
- 1493 01C1C 20              CON(2)  2
- 1494 01C1E 9487            NIBASC  \Ix\
- 1495 01C22 00000           CON(5)  ='
- 1496 01C27 00000           CON(5)  =DOIDNT
- 1497 01C2C 20              CON(2)  2
- 1498 01C2E 9497            NIBASC  \Iy\
- 1499 01C32 00000           CON(5)  ='
- 1500 01C37 00000           CON(5)  =DOIDNT
- 1501 01C3C 40              CON(2)  4
- 1502 01C3E 44F6D6E         NIBASC  \Domn\
-            6
- 1503 01C46 00000           CON(5)  ='
- 1504 01C4B 00000           CON(5)  =DOIDNT
- 1505 01C50 40              CON(2)  4
- 1506 01C52 2516E67         NIBASC  \Rang\
-            6
- 1507               * File  sen-cos.s       364
- 1508
- 1509               * File  sen-cos.s       365
- 1510 01C5A 00000           CON(5)  =BINT10
- 1511 01C5F 00000           CON(5)  ={}N
- 1512               * { }
- 1513               * File  sen-cos.s       366
- 1514 01C64 00000           CON(5)  =XEQORDER
- 1515               * File  sen-cos.s       367
- 1516
- 1517               * File  sen-cos.s       368
- 1518
- 1519               *====================== RESTABLECER PARAMETROS ======================
- 1520               * File  sen-cos.s       370
- 1521
- 1522               * File  sen-cos.s       371
- 1523 01C69 00000           CON(5)  =ABND
- 1524               * Abandona Variables temporales
- 1525               * File  sen-cos.s       372
+ 1521 01C89 00000           CON(5)  =SAFESTO
+ 1522               * ARRAY -> 'Rang' STO
+ 1523               * File  sen-cos.s       382
+ 1524
+ 1525               * File  sen-cos.s       383
  1526
- 1527               * File  sen-cos.s       373
- 1528 01C6E 00000           CON(5)  =RestoreSysFlags
- 1529               * Restablece variables del Usuario
- 1530               * File  sen-cos.s       374
- 1531               * Ref: SaveSysFlag
- 1532               * File  sen-cos.s       375
- 1533
- 1534               * File  sen-cos.s       376
- 1535
- 1536               *========================= PANTALLA FINAL ============================
- 1537               * File  sen-cos.s       378
- 1538
- 1539               * File  sen-cos.s       379
- 1540 01C73 00000           CON(5)  =CLEARLCD
- 1541               * File  sen-cos.s       380
- 1542 01C78 00000           CON(5)  =DOCSTR
- 1543 01C7D F7000           CON(5)  127
- 1544 01C82 6496E61         NIBASC  \Finalizado:\
+ 1527               * File  sen-cos.s       384
+ 1528
+ 1529               *======================== ORDENAR VARIABLES ==========================
+ 1530               * File  sen-cos.s       386
+ 1531
+ 1532               *Pag1
+ 1533               *    F1        F2        F3        F4        F5        F6
+ 1534               * File  sen-cos.s       389
+ 1535 01C8E 00000           CON(5)  ='
+ 1536 01C93 00000           CON(5)  =DOIDNT
+ 1537 01C98 40              CON(2)  4
+ 1538 01C9A 6457E63         NIBASC  \Func\
+            6
+ 1539 01CA2 00000           CON(5)  ='
+ 1540 01CA7 00000           CON(5)  =DOIDNT
+ 1541 01CAC 40              CON(2)  4
+ 1542 01CAE 0556279         NIBASC  \Peri\
+            6
+ 1543 01CB6 00000           CON(5)  ='
+ 1544 01CBB 00000           CON(5)  =DOIDNT
+ 1545 01CC0 40              CON(2)  4
+ 1546 01CC2 4456376         NIBASC  \Desf\
+            6
+ 1547 01CCA 00000           CON(5)  ='
+ 1548 01CCF 00000           CON(5)  =DOIDNT
+ 1549 01CD4 40              CON(2)  4
+ 1550 01CD6 3547560         NIBASC  \Step\
+            7
+ 1551 01CDE 00000           CON(5)  ='
+ 1552 01CE3 00000           CON(5)  =DOIDNT
+ 1553 01CE8 40              CON(2)  4
+ 1554 01CEA 14D607C         NIBASC  \Ampl\
+            6
+ 1555 01CF2 00000           CON(5)  ='
+ 1556 01CF7 00000           CON(5)  =DOIDNT
+ 1557 01CFC 50              CON(2)  5
+ 1558 01CFE 451626C         NIBASC  \Tabla\
+            616
+ 1559               * File  sen-cos.s       390
+ 1560 01D08 00000           CON(5)  ='
+ 1561 01D0D 00000           CON(5)  =DOIDNT
+ 1562 01D12 20              CON(2)  2
+ 1563 01D14 9487            NIBASC  \Ix\
+ 1564 01D18 00000           CON(5)  ='
+ 1565 01D1D 00000           CON(5)  =DOIDNT
+ 1566 01D22 20              CON(2)  2
+ 1567 01D24 9497            NIBASC  \Iy\
+ 1568 01D28 00000           CON(5)  ='
+ 1569 01D2D 00000           CON(5)  =DOIDNT
+ 1570 01D32 40              CON(2)  4
+ 1571 01D34 44F6D6E         NIBASC  \Domn\
+            6
+ 1572 01D3C 00000           CON(5)  ='
+ 1573 01D41 00000           CON(5)  =DOIDNT
+ 1574 01D46 40              CON(2)  4
+ 1575 01D48 2516E67         NIBASC  \Rang\
+            6
+ 1576               * File  sen-cos.s       391
+ 1577
+ 1578               * File  sen-cos.s       392
+ 1579 01D50 00000           CON(5)  =BINT10
+ 1580 01D55 00000           CON(5)  ={}N
+ 1581               * { }
+ 1582               * File  sen-cos.s       393
+ 1583 01D5A 00000           CON(5)  =XEQORDER
+ 1584               * File  sen-cos.s       394
+ 1585
+ 1586               * File  sen-cos.s       395
+ 1587
+ 1588               *====================== RESTABLECER PARAMETROS ======================
+ 1589               * File  sen-cos.s       397
+ 1590
+ 1591               * File  sen-cos.s       398
+ 1592 01D5F 00000           CON(5)  =ABND
+ 1593               * Abandona Variables temporales
+ 1594               * File  sen-cos.s       399
+ 1595
+ 1596               * File  sen-cos.s       400
+ 1597 01D64 00000           CON(5)  =RestoreSysFlags
+ 1598               * Restablece variables del Usuario
+ 1599               * File  sen-cos.s       401
+ 1600               * Ref: SaveSysFlag
+ 1601               * File  sen-cos.s       402
+ 1602
+ 1603               * File  sen-cos.s       403
+ 1604
+ 1605               *========================= PANTALLA FINAL ============================
+ 1606               * File  sen-cos.s       405
+ 1607
+ 1608               *MEJORAR ESTA PANTALLA :(
+ 1609               * File  sen-cos.s       407
+ 1610 01D69 00000           CON(5)  =CLEARLCD
+ 1611               * File  sen-cos.s       408
+ 1612 01D6E 00000           CON(5)  =DOCSTR
+ 1613 01D73 F7000           CON(5)  127
+ 1614 01D78 6496E61         NIBASC  \Finalizado:\
             6C696A7
             1646F6A3
- 1545 01C98 A0              CON(2)  #A
- 1546 01C9A A0              CON(2)  #A
- 1547 01C9C 0225563         NIBASC  \ Resultados\
+ 1615 01D8E A0              CON(2)  #A
+ 1616 01D90 A0              CON(2)  #A
+ 1617 01D92 0225563         NIBASC  \ Resultados\
             757C647
             1646F637
- 1548 01CB2 A0              CON(2)  #A
- 1549 01CB4 0216C6D         NIBASC  \ almacenados en\
+ 1618 01DA8 A0              CON(2)  #A
+ 1619 01DAA 0216C6D         NIBASC  \ almacenados en\
             6163656
             E61646F6370256E6
 
- 1550 01CD2 A0              CON(2)  #A
- 1551 01CD4 02C6160         NIBASC  \ la carpeta\
+ 1620 01DC8 A0              CON(2)  #A
+ 1621 01DCA 02C6160         NIBASC  \ la carpeta\
             2361627
             07564716
- 1552 01CEA A0              CON(2)  #A
- 1553 01CEC 0272255         NIBASC  \ 'RESUL'\
+ 1622 01DE0 A0              CON(2)  #A
+ 1623 01DE2 0272255         NIBASC  \ 'RESUL'\
             43555C4
             72
- 1554               * File  sen-cos.s       381
- 1555 01CFC 00000           CON(5)  =BINT15
- 1556 01D01 00000           CON(5)  =BINT10
- 1557               * File  sen-cos.s       382
- 1558 01D06 00000           CON(5)  =MINUSONE
- 1559               * File  sen-cos.s       383
- 1560 01D0B 00000           CON(5)  =DOROMP
- 1561 01D10 000000          CON(6)  =~MsgBoxMenu
- 1562               * File  sen-cos.s       384
- 1563 01D16 00000           CON(5)  =DOROMP
- 1564 01D1B 000000          CON(6)  =~DoMsgBox
- 1565               * File  sen-cos.s       385
- 1566 01D21 00000           CON(5)  =DROP
- 1567               * File  sen-cos.s       386
- 1568
- 1569               * File  sen-cos.s       387
- 1570
- 1571               * File  sen-cos.s       388
- 1572 01D26 00000           CON(5)  =SEMI
- 1573               * File  sen-cos.s       389
- 1574
-Saturn Assembler                                       Wed Jan 03 00:34:41 2024
+ 1624               * File  sen-cos.s       409
+ 1625 01DF2 00000           CON(5)  =BINT15
+ 1626 01DF7 00000           CON(5)  =BINT10
+ 1627               * File  sen-cos.s       410
+ 1628 01DFC 00000           CON(5)  =MINUSONE
+ 1629               * File  sen-cos.s       411
+ 1630 01E01 00000           CON(5)  =DOROMP
+ 1631 01E06 000000          CON(6)  =~MsgBoxMenu
+ 1632               * File  sen-cos.s       412
+ 1633 01E0C 00000           CON(5)  =DOROMP
+ 1634 01E11 000000          CON(6)  =~DoMsgBox
+ 1635               * File  sen-cos.s       413
+ 1636 01E17 00000           CON(5)  =DROP
+ 1637               * File  sen-cos.s       414
+ 1638
+ 1639               * File  sen-cos.s       415
+ 1640 01E1C 00000           CON(5)  =SEMI
+ 1641               * File  sen-cos.s       416
+ 1642
+Saturn Assembler                                       Wed Jan 03 22:03:57 2024
 V3.0.9 (04/15/2007)   Symbol Table                       sen-cos.a      Page    2
 
+ #=casedrop                        Ext                   -   629
  %0                                Ext                   -    64
- %0<                               Ext                   -   674
- %1                                Ext                   -  1439
- %2                                Ext                   -  1217  1440
- %6                                Ext                   -  1218
- %CHS                              Ext                   -   691   696   701
-                                         721   726
- '                                 Ext                   -   303   323   853
-                                         876   897   925   979   998  1030  1056
-                                        1080  1149  1161  1225  1240  1284  1297
-                                        1310  1353  1375  1391  1448  1466  1470
-                                        1474  1478  1482  1486  1491  1495  1499
-                                        1503
- 'DROPFALSE                        Ext                   -   524   549   574
-                                         599   630
- ?SKIP                             Ext                   -   649
- ABND                              Ext                   -   343   654   767
-                                         834  1523
- BEGIN                             Ext                   -   273
- BIND                              Ext                   -    71   786
- BINT10                            Ext                   -   821  1510  1556
+ %0<                               Ext                   -   756
+ %1                                Ext                   -  1508
+ %2                                Ext                   -  1294  1509
+ %6                                Ext                   -  1295
+ %CHS                              Ext                   -   773   778   783
+                                         804   809
+ '                                 Ext                   -   296   316   625
+                                         938   961   982  1010  1068  1087  1121
+                                        1147  1173  1238  1248  1300  1315  1357
+                                        1370  1383  1424  1446  1462  1517  1535
+                                        1539  1543  1547  1551  1555  1560  1564
+                                        1568  1572
+ 'DROPFALSE                        Ext                   -   512   537   562
+                                         587
+ 4GETLAM                           Ext                   -   634
+ ?SKIP                             Ext                   -   737
+ ABND                              Ext                   -   336   742   852
+                                         919  1592
+ BEGIN                             Ext                   -   271
+ BIND                              Ext                   -    71   871
+ BINT0                             Ext                   -   638
+ BINT1                             Ext                   -   643   657   662
+                                         681   700
+ BINT10                            Ext                   -   647   666   685
+                                         704   906  1579  1626
  BINT103                           Ext                   -    34
  BINT105                           Ext                   -    30
- BINT15                            Ext                   -   820  1555
+ BINT11                            Ext                   -   475   491
+ BINT115                           Ext                   -   702
+ BINT14                            Ext                   -   648   667   686
+                                         705
+ BINT15                            Ext                   -   905  1625
  BINT17                            Ext                   -    24
  BINT18                            Ext                   -    26
- BINT2                             Ext                   -   296  1344
- BINT3                             Ext                   -  1326
- BINT4                             Ext                   -   689   694   699
-                                         704   715   719   724   729   745
+ BINT2                             Ext                   -   289   628   676
+                                        1417
+ BINT23                            Ext                   -   468   646   665
+                                         684   703
+ BINT3                             Ext                   -   695  1399
+ BINT4                             Ext                   -   411   451   615
+                                         771   776   781   786   798   802   807
+                                         812   831
+ BINT43                            Ext                   -   476   484
  BINT45                            Ext                   -    46
  BINT46                            Ext                   -    48
- BINT47                            Ext                   -    51   336
+ BINT47                            Ext                   -    51   329
  BINT48                            Ext                   -    53
  BINT49                            Ext                   -    38
- BINT5                             Ext                   -   316   739  1099
-                                        1142  1179
+ BINT5                             Ext                   -   309   467   645
+                                         826  1189  1231  1265
  BINT50                            Ext                   -    40
- BINT6                             Ext                   -  1187
- BINT7                             Ext                   -  1167
- CHECKPICT                         Ext                   -   263
+ BINT51                            Ext                   -   664
+ BINT56                            Ext                   -   492   500
+ BINT6                             Ext                   -   614  1273
+ BINT7                             Ext                   -  1254
+ BINT72                            Ext                   -   483   499
+ BINT85                            Ext                   -   683
+ BINT9                             Ext                   -   412   452
+ CHECKPICT                         Ext                   -   261
  CK0NOLASTWD                       Ext                   -    11
- CLEARLCD                          Ext                   -  1540
- CREATERRP_                        Ext                   -   901
+ CLEARLCD                          Ext                   -  1610
+ CREATERRP_                        Ext                   -   986
  ClrDA1IsStat                      Ext                   -    81
  ClrSysFlag                        Ext                   -    31    41    52
                                           54
- DOBINT                            Ext                   -   415   417   459
-                                         461   476   478   492   494   500   502
-                                         508   510   516   518   525   527   529
-                                         531   535   550   552   554   556   560
-                                         575   577   579   581   585   600   602
-                                         604   606   610   624   626   671
- DOCOL                             Ext                   -     8   275   300
-                                         320   340   356   381   425   652   678
-                                         686   713   743   810   863   874   886
-                                         896   949   955  1102  1182  1265  1279
- DOCSTR                            Ext                   -   489   497   505
-                                         513   539   564   589   614   633   812
-                                        1267  1387  1542
- DOFLASHP                          Ext                   -   641   748   849
-                                         929   936   950   956   962   969   973
-                                         994  1011  1013  1020  1024  1048  1052
-                                        1074  1115  1117  1121  1191  1220  1246
-                                        1253  1290  1302  1306  1317  1330  1337
-                                        1406  1411  1420  1432  1444
- DOGROB                            Ext                   -    84   383   427
-                                         468
- DOIDNT                            Ext                   -   854   877   888
-                                         898   902   926   980   999  1031  1057
-                                        1068  1081  1104  1109  1150  1162  1184
-                                        1226  1237  1241  1281  1285  1298  1311
-                                        1314  1354  1365  1376  1392  1449  1467
-                                        1471  1475  1479  1483  1487  1492  1496
-                                        1500  1504
- DOINT                             Ext                   -   798   804
- DOLAM                             Ext                   -    67   304   324
-                                         373   680   764   770   773   776   779
-                                         782   795   801   917   922   933   942
-                                         966   991  1017  1042  1045  1403  1415
-                                        1427
- DOLIST                            Ext                   -    66   534   559
-                                         584   609   769  1216  1438
- DOROMP                            Ext                   -   823   826   829
-                                        1371  1560  1563
- DOVARS                            Ext                   -   865   891
- DROP                              Ext                   -   288   344   832
-                                         887  1566
- DROPTRUE                          Ext                   -   309   329   352
- DUP                               Ext                   -  1146  1408
- DoBadKey                          Ext                   -   357
- EQUAL                             Ext                   -   857
- FALSE                             Ext                   -   322   358
- FOUR                              Ext                   -   538   563   588
-                                         613
- GROB>GDISP                        Ext                   -   260
- INCOMPDROP                        Ext                   -  1156  1169  1322
-                                        1323
- INDEX@                            Ext                   -  1114
- IT                                Ext                   -   675   808
- ITE                               Ext                   -   378   683   860
-                                         883   945  1262
- LOOP                              Ext                   -   753  1129  1199
- MINUSONE                          Ext                   -   542   543   544
-                                         545   567   568   569   570   592   593
-                                         594   595   617   618   619   620  1558
- ONE                               Ext                   -   533   558   583
-                                         608
- ONE_DO                            Ext                   -   740
- OR                                Ext                   -   807
- OVER#=case                        Ext                   -   298   318   338
- PATHDIR                           Ext                   -   846
- PICK                              Ext                   -   673  1327
- ROLL                              Ext                   -   690   695   700
-                                         705   716   720   725   730   746  1168
-                                        1188
- RestoreSysFlags                   Ext                   -   342   653   833
-                                        1528
- SAFE@                             Ext                   -   880
- SAFESTO                           Ext                   -   983  1002  1034
-                                        1060  1084  1229  1357  1379  1395  1452
- SEMI                              Ext                   -    70   311   331
-                                         347   359   361   420   464   537   562
-                                         587   612   656   708   733   735   751
-                                         785   837   869   893   905   907   952
-                                         958  1127  1195  1219  1271  1348  1441
-                                        1572
- STO                               Ext                   -   307   327
- SWAP                              Ext                   -  1321  1341  1424
- SWAPDROP                          Ext                   -  1250  1294
+ DOBINT                            Ext                   -   513   515   517
+                                         519   523   538   540   542   544   548
+                                         563   565   567   569   573   588   590
+                                         592   594   598   753
+ DOCOL                             Ext                   -     8   273   293
+                                         313   333   349   377   417   626   632
+                                         641   660   679   698   740   760   768
+                                         795   829   895   948   959   971   981
+                                        1038  1044  1192  1268  1340  1352
+ DOCSTR                            Ext                   -   472   480   488
+                                         496   527   552   577   602   725   897
+                                        1342  1458  1612
+ DOFLASHP                          Ext                   -   649   668   687
+                                         706   731   834   934  1014  1021  1025
+                                        1039  1045  1051  1058  1062  1083  1100
+                                        1102  1109  1113  1117  1139  1143  1165
+                                        1169  1205  1209  1213  1217  1277  1297
+                                        1321  1328  1363  1375  1379  1390  1403
+                                        1410  1477  1482  1491  1503  1513
+ DOGROB                            Ext                   -    84   379   419
+                                         459
+ DOIDNT                            Ext                   -   939   962   973
+                                         983   987  1011  1069  1088  1122  1148
+                                        1159  1174  1194  1199  1239  1249  1270
+                                        1301  1312  1316  1354  1358  1371  1384
+                                        1387  1425  1436  1447  1463  1518  1536
+                                        1540  1544  1548  1552  1556  1561  1565
+                                        1569  1573
+ DOINT                             Ext                   -   883   889
+ DOLAM                             Ext                   -    67   297   317
+                                         369   762   849   855   858   861   864
+                                         867   880   886  1002  1007  1018  1031
+                                        1055  1080  1106  1133  1136  1474  1486
+                                        1498
+ DOLIST                            Ext                   -    66   522   547
+                                         572   597   854  1293  1507
+ DOROMP                            Ext                   -   908   911   914
+                                        1442  1630  1633
+ DOVARS                            Ext                   -   950   976
+ DROP                              Ext                   -   283   337   917
+                                         972  1636
+ DROPFALSE                         Ext                   -   717
+ DROPTRUE                          Ext                   -   302   322   345
+ DUP                               Ext                   -  1235  1479
+ DoBadKey                          Ext                   -   350
+ EQUAL                             Ext                   -   942
+ FALSE                             Ext                   -   315   351   644
+                                         663   682   701
+ FOUR                              Ext                   -   526   551   576
+                                         601
+ GROB>GDISP                        Ext                   -   258
+ INCOMPDROP                        Ext                   -  1245  1256  1395
+                                        1396
+ INDEX@                            Ext                   -  1204
+ IT                                Ext                   -   757   893
+ ITE                               Ext                   -   374   765   945
+                                         968  1034  1337
+ LOOP                              Ext                   -   839  1222  1283
+ MINUSONE                          Ext                   -   530   531   532
+                                         533   555   556   557   558   580   581
+                                         582   583   605   606   607   608  1628
+ ONE                               Ext                   -   521   546   571
+                                         596
+ ONE_DO                            Ext                   -   827
+ OR                                Ext                   -   892
+ OVER#=case                        Ext                   -   291   311   331
+                                         639   658   677   696
+ PATHDIR                           Ext                   -   931
+ PICK                              Ext                   -   755  1400
+ ROLL                              Ext                   -   772   777   782
+                                         787   799   803   808   813   832  1255
+                                        1274
+ RestoreSysFlags                   Ext                   -   335   741   918
+                                        1597
+ SAFE@                             Ext                   -   965
+ SAFESTO                           Ext                   -  1072  1091  1125
+                                        1151  1177  1304  1428  1450  1466  1521
+ SEMI                              Ext                   -    70   304   324
+                                         340   352   354   414   454   525   550
+                                         575   600   652   671   690   709   713
+                                         719   744   790   816   818   837   870
+                                         922   954   978   990   992  1041  1047
+                                        1220  1281  1296  1346  1421  1510  1640
+ STO                               Ext                   -   300   320
+ SWAP                              Ext                   -  1394  1414  1495
+ SWAPDROP                          Ext                   -  1325  1367
  SaveSysFlags                      Ext                   -    19
  SetSysFlag                        Ext                   -    25    27    35
                                           39    47    49
- TOGDISP                           Ext                   -   266
- TRUE                              Ext                   -   302
- TURNMENUOFF                       Ext                   -   269
- TYPECMP?                          Ext                   -  1257
- UNROT                             Ext                   -  1153
- UNROTSWAP                         Ext                   -  1334
- UNTIL                             Ext                   -   363
- WaitForKey                        Ext                   -   285
- XEQORDER                          Ext                   -  1514
- Z0_                               Ext                   -  1301  1370
- Z2_                               Ext                   -  1010
- Z4_                               Ext                   -  1073
- Z=                                Ext                   -   800   806
- ZERO_DO                           Ext                   -  1100  1180
- ^#>Z                              Ext                   -  1116
- ^CASCRUNCH                        Ext                   -  1254
- ^EvalNoCKx+                       Ext                   -  1331  1338
- ^ISOL1                            Ext                   -  1247
- ^ISOLALL                          Ext                   -  1291
- ^IfMain                           Ext                   -   642
- ^LASTCOMP                         Ext                   -   850
- ^QAdd                             Ext                   -   937   970  1122
-                                        1421  1433
- ^QDiv                             Ext                   -  1025  1049  1075
- ^QMul                             Ext                   -   930   963  1014
-                                        1118  1318
- ^QNeg                             Ext                   -  1053  1412
- ^R>Z                              Ext                   -   749
- ^SIMPLIFY                         Ext                   -   974
- ^SYMLIMIT                         Ext                   -  1192  1307
- ^XEQ>ARRY                         Ext                   -  1221  1445
- ^ZAbs                             Ext                   -   995  1021  1407
- ^pi                               Ext                   -  1012
- ^x=ext                            Ext                   -  1303
- ^xCOSext                          Ext                   -   957
- ^xSINext                          Ext                   -   951
- case                              Ext                   -   354
- xEVAL                             Ext                   -  1028  1078  1125
- xKILL                             Ext                   -   345   655   835
- xPURGE                            Ext                   -   866   892
- {}N                               Ext                   -  1143  1345  1511
- ~DoMsgBox                         Ext                   -   830  1564
- ~MsgBoxMenu                       Ext                   -   827  1561
- ~grobAlertIcon                    Ext                   -   824
- ~xLIMIT                           Ext                   -  1372
-Saturn Assembler                                       Wed Jan 03 00:34:41 2024
+ TOGDISP                           Ext                   -   264
+ TRUE                              Ext                   -   295   711
+ TURNMENUOFF                       Ext                   -   267
+ TYPECMP?                          Ext                   -  1332
+ UNROT                             Ext                   -  1242
+ UNROTSWAP                         Ext                   -  1407
+ UNTIL                             Ext                   -   356
+ WaitForKey                        Ext                   -   280
+ XEQORDER                          Ext                   -  1583
+ Z0_                               Ext                   -  1374  1441
+ Z2_                               Ext                   -  1099
+ Z4_                               Ext                   -  1164
+ Z=                                Ext                   -   885   891
+ ZERO_DO                           Ext                   -  1190  1266
+ ^#>Z                              Ext                   -  1206
+ ^CASCRUNCH                        Ext                   -  1329
+ ^EvalNoCKx+                       Ext                   -  1404  1411
+ ^ISOL1                            Ext                   -  1322
+ ^ISOLALL                          Ext                   -  1364
+ ^IfMain                           Ext                   -   732
+ ^IfSetFieldPos                    Ext                   -   650   669   688
+                                         707
+ ^LASTCOMP                         Ext                   -   935
+ ^QAdd                             Ext                   -  1022  1059  1214
+                                        1492  1504
+ ^QDiv                             Ext                   -  1114  1140  1166
+ ^QMul                             Ext                   -  1015  1052  1103
+                                        1210  1391
+ ^QNeg                             Ext                   -  1144  1483
+ ^R>Z                              Ext                   -   835
+ ^SIMPLIFY                         Ext                   -  1026  1063  1118
+                                        1170  1218
+ ^SYMLIMIT                         Ext                   -  1278  1380
+ ^XEQ>ARRY                         Ext                   -  1298  1514
+ ^ZAbs                             Ext                   -  1084  1110  1478
+ ^pi                               Ext                   -  1101
+ ^x=ext                            Ext                   -  1376
+ ^xCOSext                          Ext                   -  1046
+ ^xSINext                          Ext                   -  1040
+ case                              Ext                   -   347
+ xKILL                             Ext                   -   338   743   920
+ xPURGE                            Ext                   -   951   977
+ {}N                               Ext                   -  1232  1418  1580
+ ~DoMsgBox                         Ext                   -   915  1634
+ ~MsgBoxMenu                       Ext                   -   912  1631
+ ~grobAlertIcon                    Ext                   -   909
+ ~xLIMIT                           Ext                   -  1443
+Saturn Assembler                                       Wed Jan 03 22:03:57 2024
 V3.0.9 (04/15/2007)   Statistics                         sen-cos.a      Page    3
 
 Input Parameters
