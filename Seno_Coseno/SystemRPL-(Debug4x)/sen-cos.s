@@ -35,42 +35,39 @@ TOGDISP                    ( Dibujar GBUFF  )
 TURNMENUOFF
 
 BEGIN	
-	::
-*	Bucle para comprobar     ( Key -> Op1=T TRUE  )
+::
+* Bucle para comprobar     ( Key -> Op1=T TRUE  )
 * la tecla que se ha       ( Key -> Op1=F TRUE  )
 * pulsado                  ( Key -> FALSE       )
 
-		WaitForKey               ( #ct #p )
-		DROP                     ( #ct    )
+WaitForKey                 ( #ct #p )
+DROP                       ( #ct    )
 
-* CasoSeno:   Op1=1
-		BINT2
-		OVER#=case
-			::
-				TRUE   ' LAM Op1 STO
-				DROPTRUE
-			;
+*Caso Seno: Op1=TRUE
+ BINT2 OVER#=case
+ ::
+ TRUE ' LAM Op1 STO        ( Op1 = TRUE )
+ DROPTRUE
+ ;
 
-* CasoCoseno: Op1=2
-		BINT5
-		OVER#=case
-			::
-				FALSE  ' LAM Op1 STO
-				DROPTRUE
-			;
+*Caso Coseno: Op1=FALSE
+ BINT5 OVER#=case
+ ::
+ FALSE  ' LAM Op1 STO      ( Op1 + FALSE )
+ DROPTRUE
+ ;
 
-*CasoCancel: ON
-		BINT47
-		OVER#=case
-		::
-		RestoreSysFlags ABND DROP xKILL
-		;
+*Caso Cancel: ON
+ BINT47 OVER#=case
+ ::
+ RestoreSysFlags ABND DROP xKILL
+ ;
 		
-* CasoTeclaErronea: Reiniciar bucle
-		DROPTRUE 	
-		case
-			:: DoBadKey FALSE ;	
-	;
+* Caso Tecla Erronea: Reiniciar bucle
+ DROPTRUE 	
+ case
+ :: DoBadKey FALSE ;	
+ ;
 UNTIL
 
 
@@ -83,13 +80,14 @@ LAM Op1           ( Op1=TRUE=SEN / Op1=FLASE=COS )
 ITE
 *Caso Seno
  ::
-  GROB 001CA E0000B7000083000000008DF3000000CF91000EF1008300000000C89700060068B1030C9300C30000000068170006083813030C0600E30E3C36703C137C06081803030C0600B303336EC81C81F6060C1003030E060093839366C81CF1C3EF7C0003FF36070883078F76CC1E83C1EF7E0083FF36030CF30EC1036C0683C1060E0081030783068308D1036C0681E1060E0EC10303810603CCD1336C0FC1B3060C03C00383E007C7CF8F83ECCF78360608F16003CF3000000000000C0000000000007000000000000000000C10000000000810000000000000000000200000000008100000000
-	 BINT4 BINT9
+ GROB 001CA E0000B7000083000000008DF3000000CF91000EF1008300000000C89700060068B1030C9300C30000000068170006083813030C0600E30E3C36703C137C06081803030C0600B303336EC81C81F6060C1003030E060093839366C81CF1C3EF7C0003FF36070883078F76CC1E83C1EF7E0083FF36030CF30EC1036C0683C1060E0081030783068308D1036C0681E1060E0EC10303810603CCD1336C0FC1B3060C03C00383E007C7CF8F83ECCF78360608F16003CF3000000000000C0000000000007000000000000000000C10000000000810000000000000000000200000000008100000000
+ BINT4 BINT9
  ;
+ 
 *Caso Coseno	
-	::
-	 GROB 001CA E0000B7000083000000008DF3000000CF91000EF1008300000000C89700060068B1030C9300C30000000068170006083813030C0600E30C3878F03C137C06081803030C0600B3064ECCC91C81F6060C1003030E0600930347CE481CF1C3EF7C0003FF360708838303CC1C1E83C1EF7E0083FF36030CF38103E83C0683C1060E00810307830683C183606C0681E1060E0EC10303810603C1B3736C0FC1B3060C03C003C3E007C78F1F1F3CCF78360608F16003CF3000000000000C0000000000007000000000000000000C1000000000081000000000000000000010000000000C000000000
-  BINT4 BINT9
+ ::
+ GROB 001CA E0000B7000083000000008DF3000000CF91000EF1008300000000C89700060068B1030C9300C30000000068170006083813030C0600E30C3878F03C137C06081803030C0600B3064ECCC91C81F6060C1003030E0600930347CE481CF1C3EF7C0003FF360708838303CC1C1E83C1EF7E0083FF36030CF38103E83C0683C1060E00810307830683C183606C0681E1060E0EC10303810603C1B3736C0FC1B3060C03C003C3E007C78F1F1F3CCF78360608F16003CF3000000000000C0000000000007000000000000000000C1000000000081000000000000000000010000000000C000000000
+ BINT4 BINT9
  ;
 
 *############ Cursor    ( Label 1 )  ( 10x14 )  ( n,n )
@@ -120,37 +118,39 @@ BINT6 BINT4             ( #Etiquetas #Campos )
 *----------------- Messege-Handler del Formulario --------------------
 
 ' ::
-  BINT2 #=casedrop ( Cuando un field ha recibido un enfoque )
-    ::
-		  4GETLAM       ( LAM 'CurrentField )
-*     Caso letra A		
-		  	 BINT0	OVER#=case
-		  	 ::
-		  	 BINT1 FALSE BINT5 BINT23 BINT10 BINT14  FLASHPTR IfSetFieldPos
-		  	 ;
-		  	
-*	  	 Caso letra B		
-		  	 BINT1	OVER#=case
-		  	 ::
-		  	 BINT1 FALSE BINT51 BINT23 BINT10 BINT14  FLASHPTR IfSetFieldPos
-		  	 ;
-		  		
-*	  		Caso letra C		
-		  	 BINT2	OVER#=case
-		  	 ::
-		  	 BINT1 FALSE BINT85 BINT23 BINT10 BINT14  FLASHPTR IfSetFieldPos
-		  	 ;
-		  	
-*	  	 Caso letra D		
-		  	 BINT3	OVER#=case
-		  	 ::
-		  	 BINT1 FALSE BINT115 BINT23 BINT10 BINT14  FLASHPTR IfSetFieldPos
-		  	 ;	  	
-				TRUE
-				;
 
- DROPFALSE
+BINT2 #=casedrop ( Cuando un field ha recibido un enfoque )
+  ::
+  4GETLAM       ( LAM 'CurrentField )
+*Caso letra A		
+  BINT0	OVER#=case
+  ::
+  BINT1 FALSE BINT5 BINT23 BINT10 BINT14  FLASHPTR IfSetFieldPos
+  ;
+		  	
+*Caso letra B		
+  BINT1	OVER#=case
+  ::
+  BINT1 FALSE BINT51 BINT23 BINT10 BINT14  FLASHPTR IfSetFieldPos
+  ;
+		  		
+*Caso letra C		
+  BINT2	OVER#=case
+  ::
+  BINT1 FALSE BINT85 BINT23 BINT10 BINT14  FLASHPTR IfSetFieldPos
+  ;
+		  	
+*Caso letra D		
+  BINT3	OVER#=case
+  ::
+  BINT1 FALSE BINT115 BINT23 BINT10 BINT14  FLASHPTR IfSetFieldPos
+  ;
+  
+ TRUE
  ;
+
+  DROPFALSE
+  ;
 
 
 "INTRODUZCA LOS VALORES"  ( Titulo de IfMain )
@@ -164,33 +164,33 @@ FLASHPTR IfMain
 *======================== MANEJO DE DATOS ============================
 
 3 PICK %0< IT           ( %A %B %C %D )
-			::
-			 LAM Op1 ITE
+::
+ LAM Op1 ITE
 *CasoSeno: Modifica A, B y C	
-					::                 ( 4:  3:  2:  1:  )
-			  BINT4 ROLL %CHS    ( %B  %C  %D  %-A )
-					BINT4 ROLL %CHS    ( %C  %D  %-A %-B )
-					BINT4 ROLL %CHS    ( %D  %-A %-B %-C )
-					BINT4 ROLL         ( %-A %-B %-C %D  )
-			  ;
+  ::                 ( 4:  3:  2:  1:  )
+  BINT4 ROLL %CHS    ( %B  %C  %D  %-A )
+  BINT4 ROLL %CHS    ( %C  %D  %-A %-B )
+  BINT4 ROLL %CHS    ( %D  %-A %-B %-C )
+  BINT4 ROLL         ( %-A %-B %-C %D  )
+  ;
 			  
 *CasoCoseno: Modifica B y C
-				 ::                 ( 4:  3:  2:  1:  )
-				 BINT4 ROLL         ( %B  %C  %D  %A  )
-				 BINT4 ROLL %CHS    ( %C  %D  %A  %-B )
-				 BINT4 ROLL %CHS    ( %D  %A  %-B %-C )
-				 BINT4 ROLL         ( %A  %-B %-C %D  )
-				 ; 			
-			;
+  ::                 ( 4:  3:  2:  1:  )
+  BINT4 ROLL         ( %B  %C  %D  %A  )
+  BINT4 ROLL %CHS    ( %C  %D  %A  %-B )
+  BINT4 ROLL %CHS    ( %D  %A  %-B %-C )
+  BINT4 ROLL         ( %A  %-B %-C %D  )
+  ; 			
+;
 
 
 * Bucle para convertir  ( %A %B %C %D -> ZA ZB ZC ZD )
 * reales a enteros
 BINT5 ONE_DO
-::
-BINT4 ROLL
-FLASHPTR  R>Z
-;
+ ::
+ BINT4 ROLL
+ FLASHPTR  R>Z
+ ;
 LOOP
 ****En la pila   ( ZA ZB ZC ZD )	
 
@@ -202,37 +202,33 @@ LAM Op1   ABND
 
 *========================= COMPROBACION ==============================
 
-LAM A ZINT 0 Z= LAM B ZINT 0 Z= OR   IT
-	::
-	"ERROR:\0A\0AA y B tiene que ser dintinto de cero"
-	BINT15 BINT10
-	ROMPTR grobAlertIcon
-	ROMPTR MsgBoxMenu
-	ROMPTR DoMsgBox
-	DROP RestoreSysFlags ABND xKILL
-	;
+LAM A ZINT 0 Z= LAM B ZINT 0 Z= OR  IT
+  ::
+  "ERROR:\0A\0AA y B tiene que ser dintinto de cero"
+  BINT15 BINT10
+  ROMPTR grobAlertIcon
+  ROMPTR MsgBoxMenu
+  ROMPTR DoMsgBox
+  DROP RestoreSysFlags ABND xKILL
+  ;
 
 
 *===================== CREACION DE CARPETA ===========================
 
 PATHDIR                      ( { xHOME Dir.. DirActual } )
 FLASHPTR LASTCOMP            ( DirActual                 )
-' ID RESUL EQUAL             ( DirActual = Resul ?       )
- ITE
-*Caso Dir igual a 'Resul'
-	::
-	DOVARS xPURGE               ( Borrrar variables locales )
-	;
+' ID RESUL EQUAL ITE         ( DirActual = RESUL ?       )
+*Caso Dir igual a 'RESUL'
+  :: DOVARS xPURGE ;         ( Borrrar variables locales )
 
-*Caso Dir distinto de 'Resul'
-	::
-	' ID RESUL SAFE@            ( existe resul? )
-	ITE
-*Existe RESUL			
-	 :: DROP ID RESUL DOVARS xPURGE    ;
-*No existe RESUL	 	
-	 :: ' ID RESUL CREATERRP_ ID RESUL ;
-	;
+*Caso Dir distinto de 'RESUL'
+  ::
+  ' ID RESUL SAFE@ ITE       ( Ya existe RESUL? )
+*   Caso: Existe RESUL			
+    :: DROP ID RESUL DOVARS xPURGE    ;
+*   Caso: No existe RESUL	 	
+    :: ' ID RESUL CREATERRP_ ID RESUL ;
+  ;
 
 
 *======================== OPERACIONES ================================
@@ -245,9 +241,9 @@ FLASHPTR SIMPLIFY               ( A B*X켅             )
 	
 LAM Op1 ITE                     ( A SIN/COS[B*X켅]    )
 *CasoSeno:		
-		:: FLASHPTR xSINext ;
+  :: FLASHPTR xSINext ;
 *CasoSeno:
-		:: FLASHPTR xCOSext ;
+  :: FLASHPTR xCOSext ;
 
 FLASHPTR QMul                   ( A*[SIN/COS[B*X켅]]  )
 LAM D FLASHPTR QAdd             ( A*[SIN/COS[B*X켅]+D )
@@ -287,14 +283,14 @@ FLASHPTR SIMPLIFY               ( xEVAL    )
 * Bucle para obtener        ( -> Z1 Z2 Z3 Z4 Z5 )
 * 5 preimagenes
 BINT5 ZERO_DO
-	::
+ ::
  ID Desf                    ( 'Desf'                    )
  ID Step                    ( 'Desf' 'Step'             )
-	INDEX@ FLASHPTR #>Z        ( 'Desf' 'Step' #Contador>Z )
-	FLASHPTR QMul              ( 'Desf' Step*Contador      )
-	FLASHPTR QAdd              ( 'Desf'+[Step*Contador]    )
-	FLASHPTR SIMPLIFY
-	;
+ INDEX@ FLASHPTR #>Z        ( 'Desf' 'Step' #Contador>Z )
+ FLASHPTR QMul              ( 'Desf' Step*Contador      )
+ FLASHPTR QAdd              ( 'Desf'+[Step*Contador]    )
+ FLASHPTR SIMPLIFY
+ ;
 LOOP
 ****En la pila   ( Z1 Z2 Z3 Z4 Z5 )
 
@@ -338,8 +334,8 @@ ITE
 
 *!!!!!!!!!##############!!!!!!!!!!##########!!!!!!!!!!!!! BUSCAR UNA FORMA DE SIMPLIFICAR ESTE PROCESO :( CON PILA VIRTUAL
 *CasoSolucionReal: Existe Intercepto en X
-	 ::
-	 ID Func ' ID X                ( 'Func' 'X'                        )
+  ::
+  ID Func ' ID X                ( 'Func' 'X'                        )
   FLASHPTR ISOLALL              ( 'X' {DosInterceptoEnX}            )
   SWAPDROP                      ( {DosInterceptoEnX}                )
   ' ID n1 Z0_ FLASHPTR x=ext    ( {DosInterceptoEnX} n1=0           )
@@ -352,7 +348,7 @@ ITE
   FLASHPTR EvalNoCKx+           ( InterX2' InterX1'                 )
   SWAP                          ( InterX2' InterX1'                 )
   BINT2 {}N                     ( {Interceptos}                     )
-	 ;
+  ;
 *!!!!!!!!!##############!!!!!!!!!!##########!!!!!!!!!!!!! BUSCAR UNA FORMA DE SIMPLIFICAR ESTE PROCESO :( CON PILA VIRTUAL
 ' ID Ix SAFESTO                 ( obj -> 'Ix' STO )
 	
@@ -406,11 +402,11 @@ RestoreSysFlags        ( Restablece variables del Usuario )
 *MEJORAR ESTA PANTALLA :(
 CLEARLCD
 "Finalizado:\0A\0A Resultados\0A almacenados en\0A la carpeta\0A 'RESUL'"
-	BINT15 BINT10
+ BINT15 BINT10
  MINUSONE
-	ROMPTR MsgBoxMenu
-	ROMPTR DoMsgBox
-	DROP
+ ROMPTR MsgBoxMenu
+ ROMPTR DoMsgBox
+ DROP
 			
 ;
 
