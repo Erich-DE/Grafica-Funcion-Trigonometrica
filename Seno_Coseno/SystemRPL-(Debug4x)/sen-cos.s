@@ -1,27 +1,32 @@
 RPL 
-( C:\Users\GTX 1660S\Documents\Debug4x\SenCos\sen-cos.s, part of the SenCos.hpp project, created by <> on 30/12/2023 )
-
+(
+  \Documents\Debug4x\SenCos\sen-cos.s
+  Parte del projecto "SenCos.hpp"
+		Creado por: <Erich>
+		Fecha de creación: 30/12/2023
+		Último cambio:     05/01/2024 4:36 a.m
+)
+		
 ::
 *=========================== ARGUMENTOS ==============================
-CK0NOLASTWD                           ( No requiere argumento )
+CK0NOLASTWD                           ( No requiere argumentos )
 
 
 *============================= FLAGS =================================
-SaveSysFlags                         ( Almacena flags en pila virtual )
+SaveSysFlags                         ( FLAGS -> STO \ Pila virtual )
    																							
-BINT17 SetSysFlag BINT18 SetSysFlag  ( Modo Radian )
-BINT105 ClrSysFlag                   ( Modo Exacto )
+BINT17 SetSysFlag BINT18 SetSysFlag  ( Modo Radian   )
+BINT105 ClrSysFlag                   ( Modo Exacto   )
 BINT103 SetSysFlag                   ( Modo Compeljo )
-BINT49 SetSysFlag BINT50 ClrSysFlag  ( Modo Fix )
+BINT49 SetSysFlag BINT50 ClrSysFlag  ( Modo Fix      )
 
 BINT45 SetSysFlag BINT46 SetSysFlag
-BINT47 ClrSysFlag BINT48 ClrSysFlag  ( Fix = 3 )
+BINT47 ClrSysFlag BINT48 ClrSysFlag  ( Fix = 3       )
 
 
 
-*============================ VARIABLES ==============================
-%0
-{ LAM Op1 } BIND
+*========================== VARIABLES ================================
+%0 { LAM Op1 } BIND               ( Op1=0 )
 *Op1: Seleccion de SENO o COSENO
 
 
@@ -76,8 +81,7 @@ DROP                       ( #ct    )
  ::
  RestoreSysFlags ABND DROP xKILL
  ;
-
-		
+	
 *---------------------- Caso Tecla Erronea ---------------------------
  DROPTRUE 	
  case
@@ -90,7 +94,8 @@ UNTIL
 
 *---------------------------- Labels ---------------------------------
 
-*############ Funcion   ( Label 0 )  ( 123x14 )  ( 4,3 )
+*                             #Label     Dimension   Posicion
+*############ Funcion       ( Label 0 )  ( 123x14 )  ( 4,3 )
 LAM Op1           ( Op1=TRUE=SEN / Op1=FLASE=COS )
 ITE
 *Caso Seno
@@ -105,14 +110,14 @@ ITE
  BINT4 BINT9
  ;
 
-*############ Cursor    ( Label 1 )  ( 10x14 )  ( n,n )
+*############ Cursor        ( Label 1 )  ( 10x14 )  ( ?,? )
 GROB 00042 E0000A00000200050005000500850065105D20542010201010101018002800E700
 BINT5 BINT23
 
-"A:" $>GROB BINT10 BINT41      ( Label 2 )  ( 11,43 )
-"B:" $>GROB BINT70 BINT41      ( Label 3 )  ( 72,43 )
-"C:" $>GROB BINT10 BINT54      ( Label 4 )  ( 11,56 )
-"D:" $>GROB BINT70 BINT54      ( Label 5 )  ( 72,56 )
+"A:" $>GROB BINT10 BINT41   ( Label 2 ) ( 12x8 ) ( 10,41 )
+"B:" $>GROB BINT70 BINT41   ( Label 3 ) ( 12x8 ) ( 70,41 )
+"C:" $>GROB BINT10 BINT54   ( Label 4 ) ( 12x8 ) ( 10,54 )
+"D:" $>GROB BINT70 BINT54   ( Label 5 ) ( 12x8 ) ( 70,54 )
 
 
 *----------------------------- Campos --------------------------------
@@ -174,36 +179,36 @@ BINT2 #=casedrop ( Cuando un field ha recibido un enfoque )
 
 "INTRODUZCA LOS VALORES"  ( Titulo de IfMain )
 FLASHPTR IfMain
-*En la pila               ( %A %B %C %D TRUE / FALSE  )
+******En la pila   ( %A %B %C %D TRUE / FALSE  )
 																											
 ?SKIP     ( En caso de obtener FALSE en IfMain )
 :: RestoreSysFlags ABND xKILL ;
 
 
 *======================== MANEJO DE DATOS ============================
-BINT4 {}N         ( { A B C D } )
-x->QPI              ( { A B C D } )
-INCOMPDROP
+BINT4 {}N         ( { A B C D }     )
+x->QPI            ( Symb{ A B C D } ) ( Numeros a simbolico )
+INCOMPDROP        ( A B C D         )
 
 
-
-3 PICK FLASHPTR CASCRUNCH %0< IT           ( %A %B %C %D )
+*Comprobar el valor de B:
+3 PICK FLASHPTR CASCRUNCH %0< IT       ( A B C D )
 ::
  LAM Op1 ITE
 *CasoSeno: Modifica A, B y C	
-  ::                          ( 4:  3:  2:  1:  )
-  BINT4 ROLL FLASHPTR QNeg    ( %B  %C  %D  %-A )
-  BINT4 ROLL FLASHPTR QNeg    ( %C  %D  %-A %-B )
-  BINT4 ROLL FLASHPTR QNeg    ( %D  %-A %-B %-C )
-  BINT4 ROLL                  ( %-A %-B %-C %D  )
+  ::                          ( 4: 3: 2: 1: )
+  BINT4 ROLL FLASHPTR QNeg    ( B  C  D  -A )
+  BINT4 ROLL FLASHPTR QNeg    ( C  D  -A -B )
+  BINT4 ROLL FLASHPTR QNeg    ( D  -A -B -C )
+  BINT4 ROLL                  ( -A -B -C D  )
   ;
 			  
 *CasoCoseno: Modifica B y C
-  ::                          ( 4:  3:  2:  1:  )
-  BINT4 ROLL                  ( %B  %C  %D  %A  )
-  BINT4 ROLL FLASHPTR QNeg    ( %C  %D  %A  %-B )
-  BINT4 ROLL FLASHPTR QNeg    ( %D  %A  %-B %-C )
-  BINT4 ROLL                  ( %A  %-B %-C %D  )
+  ::                          ( 4: 3: 2: 1: )
+  BINT4 ROLL                  ( B  C  D  A  )
+  BINT4 ROLL FLASHPTR QNeg    ( C  D  A  -B )
+  BINT4 ROLL FLASHPTR QNeg    ( D  A  -B -C )
+  BINT4 ROLL                  ( A  -B -C D  )
   ; 			
 ;
 
@@ -226,7 +231,9 @@ LAM Op1   ABND
 
 *========================= COMPROBACION ==============================
 
-LAM A ZINT 0 Z= LAM B ZINT 0 Z= OR  IT
+*Se peude agregar en la comprobacion del
+*Messege-Handler del Cammpo ( BINT0 y BINT1 )
+ LAM A ZINT 0 Z= LAM B ZINT 0 Z= OR  IT
   ::
   "ERROR:\0A\0AA y B tiene que ser dintinto de cero"
   BINT15 BINT10
@@ -277,13 +284,14 @@ FLASHPTR SIMPLIFY               ( A*[SIN/COS[B*X±C]±D )
 
 
 *################ Amplitud
-LAM A FLASHPTR xABSext             ( A -> |A| )
+LAM A FLASHPTR xABSext          ( A -> |A| )
+FLASHPTR SIMPLIFY
 ' ID Ampl SAFESTO               ( obj -> 'Ampl' STO )
 
 
 *################ Periodo
 Z2_ FLASHPTR pi FLASHPTR QMul   ( 2pi     )
-LAM B FLASHPTR xABSext             ( 2pi |B| )
+LAM B FLASHPTR xABSext          ( 2pi |B| )
 FLASHPTR QDiv                   ( 2pi/|B| )
 FLASHPTR SIMPLIFY               ( xEVAL   )
 ' ID Peri SAFESTO               ( obj -> 'Peri' STO )
@@ -292,10 +300,11 @@ FLASHPTR SIMPLIFY               ( xEVAL   )
 *################ Desfase
 LAM C LAM B FLASHPTR QDiv       ( C/B  )
 FLASHPTR QNeg                   ( -C/B )
-' ID Desf SAFESTO               ( obj -> 'Desf' STO )
-			
+FLASHPTR SIMPLIFY               ( -C/B )
+' ID Desf SAFESTO               ( obj -> 'Desf' STO )			
 
-*################ PASO
+
+*################ Paso
 ID Peri                         ( 'Peri'   )
 Z4_ FLASHPTR QDiv               ( 'Peri'/4 )
 FLASHPTR SIMPLIFY               ( xEVAL    )
@@ -318,14 +327,12 @@ BINT5 ZERO_DO
 LOOP
 ****En la pila   ( Z1 Z2 Z3 Z4 Z5 )
 
-
 BINT5 {}N                   ( {Z1 Z2 Z3 Z4 Z5}                      )
 DUP                         ( {} {}                                 )
 ' ID X UNROT                ( 'X' {} {}                             )
 INCOMPDROP                  ( 'X' {} Z1 Z2 Z3 Z4 Z5                 )
 ' ID Y                      ( 'X' {} Z1 Z2 Z3 Z4 Z5 'Y'             )
 BINT7 ROLL INCOMPDROP       ( 'X' Z1 Z2 Z3 Z4 Z5 'Y' Z1 Z2 Z3 Z4 Z5 )
-
 
 * Bucle pata obtiener 5 imaganes   ( Z -> Z' )
 * a partir de las preimagenes
@@ -337,7 +344,6 @@ BINT5 ZERO_DO
 LOOP	
 ****En la pila   ( 'X' Z1 Z2 Z3 Z4 Z5 'Y' Z1' Z2' Z3' Z4' Z5' )
 
-	
 *Creacion del ARRY
 { %2 %6 } FLASHPTR XEQ>ARRY
 ' ID Tabla SAFESTO            ( obj -> 'Tabla' STO )
@@ -379,7 +385,7 @@ ITE
 
 *################ Intercepto en Y
 ID Func                      ( 'Func'             )
-Z0_ ROMPTR xLIMIT            ( limites cuando x=0 )
+Z0_ FLASHPTR SYMLIMIT        ( limites cuando x=0 )
 ' ID Iy SAFESTO              ( obj -> 'Iy' STO )
 
 
@@ -393,13 +399,14 @@ LAM A FLASHPTR ZAbs DUP      ( |A| |A|    )
 FLASHPTR QNeg                ( |A| -|A|   )
 LAM D                        ( |A| -|A| D )
 FLASHPTR QAdd                ( |A| Z      )
+FLASHPTR SIMPLIFY
 SWAP                         ( Z |A|      )
 LAM D                        ( Z |A| D    )
 FLASHPTR QAdd                ( Z Z'       )
+FLASHPTR SIMPLIFY
 { %1 %2 }                    ( Z Z' #f #c )
 FLASHPTR XEQ>ARRY            ( [  ]       )
 ' ID Rang SAFESTO            ( ARRAY -> 'Rang' STO )
-
 
 
 *======================== ORDENAR VARIABLES ==========================
@@ -407,6 +414,7 @@ FLASHPTR XEQ>ARRY            ( [  ]       )
 *Pag1
 *    F1        F2        F3        F4        F5        F6
  ' ID Func ' ID Peri ' ID Desf ' ID Step ' ID Ampl ' ID Tabla
+*Pag2
  ' ID Ix   ' ID Iy   ' ID Domn ' ID Rang
 
 BINT10 {}N              ( { } )
@@ -415,10 +423,9 @@ XEQORDER
 
 *====================== RESTABLECER PARAMETROS ======================
 
-ABND                   ( Abandona Variables temporales)
-
-RestoreSysFlags        ( Restablece variables del Usuario )
-                       ( Ref: SaveSysFlag )
+ABND                   ( Abandona Variables temporales    )
+RestoreSysFlags        ( Restablece variables del Usuario
+                         Ref: SaveSysFlag                 )
 
 
 *========================= PANTALLA FINAL ============================

@@ -3,14 +3,14 @@ Saturn Loader, Ver. version 3.0.9, 08/03/10
 
 Output Module:
 Module=SenCos.o
-  Start=00000 End=020AC Length=020AD   Symbols= 146 References= 611
-  Date=Fri Jan 05 02:39:44 2024   Title=
+  Start=00000 End=020DD Length=020DE   Symbols= 145 References= 619
+  Date=Fri Jan 05 04:48:34 2024   Title=
 
 
 Source modules:
 Module=sen-cos.o
-  Start=00000 End=020AC Length=020AD
-  Date=Fri Jan 05 02:39:44 2024   Title=                                        Fri Jan 05 02:39:44 2024
+  Start=00000 End=020DD Length=020DE
+  Date=Fri Jan 05 04:48:34 2024   Title=                                        Fri Jan 05 04:48:34 2024
 
 Saturn Cross Reference Listing
 
@@ -20,42 +20,42 @@ $>GROB                           *       - 01289 012A6 012C3 012E0
 
 %0                               *       - 00073
 %0<                              *       - 016F6
-%1                               *       - 01EE6
+%1                               *       - 01F17
 %1200_                           *       - 00C6B 00DCA
-%2                               *       - 01CA1 01EEB
-%6                               *       - 01CA6
+%2                               *       - 01CB9 01F1C
+%6                               *       - 01CBE
 
 '                                *       - 00B89 00CA8 0153D 01906 0193F 0198E
-                                 + 019D6 01A7C 01AAA 01B0D 01B50 01B95 01C29
-                                 + 01C41 01CBC 01CE6 01D55 01D74 01DA1 01E14
-                                 + 01E48 01E73 01F01 01F1A 01F2E 01F42 01F56
-                                 + 01F6A 01F7E 01F94 01FA4 01FB4 01FC8
+                                 + 019D6 01A7C 01AB6 01B19 01B68 01BAD 01C41
+                                 + 01C59 01CD4 01CFE 01D6D 01D8C 01DB9 01E2C
+                                 + 01E61 01E8C 01F32 01F4B 01F5F 01F73 01F87
+                                 + 01F9B 01FAF 01FC5 01FD5 01FE5 01FF9
 'DROPFALSE                       *       - 012EF 01380 01411 014A2
 
 4GETLAM                          *       - 01556
 
 ?SKIP                            *       - 016A9
 
-ABND                             *       - 00E07 016B8 017C9 018E6 01FEB
+ABND                             *       - 00E07 016B8 017C9 018E6 0201C
 
 BEGIN                            *       - 00B61
 BIND                             *       - 0008F 01809
 BINT0                            *       - 0155B
 BINT1                            *       - 0156A 01599 015A8 015E6 01624
 BINT10                           *       - 0128E 012C8 0157E 015BC 015FA 01638
-                                 + 018B6 01FDC 02083
+                                 + 018B6 0200D 020B4
 BINT103                          *       - 0002D
 BINT105                          *       - 00023
 BINT116                          *       - 0162E
 BINT124                          *       - 00CD3
 BINT14                           *       - 01583 015C1 015FF 0163D
-BINT15                           *       - 00C57 018B1 0207E
+BINT15                           *       - 00C57 018B1 020AF
 BINT16                           *       - 00BAF 00C5C 00CCE 00DBB
 BINT17                           *       - 0000F
 BINT18                           *       - 00019
-BINT2                            *       - 00B75 01547 015D7 01E05
+BINT2                            *       - 00B75 01547 015D7 01E1D
 BINT23                           *       - 01276 01579 015B7 015F5 01633
-BINT3                            *       - 01615 01DD9
+BINT3                            *       - 01615 01DF1
 BINT32                           *       - 00BB9 00CD8
 BINT4                            *       - 0102E 01216 01538 016C7 0171C 01732
                                  + 01748 0175E 01772 0177C 01792 017A8
@@ -65,14 +65,14 @@ BINT46                           *       - 00055
 BINT47                           *       - 0005F 00DF3
 BINT48                           *       - 00069
 BINT49                           *       - 00037
-BINT5                            *       - 00BAA 00C94 01271 01574 01BAE 01C1A
-                                 + 01C5E
+BINT5                            *       - 00BAA 00C94 01271 01574 01BC6 01C32
+                                 + 01C76
 BINT50                           *       - 00041
 BINT52                           *       - 015B2
 BINT54                           *       - 012CD 012EA
-BINT6                            *       - 01533 01C7C
+BINT6                            *       - 01533 01C94
 BINT60                           *       - 00BB4
-BINT7                            *       - 01C4F
+BINT7                            *       - 01C67
 BINT70                           *       - 012AB 012E5
 BINT76                           *       - 00CC9
 BINT78                           *       - 00DB6
@@ -81,7 +81,7 @@ BINT9                            *       - 01033 0121B
 
 CHECKPICT                        *       - 00B52
 CK0NOLASTWD                      *       - 00005
-CLEARLCD                         *       - 01FF5
+CLEARLCD                         *       - 02026
 CREATERRP_                       *       - 019A4
 ClrDA1IsStat                     *       - 00094
 ClrSysFlag                       *       - 00028 00046 00064 0006E
@@ -95,40 +95,40 @@ DOBINT                           *       - 012F4 012FE 01308 01312 01326 01330
 DOCOL                            *       - 00000 00B66 00B7F 00C9E 00DFD 00E25
                                  + 00E55 0103D 01542 01551 01565 015A3 015E1
                                  + 0161F 016AE 01700 01717 0176D 0184A 01926
-                                 + 0193A 0195F 01989 01A23 01A39 01BB8 01C68
-                                 + 01D1B 01D41
+                                 + 0193A 0195F 01989 01A23 01A39 01BD0 01C80
+                                 + 01D33 01D59
 DOCSTR                           *       - 0127B 01298 012B5 012D2 0134E 013DF
-                                 + 01470 01501 01667 0184F 01D20 01E5D 01FFA
+                                 + 01470 01501 01667 0184F 01D38 01E76 0202B
 DOFLASHP                         *       - 01588 015C6 01604 01642 0169D 016EA
                                  + 01726 0173C 01752 01786 0179C 018FA 019E4
                                  + 019F9 01A05 01A28 01A3E 01A4F 01A64 01A70
-                                 + 01A9E 01AC8 01AD4 01AE9 01AF5 01B01 01B38
-                                 + 01B44 01B7D 01B89 01BE0 01BEC 01BF8 01C04
-                                 + 01C86 01CB0 01CF4 01D05 01D63 01D89 01D95
-                                 + 01DBE 01DE3 01DF4 01E95 01EA6 01EBB 01ED5
-                                 + 01EF5
+                                 + 01A9E 01AAA 01AD4 01AE0 01AF5 01B01 01B0D
+                                 + 01B44 01B50 01B5C 01B95 01BA1 01BF8 01C04
+                                 + 01C10 01C1C 01C9E 01CC8 01D0C 01D1D 01D7B
+                                 + 01DA1 01DAD 01DD6 01DFB 01E0C 01E55 01EAE
+                                 + 01EBF 01ED4 01EE0 01EFA 01F06 01F26
 DOGROB                           *       - 00099 00BC3 00CE2 00E5A 01042 01225
 DOIDNT                           *       - 0190B 01944 01969 01993 019A9 019DB
-                                 + 01A81 01AAF 01B12 01B55 01B69 01B9A 01BBD
-                                 + 01BCC 01C2E 01C46 01C6D 01CC1 01CD7 01CEB
-                                 + 01D46 01D5A 01D79 01DA6 01DAF 01E19 01E29
-                                 + 01E4D 01E78 01F06 01F1F 01F33 01F47 01F5B
-                                 + 01F6F 01F83 01F99 01FA9 01FB9 01FCD
+                                 + 01A81 01ABB 01B1E 01B6D 01B81 01BB2 01BD5
+                                 + 01BE4 01C46 01C5E 01C85 01CD9 01CEF 01D03
+                                 + 01D5E 01D72 01D91 01DBE 01DC7 01E31 01E41
+                                 + 01E66 01E91 01F37 01F50 01F64 01F78 01F8C
+                                 + 01FA0 01FB4 01FCA 01FDA 01FEA 01FFE
 DOINT                            *       - 01817 01830
 DOLAM                            *       - 0007D 00B8E 00CAD 00E43 01705 017BC
                                  + 017D3 017DC 017E5 017EE 017F7 0180E 01827
-                                 + 019C4 019CD 019F0 01A11 01A5B 01A95 01AE0
-                                 + 01B26 01B2F 01E8C 01EB2 01ECC
+                                 + 019C4 019CD 019F0 01A11 01A5B 01A95 01AEC
+                                 + 01B32 01B3B 01EA5 01ECB 01EF1
 DOLIST                           *       - 00078 01321 013B2 01443 014D4 017CE
-                                 + 01C9C 01EE1
+                                 + 01CB4 01F12
 DOREAL                           *       - 00C70 00DCF
-DOROMP                           *       - 018BB 018C6 018D1 01E3D 0208D 02098
+DOROMP                           *       - 018BB 018C6 018D1 020BE 020C9
 DOVARS                           *       - 0192B 0197A
 DROP                             *       - 00B70 00C66 00DC5 00E0C 018DC 01964
-                                 + 020A3
+                                 + 020D4
 DROPFALSE                        *       - 0165D
 DROPTRUE                         *       - 00C8A 00DE9 00E1B
-DUP                              *       - 01C24 01EA1
+DUP                              *       - 01C3C 01EBA
 DoBadKey                         *       - 00E2A
 
 EQUAL                            *       - 0191C
@@ -141,16 +141,16 @@ GROB!ZERO                        *       - 00BBE 00CDD
 GROB+#                           *       - 00C61 00DC0
 GROB>GDISP                       *       - 00B4D
 
-INCOMPDROP                       *       - 016D6 01C3C 01C59 01DCF 01DD4
-INDEX@                           *       - 01BDB
+INCOMPDROP                       *       - 016D6 01C54 01C71 01DE7 01DEC
+INDEX@                           *       - 01BF3
 IT                               *       - 016FB 01845
-ITE                              *       - 00E50 01712 01921 0195A 01A1E 01D16
+ITE                              *       - 00E50 01712 01921 0195A 01A1E 01D2E
 
-LOOP                             *       - 01C15 01C97
+LOOP                             *       - 01C2D 01CAF
 
 MINUSONE                         *       - 0136C 01371 01376 0137B 013FD 01402
                                  + 01407 0140C 0148E 01493 01498 0149D 0151F
-                                 + 01524 01529 0152E 02088
+                                 + 01524 01529 0152E 020B9
 
 ONE                              *       - 0131C 013AD 0143E 014CF
 OR                               *       - 01840
@@ -158,66 +158,67 @@ OVER#=case                       *       - 00B7A 00C99 00DF8 01560 0159E 015DC
                                  + 0161A
 
 PATHDIR                          *       - 018F5
-PICK                             *       - 016E5 01DDE
+PICK                             *       - 016E5 01DF6
 
 ROLL                             *       - 01721 01737 0174D 01763 01777 01781
-                                 + 01797 017AD 01C54 01C81
-RestoreSysFlags                  *       - 00E02 016B3 018E1 01FF0
+                                 + 01797 017AD 01C6C 01C99
+RestoreSysFlags                  *       - 00E02 016B3 018E1 02021
 
 SAFE@                            *       - 01955
-SAFESTO                          *       - 01A90 01ABE 01B21 01B64 01BA9 01CD2
-                                 + 01E24 01E58 01E87 01F15
+SAFESTO                          *       - 01A90 01ACA 01B2D 01B7C 01BC1 01CEA
+                                 + 01E3C 01E71 01EA0 01F46
 SEMI                             *       - 0008A 00C8F 00DEE 00E16 00E34 00E39
                                  + 01038 01220 01344 013D5 01466 014F7 01594
                                  + 015D2 01610 0164E 01658 01662 016C2 01768
                                  + 017B2 017B7 01804 018F0 01935 01984 019BA
-                                 + 019BF 01A34 01A4A 01C10 01C92 01CAB 01D3C
-                                 + 01E0F 01EF0 020A8
+                                 + 019BF 01A34 01A4A 01C28 01CAA 01CC3 01D54
+                                 + 01E27 01F21 020D9
 STO                              *       - 00B9B 00CBA
-SWAP                             *       - 01DCA 01E00 01EC7
-SWAPDROP                         *       - 01D00 01D6F
+SWAP                             *       - 01DE2 01E18 01EEC
+SWAPDROP                         *       - 01D18 01D87
 SaveSysFlags                     *       - 0000A
 SetSysFlag                       *       - 00014 0001E 00032 0003C 00050 0005A
 
 TOGDISP                          *       - 00B57
 TRUE                             *       - 00B84 00BA0 00CBF 01653
 TURNMENUOFF                      *       - 00B5C
-TYPECMP?                         *       - 01D11
+TYPECMP?                         *       - 01D29
 
-UNROT                            *       - 01C37
-UNROTSWAP                        *       - 01DEF
+UNROT                            *       - 01C4F
+UNROTSWAP                        *       - 01E07
 UNTIL                            *       - 00E3E
 
 WaitForKey                       *       - 00B6B
 
-XEQORDER                         *       - 01FE6
+XEQORDER                         *       - 02017
 
-Z0_                              *       - 01D84 01E38
-Z2_                              *       - 01AC3
-Z4_                              *       - 01B78
+Z0_                              *       - 01D9C 01E50
+Z2_                              *       - 01ACF
+Z4_                              *       - 01B90
 Z=                               *       - 01822 0183B
-ZERO_DO                          *       - 01BB3 01C63
+ZERO_DO                          *       - 01BCB 01C7B
 
-^#>Z                             *       - 01BE5
-^CASCRUNCH                       *       - 016EF 01D0A
-^EvalNoCKx+                      *       - 01DE8 01DF9
-^ISOL1                           *       - 01CF9
-^ISOLALL                         *       - 01D68
+^#>Z                             *       - 01BFD
+^CASCRUNCH                       *       - 016EF 01D22
+^EvalNoCKx+                      *       - 01E00 01E11
+^ISOL1                           *       - 01D11
+^ISOLALL                         *       - 01D80
 ^IfMain                          *       - 016A2
 ^IfSetFieldPos                   *       - 0158D 015CB 01609 01647
 ^LASTCOMP                        *       - 018FF
-^QAdd                            *       - 019FE 01A69 01BFD 01EC0 01EDA
-^QDiv                            *       - 01AFA 01B3D 01B82
-^QMul                            *       - 019E9 01A54 01AD9 01BF1 01DC3
-^QNeg                            *       - 0172B 01741 01757 0178B 017A1 01B49
-                                 + 01EAB
-^SIMPLIFY                        *       - 01A0A 01A75 01B06 01B8E 01C09
-^SYMLIMIT                        *       - 01C8B 01D9A
-^XEQ>ARRY                        *       - 01CB5 01EFA
-^ZAbs                            *       - 01E9A
-^pi                              *       - 01ACD
-^x=ext                           *       - 01D8E
-^xABSext                         *       - 01AA3 01AEE
+^QAdd                            *       - 019FE 01A69 01C15 01ED9 01EFF
+^QDiv                            *       - 01B06 01B49 01B9A
+^QMul                            *       - 019E9 01A54 01AE5 01C09 01DDB
+^QNeg                            *       - 0172B 01741 01757 0178B 017A1 01B55
+                                 + 01EC4
+^SIMPLIFY                        *       - 01A0A 01A75 01AAF 01B12 01B61 01BA6
+                                 + 01C21 01EE5 01F0B
+^SYMLIMIT                        *       - 01CA3 01DB2 01E5A
+^XEQ>ARRY                        *       - 01CCD 01F2B
+^ZAbs                            *       - 01EB3
+^pi                              *       - 01AD9
+^x=ext                           *       - 01DA6
+^xABSext                         *       - 01AA3 01AFA
 ^xCOSext                         *       - 01A43
 ^xSINext                         *       - 01A2D
 
@@ -227,11 +228,10 @@ x->QPI                           *       - 016D1
 xKILL                            *       - 00E11 016BD 018EB
 xPURGE                           *       - 01930 0197F
 
-{}N                              *       - 016CC 01C1F 01E0A 01FE1
+{}N                              *       - 016CC 01C37 01E22 02012
 
-~DoMsgBox                        *       - 018D6 0209D
-~MsgBoxMenu                      *       - 018CB 02092
+~DoMsgBox                        *       - 018D6 020CE
+~MsgBoxMenu                      *       - 018CB 020C3
 ~grobAlertIcon                   *       - 018C0
-~xLIMIT                          *       - 01E42
 
 /SLOAD:  End of Saturn Loader Execution
