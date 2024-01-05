@@ -2,9 +2,9 @@ RPL
 (
   \Documents\Debug4x\SenCos\sen-cos.s
   Parte del projecto "SenCos.hpp"
-		Creado por: <Erich>
-		Fecha de creación: 30/12/2023
-		Último cambio:     05/01/2024 4:36 a.m
+  Creado por: <Erich>
+  Fecha de creación: 30/12/2023
+  Último cambio:     05/01/2024 4:08 p.m
 )
 		
 ::
