@@ -59,7 +59,7 @@ DROP                       ( #ct    )
    BINT5 BINT16 BINT60 BINT32 GROB!ZERO ( Quitar boton    )
    GROB 0008A 010000200000000000CFFFFFF3EFFFFFF7FFFFFFFFF028C40FF429842FFC3F042FF13C442FF72FC42FF72FC42FF429C42FF028C40FFFFFFFFFEFFFFFF7CFFFFFF300000000
    BINT15 BINT16 GROB+# DROP            ( Remplazar boton )
-   %1200_  % 0.2 DOBEEP	
+   %1200_  % 0.1 DOBEEP	
  DROPTRUE  ( Borra el argumento de case y pone TRUE )
  ;
 
@@ -72,7 +72,7 @@ DROP                       ( #ct    )
    BINT76 BINT16 BINT124 BINT32 GROB!ZERO ( Quitar boton    )
    GROB 000CA 01000C2000000000000000CFFFFFFFFF30EFFFFFFFFF70FFFFFFFFFFF0F028028C40F0F429429842F0FC39C3F042F0FC3913C442F0FC3972FC42F0FC3972FC42F0F429429C42F0F028028C40F0FFFFFFFFFFF0EFFFFFFFFF70CFFFFFFFFF30000000000000
    BINT78 BINT16 GROB+# DROP              ( Remplazar boton )
-   %1200_  % 0.2 DOBEEP	
+   %1200_  % 0.1 DOBEEP	
  DROPTRUE  ( Borra el argumento de case y pone TRUE )
  ;
 
@@ -141,6 +141,7 @@ BINT6 BINT4             ( #Etiquetas #Campos )
 
 BINT2 #=casedrop ( Cuando un field ha recibido un enfoque )
   ::
+  %15360_ % 0.05 DOBEEP
   4GETLAM       ( LAM 'CurrentField )
 *Caso letra A		
   BINT0	OVER#=case
@@ -262,6 +263,24 @@ FLASHPTR LASTCOMP            ( DirActual                 )
   ;
 
 
+*====================== PANTALLA DE CARGA ============================
+
+TRUE                      ( Para el comando 'GROB+#'   )
+BINT80 BINT131 MAKEGROB   ( G1 \ grob blanco 131x80    )
+"ESPERE" $>GROB           ( G2 \  $ > grob             )
+BINT47 BINT20 GROB+#      ( Junta los grobs G1 Y G2    )
+GROB>GDISP                ( Guarda el grob en PICT     )
+
+BINT1 BINT1 BINT130 BINT79 DRAWBOX#  ( Marco 1 )
+BINT2 BINT2 BINT129 BINT78 DRAWBOX#  ( Marco 2 )
+BINT4 BINT4 BINT127 BINT76 DRAWBOX#  ( Marco 3 )
+
+BINT20 BINT37 BINT109 BINT50 DRAWBOX#  ( Rectangulo 1 )
+BINT19 BINT36 BINT110 BINT51 DRAWBOX#  ( Rectangulo 2 )
+
+TOGDISP                   ( Muestra GBUFF )
+TURNMENUOFF
+
 *======================== OPERACIONES ================================
 
 *##################### Escribir expresion
@@ -282,11 +301,21 @@ FLASHPTR SIMPLIFY               ( A*[SIN/COS[B*X±C]±D )
 
 ' ID Func SAFESTO               ( obj -> 'Func' STO )
 
+*$$$ 1
+GBUFF
+BINT22 BINT39 BINT30 BINT49 FBoxG2
+DROP
+
 
 *################ Amplitud
 LAM A FLASHPTR xABSext          ( A -> |A| )
 FLASHPTR SIMPLIFY
 ' ID Ampl SAFESTO               ( obj -> 'Ampl' STO )
+
+*$$$ 2
+GBUFF
+BINT22 BINT39 BINT39 BINT49 FBoxG2
+DROP
 
 
 *################ Periodo
@@ -296,6 +325,11 @@ FLASHPTR QDiv                   ( 2pi/|B| )
 FLASHPTR SIMPLIFY               ( xEVAL   )
 ' ID Peri SAFESTO               ( obj -> 'Peri' STO )
 
+*$$$ 3
+GBUFF
+BINT22 BINT39 BINT47 BINT49 FBoxG2
+DROP
+
 
 *################ Desfase
 LAM C LAM B FLASHPTR QDiv       ( C/B  )
@@ -303,12 +337,21 @@ FLASHPTR QNeg                   ( -C/B )
 FLASHPTR SIMPLIFY               ( -C/B )
 ' ID Desf SAFESTO               ( obj -> 'Desf' STO )			
 
+*$$$ 4
+GBUFF
+BINT22 BINT39 BINT55 BINT49 FBoxG2
+DROP
 
 *################ Paso
 ID Peri                         ( 'Peri'   )
 Z4_ FLASHPTR QDiv               ( 'Peri'/4 )
 FLASHPTR SIMPLIFY               ( xEVAL    )
 ' ID Step SAFESTO               ( obj -> 'Step' STO )
+
+*$$$ 5
+GBUFF
+BINT22 BINT39 BINT64 BINT49 FBoxG2
+DROP
 
 
 *################ Tabulacion
@@ -348,6 +391,11 @@ LOOP
 { %2 %6 } FLASHPTR XEQ>ARRY
 ' ID Tabla SAFESTO            ( obj -> 'Tabla' STO )
 
+*$$$ 6
+GBUFF
+BINT22 BINT39 BINT73 BINT49 FBoxG2
+DROP
+
 
 *################ Intercepto en X
 ID Func ' ID X             ( 'Func' 'X'            )
@@ -381,6 +429,11 @@ ITE
   ;
 *!!!!!!!!!##############!!!!!!!!!!##########!!!!!!!!!!!!! BUSCAR UNA FORMA DE SIMPLIFICAR ESTE PROCESO :( CON PILA VIRTUAL
 ' ID Ix SAFESTO                 ( obj -> 'Ix' STO )
+
+*$$$ 7
+GBUFF
+BINT22 BINT39 BINT81 BINT49 FBoxG2
+DROP
 	
 
 *################ Intercepto en Y
@@ -388,10 +441,20 @@ ID Func                      ( 'Func'             )
 Z0_ FLASHPTR SYMLIMIT        ( limites cuando x=0 )
 ' ID Iy SAFESTO              ( obj -> 'Iy' STO )
 
+*$$$ 8
+GBUFF
+BINT22 BINT39 BINT90 BINT49 FBoxG2
+DROP
+
 
 *################ Dominio
 "Reales"
 ' ID Domn SAFESTO            ( $ -> 'Domn' STO )
+
+*$$$ 9
+GBUFF
+BINT22 BINT39 BINT99 BINT49 FBoxG2
+DROP
 
 
 *################ Rango
@@ -408,6 +471,10 @@ FLASHPTR SIMPLIFY
 FLASHPTR XEQ>ARRY            ( [  ]       )
 ' ID Rang SAFESTO            ( ARRAY -> 'Rang' STO )
 
+*$$$ 10
+GBUFF
+BINT22 BINT39 BINT108 BINT49 FBoxG2
+DROP
 
 *======================== ORDENAR VARIABLES ==========================
 
