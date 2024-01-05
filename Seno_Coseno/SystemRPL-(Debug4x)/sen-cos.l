@@ -1,4 +1,4 @@
-Saturn Assembler                                       Fri Jan 05 04:48:34 2024
+Saturn Assembler                                       Fri Jan 05 05:04:07 2024
 V3.0.9 (04/15/2007)                                      sen-cos.a      Page    1
 
     1               * File  sen-cos.s       1
@@ -2356,7 +2356,7 @@ V3.0.9 (04/15/2007)                                      sen-cos.a      Page    
  1785 020D9 00000           CON(5)  =SEMI
  1786               * File  sen-cos.s       443
  1787
-Saturn Assembler                                       Fri Jan 05 04:48:34 2024
+Saturn Assembler                                       Fri Jan 05 05:04:07 2024
 V3.0.9 (04/15/2007)   Symbol Table                       sen-cos.a      Page    2
 
  #=casedrop                        Ext                   -   750
@@ -2578,7 +2578,7 @@ V3.0.9 (04/15/2007)   Symbol Table                       sen-cos.a      Page    
  ~DoMsgBox                         Ext                   -  1060  1779
  ~MsgBoxMenu                       Ext                   -  1057  1776
  ~grobAlertIcon                    Ext                   -  1054
-Saturn Assembler                                       Fri Jan 05 04:48:34 2024
+Saturn Assembler                                       Fri Jan 05 05:04:07 2024
 V3.0.9 (04/15/2007)   Statistics                         sen-cos.a      Page    3
 
 Input Parameters

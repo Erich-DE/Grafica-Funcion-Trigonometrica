@@ -56,10 +56,10 @@ DROP                       ( #ct    )
 * Cambiar grafico del GBUFF
    TRUE                     ( TRUE )
    GBUFF	
-	  BINT5 BINT16 BINT60 BINT32 GROB!ZERO ( Quitar boton    )
+   BINT5 BINT16 BINT60 BINT32 GROB!ZERO ( Quitar boton    )
    GROB 0008A 010000200000000000CFFFFFF3EFFFFFF7FFFFFFFFF028C40FF429842FFC3F042FF13C442FF72FC42FF72FC42FF429C42FF028C40FFFFFFFFFEFFFFFF7CFFFFFF300000000
    BINT15 BINT16 GROB+# DROP            ( Remplazar boton )
-	  %1200_  % 0.2 DOBEEP	
+   %1200_  % 0.2 DOBEEP	
  DROPTRUE  ( Borra el argumento de case y pone TRUE )
  ;
 
@@ -69,11 +69,11 @@ DROP                       ( #ct    )
  FALSE  ' LAM Op1 STO      ( Op1 + FALSE )
    TRUE
    GBUFF
-			BINT76 BINT16 BINT124 BINT32 GROB!ZERO ( Quitar boton    )
+   BINT76 BINT16 BINT124 BINT32 GROB!ZERO ( Quitar boton    )
    GROB 000CA 01000C2000000000000000CFFFFFFFFF30EFFFFFFFFF70FFFFFFFFFFF0F028028C40F0F429429842F0FC39C3F042F0FC3913C442F0FC3972FC42F0FC3972FC42F0F429429C42F0F028028C40F0FFFFFFFFFFF0EFFFFFFFFF70CFFFFFFFFF30000000000000
    BINT78 BINT16 GROB+# DROP              ( Remplazar boton )
-			%1200_  % 0.2 DOBEEP	
-	DROPTRUE  ( Borra el argumento de case y pone TRUE )
+   %1200_  % 0.2 DOBEEP	
+ DROPTRUE  ( Borra el argumento de case y pone TRUE )
  ;
 
 *-------------------------- Caso Cancel ------------------------------
@@ -86,7 +86,7 @@ DROP                       ( #ct    )
  DROPTRUE 	
  case
  :: DoBadKey FALSE ;	
- ;
+;
 UNTIL
 
 
@@ -146,35 +146,35 @@ BINT2 #=casedrop ( Cuando un field ha recibido un enfoque )
   BINT0	OVER#=case
   ::
   BINT1 FALSE BINT5 BINT23 BINT10 BINT14
-		FLASHPTR IfSetFieldPos
+  FLASHPTR IfSetFieldPos
   ;
 		  	
 *Caso letra B		
   BINT1	OVER#=case
   ::
   BINT1 FALSE BINT52 BINT23 BINT10 BINT14
-		FLASHPTR IfSetFieldPos
+  FLASHPTR IfSetFieldPos
   ;
 		  		
 *Caso letra C		
   BINT2	OVER#=case
   ::
   BINT1 FALSE BINT85 BINT23 BINT10 BINT14
-		FLASHPTR IfSetFieldPos
+  FLASHPTR IfSetFieldPos
   ;
 		  	
 *Caso letra D		
   BINT3	OVER#=case
   ::
   BINT1 FALSE BINT116 BINT23 BINT10 BINT14
-		FLASHPTR IfSetFieldPos
+  FLASHPTR IfSetFieldPos
   ;
   
  TRUE
  ;
 
-  DROPFALSE
-  ;
+DROPFALSE
+;
 
 
 "INTRODUZCA LOS VALORES"  ( Titulo de IfMain )
@@ -337,10 +337,10 @@ BINT7 ROLL INCOMPDROP       ( 'X' Z1 Z2 Z3 Z4 Z5 'Y' Z1 Z2 Z3 Z4 Z5 )
 * Bucle pata obtiener 5 imaganes   ( Z -> Z' )
 * a partir de las preimagenes
 BINT5 ZERO_DO
-	::
-	ID Func BINT6 ROLL        ( 'Func' Z  )
-	FLASHPTR SYMLIMIT         ( Z'        )
-	;	
+  ::
+  ID Func BINT6 ROLL        ( 'Func' Z  )
+  FLASHPTR SYMLIMIT         ( Z'        )
+  ;	
 LOOP	
 ****En la pila   ( 'X' Z1 Z2 Z3 Z4 Z5 'Y' Z1' Z2' Z3' Z4' Z5' )
 
@@ -358,9 +358,9 @@ TYPECMP?                   ( C%? FLAG              )
 
 ITE
 *CasoSolucionCompejo: No existe Intercepto en X	
-	 ::
-	 "No existe"
-	 ;
+  ::
+  "No existe"
+  ;
 
 *!!!!!!!!!##############!!!!!!!!!!##########!!!!!!!!!!!!! BUSCAR UNA FORMA DE SIMPLIFICAR ESTE PROCESO :( CON PILA VIRTUAL
 *CasoSolucionReal: Existe Intercepto en X
