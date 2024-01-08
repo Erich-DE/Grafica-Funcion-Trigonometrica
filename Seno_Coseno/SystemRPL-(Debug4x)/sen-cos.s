@@ -54,7 +54,7 @@ DROP                       ( #ct    )
    BINT5 BINT16 BINT60 BINT32 GROB!ZERO ( Quitar boton    )
    GROB 0008A 010000200000000000CFFFFFF3EFFFFFF7FFFFFFFFF028C40FF429842FFC3F042FF13C442FF72FC42FF72FC42FF429C42FF028C40FFFFFFFFFEFFFFFF7CFFFFFF300000000
    BINT15 BINT16 GROB+# DROP            ( Remplazar boton )
-   %1200_  % 0.1 DOBEEP	
+   % 1300  % 0.15 DOBEEP 	
  DROPTRUE  ( Borra el argumento de case y pone TRUE )
  ;
 
@@ -67,7 +67,7 @@ DROP                       ( #ct    )
    BINT76 BINT16 BINT124 BINT32 GROB!ZERO ( Quitar boton    )
    GROB 000CA 01000C2000000000000000CFFFFFFFFF30EFFFFFFFFF70FFFFFFFFFFF0F028028C40F0F429429842F0FC39C3F042F0FC3913C442F0FC3972FC42F0FC3972FC42F0F429429C42F0F028028C40F0FFFFFFFFFFF0EFFFFFFFFF70CFFFFFFFFF30000000000000
    BINT78 BINT16 GROB+# DROP              ( Remplazar boton )
-   %1200_  % 0.1 DOBEEP	
+   % 1300  % 0.15 DOBEEP	
  DROPTRUE  ( Borra el argumento de case y pone TRUE )
  ;
 
@@ -86,6 +86,7 @@ UNTIL
 
 
 *====================== INTRODUCCION DE DATOS ========================
+
 
 *---------------------------- Labels ---------------------------------
 
@@ -117,14 +118,39 @@ BINT5 BINT23
 
 *----------------------------- Campos --------------------------------
 
-* MsgHan    X  Y  a  h  tipo   ObjPermi         Decompile  Help          ChooData  ChooDec   VaReset  VaInic
-'DROPFALSE  21 41 25 9  ONE     { 0 9 # FF }    FOUR       "Valor de A"  MINUSONE  MINUSONE  MINUSONE MINUSONE
+*Messege-Handler
+' ::
+	 BINT5 #=casedrop
+	  ::                      ( -> ValorExeterno                      )
+	  DUP                     ( ValorExterno ValorExrerno             )
+	  FLASHPTR CASCRUNCH %0=  ( Es igual a cero?  -> FLAG             )
+      caseSIZEERR             ( Mensaje de Error "Bad Argument Value" )
+      TRUE                    ( ValorInterno TRUE                     )
+      ;
+  DROPFALSE   ( Fin del Messege-Handler)	
+  ;
+* MsgHan    X  Y  a  h  tipo   ObjPermi        Decompile  Help          ChooData  ChooDec   VaReset  VaInic
+( ARRIBA )  21 41 25 9  ONE    { 0 9 # FF }    FOUR       "Valor de A"  MINUSONE  MINUSONE  MINUSONE MINUSONE
 
-'DROPFALSE  81 41 25 9  ONE     { 0 9 # FF }    FOUR       "Valor de B"  MINUSONE  MINUSONE  MINUSONE MINUSONE
 
-'DROPFALSE  21 54 25 9  ONE     { 0 9 # FF }    FOUR       "Valor de C"  MINUSONE  MINUSONE  MINUSONE MINUSONE
+*Messege-Handler
+' ::
+	 BINT5 #=casedrop
+	  ::                      ( -> ValorExeterno                      )
+	  DUP                     ( ValorExterno ValorExrerno             )
+	  FLASHPTR CASCRUNCH %0=  ( Es igual a cero?  -> FLAG             )
+      caseSIZEERR             ( Mensaje de Error "Bad Argument Value" )
+      TRUE                    ( ValorInterno TRUE                     )
+      ;
+  DROPFALSE	  ( Fin del Messege-Handler )
+  ;
 
-'DROPFALSE  81 54 25 9  ONE     { 0 9 # FF }    FOUR       "Valor de D"  MINUSONE  MINUSONE  MINUSONE MINUSONE
+* MsgHan    X  Y  a  h  tipo   ObjPermi        Decompile  Help          ChooData  ChooDec   VaReset  VaInic
+( ARRIBA )  81 41 25 9  ONE    { 0 9 # FF }    FOUR       "Valor de B"  MINUSONE  MINUSONE  MINUSONE MINUSONE
+
+'DROPFALSE  21 54 25 9  ONE    { 0 9 # FF }    FOUR       "Valor de C"  MINUSONE  MINUSONE  MINUSONE MINUSONE
+
+'DROPFALSE  81 54 25 9  ONE    { 0 9 # FF }    FOUR       "Valor de D"  MINUSONE  MINUSONE  MINUSONE MINUSONE
 
 
 BINT6 BINT4             ( #Etiquetas #Campos )
@@ -133,7 +159,6 @@ BINT6 BINT4             ( #Etiquetas #Campos )
 *----------------- Messege-Handler del Formulario --------------------
 
 ' ::
-
 BINT2 #=casedrop ( Cuando un field ha recibido un enfoque )
   ::
   %15360_ % 0.05 DOBEEP
@@ -168,7 +193,7 @@ BINT2 #=casedrop ( Cuando un field ha recibido un enfoque )
 TRUE
 ;
 
-DROPFALSE
+DROPFALSE   ( Fin del Messege-Handler )
 ;
 
 
@@ -180,14 +205,26 @@ FLASHPTR IfMain
 :: RestoreSysFlags ABND xKILL ;
 
 
-*======================== MANEJO DE DATOS ============================
-BINT4 {}N         ( { A B C D }     )
+*================== COMPROBACION/MANEJO DE DATOS =====================
+
+BINT4 {}N         ( { A B C D } )
 
 *Comprobar si hay un campo vacio
-DUP NOVAL SWAP
-matchob?
+DUP NOVAL SWAP    ( {} {} NOVAL )
+matchob?          ( ob comp -> T ) ( ob comp -> ob F )
 ITE
-:: DROP xKILL ; DROP
+  ::
+  DoBadKey
+  "ERROR:\0A\0ANo se ingresaron datos"
+  BINT15 BINT10
+  MINUSONE
+  ROMPTR MsgBoxMenu
+  ROMPTR DoMsgBox
+  xDROP2
+  RestoreSysFlags ABND xKILL
+  ;
+DROP              ( Borra ob='NOVAL' )
+
 x->QPI            ( Symb{ A B C D } ) ( Numeros a simbolico )
 INCOMPDROP        ( A B C D         )
 
@@ -231,9 +268,9 @@ LAM Op1   ABND
 
 
 *========================= COMPROBACION ==============================
-
+(
 *Se peude agregar en la comprobacion del
-*Messege-Handler del Cammpo ( BINT0 y BINT1 )
+*Messege-Handler del Cammpo [ BINT0 y BINT1 ]
  LAM A ZINT 0 Z= LAM B ZINT 0 Z= OR  IT
   ::
   "ERROR:\0A\0AA y B tiene que ser dintinto de cero"
@@ -243,7 +280,7 @@ LAM Op1   ABND
   ROMPTR DoMsgBox
   DROP RestoreSysFlags ABND xKILL
   ;
-
+)
 
 *===================== CREACION DE CARPETA ===========================
 
@@ -301,7 +338,7 @@ FLASHPTR SIMPLIFY               ( A*[SIN/COS[B*X±C]±D )
 
 ' ID Func SAFESTO               ( obj -> 'Func' STO )
 
-*$$$ 1
+*$$$ 1 ---------------------------------------------------------------
 GBUFF
 BINT22 BINT39 BINT30 BINT49 FBoxG2
 DROP
@@ -312,9 +349,9 @@ LAM A FLASHPTR xABSext          ( A -> |A| )
 FLASHPTR SIMPLIFY
 ' ID Ampl SAFESTO               ( obj -> 'Ampl' STO )
 
-*$$$ 2
+*$$$ 2 ---------------------------------------------------------------
 GBUFF
-BINT22 BINT39 BINT39 BINT49 FBoxG2
+BINT30 BINT39 BINT39 BINT49 FBoxG2
 DROP
 
 
@@ -325,9 +362,9 @@ FLASHPTR QDiv                   ( 2pi/|B| )
 FLASHPTR SIMPLIFY               ( xEVAL   )
 ' ID Peri SAFESTO               ( obj -> 'Peri' STO )
 
-*$$$ 3
+*$$$ 3 ---------------------------------------------------------------
 GBUFF
-BINT22 BINT39 BINT47 BINT49 FBoxG2
+BINT39 BINT39 BINT47 BINT49 FBoxG2
 DROP
 
 
@@ -337,9 +374,9 @@ FLASHPTR QNeg                   ( -C/B )
 FLASHPTR SIMPLIFY               ( -C/B )
 ' ID Desf SAFESTO               ( obj -> 'Desf' STO )			
 
-*$$$ 4
+*$$$ 4 ---------------------------------------------------------------
 GBUFF
-BINT22 BINT39 BINT55 BINT49 FBoxG2
+BINT47 BINT39 BINT55 BINT49 FBoxG2
 DROP
 
 *################ Paso
@@ -348,9 +385,9 @@ Z4_ FLASHPTR QDiv               ( 'Peri'/4 )
 FLASHPTR SIMPLIFY               ( xEVAL    )
 ' ID Step SAFESTO               ( obj -> 'Step' STO )
 
-*$$$ 5
+*$$$ 5 ---------------------------------------------------------------
 GBUFF
-BINT22 BINT39 BINT64 BINT49 FBoxG2
+BINT55 BINT39 BINT64 BINT49 FBoxG2
 DROP
 
 
@@ -391,9 +428,9 @@ LOOP
 { %2 %6 } FLASHPTR XEQ>ARRY
 ' ID Tabla SAFESTO            ( obj -> 'Tabla' STO )
 
-*$$$ 6
+*$$$ 6 ---------------------------------------------------------------
 GBUFF
-BINT22 BINT39 BINT73 BINT49 FBoxG2
+BINT64 BINT39 BINT73 BINT49 FBoxG2
 DROP
 
 
@@ -430,9 +467,9 @@ ITE
 *!!!!!!!!!##############!!!!!!!!!!##########!!!!!!!!!!!!! BUSCAR UNA FORMA DE SIMPLIFICAR ESTE PROCESO :( CON PILA VIRTUAL
 ' ID Ix SAFESTO                 ( obj -> 'Ix' STO )
 
-*$$$ 7
+*$$$ 7 ---------------------------------------------------------------
 GBUFF
-BINT22 BINT39 BINT81 BINT49 FBoxG2
+BINT73 BINT39 BINT81 BINT49 FBoxG2
 DROP
 	
 
@@ -441,9 +478,9 @@ ID Func                      ( 'Func'             )
 Z0_ FLASHPTR SYMLIMIT        ( limites cuando x=0 )
 ' ID Iy SAFESTO              ( obj -> 'Iy' STO )
 
-*$$$ 8
+*$$$ 8 ---------------------------------------------------------------
 GBUFF
-BINT22 BINT39 BINT90 BINT49 FBoxG2
+BINT81 BINT39 BINT90 BINT49 FBoxG2
 DROP
 
 
@@ -451,9 +488,9 @@ DROP
 "Reales"
 ' ID Domn SAFESTO            ( $ -> 'Domn' STO )
 
-*$$$ 9
+*$$$ 9 ---------------------------------------------------------------
 GBUFF
-BINT22 BINT39 BINT99 BINT49 FBoxG2
+BINT90 BINT39 BINT99 BINT49 FBoxG2
 DROP
 
 
@@ -471,9 +508,9 @@ FLASHPTR SIMPLIFY
 FLASHPTR XEQ>ARRY            ( [  ]       )
 ' ID Rang SAFESTO            ( ARRAY -> 'Rang' STO )
 
-*$$$ 10
+*$$$ 10 --------------------------------------------------------------
 GBUFF
-BINT22 BINT39 BINT108 BINT49 FBoxG2
+BINT99 BINT39 BINT108 BINT49 FBoxG2
 DROP
 
 *======================== ORDENAR VARIABLES ==========================
@@ -499,7 +536,7 @@ RestoreSysFlags        ( Restablece variables del Usuario
 
 *MEJORAR ESTA PANTALLA :(
 CLEARLCD
-"Finalizado:\0A\0A Resultados\0A almacenados en\0A la carpeta\0A 'RESUL'"
+"Finalizado:\0A\0AResultados\0Aalmacenados en\0Ala carpeta\0A'RESUL'"
  BINT15 BINT10
  MINUSONE
  ROMPTR MsgBoxMenu
