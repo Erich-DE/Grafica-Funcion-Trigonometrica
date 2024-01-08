@@ -9,20 +9,15 @@ RPL
 		
 ::
 *=========================== ARGUMENTOS ==============================
-CK0NOLASTWD                           ( No requiere argumentos )
+CK0NOLASTWD                ( No requiere argumentos )
 
 
 *============================= FLAGS =================================
-SaveSysFlags                         ( FLAGS -> STO \ Pila virtual )
+SaveSysFlags               ( FLAGS -> STO \ Pila virtual )
    																							
-BINT17 SetSysFlag BINT18 SetSysFlag  ( Modo Radian   )
-BINT105 ClrSysFlag                   ( Modo Exacto   )
-BINT103 SetSysFlag                   ( Modo Compeljo )
-BINT49 SetSysFlag BINT50 ClrSysFlag  ( Modo Fix      )
-
-BINT45 SetSysFlag BINT46 SetSysFlag
-BINT47 ClrSysFlag BINT48 ClrSysFlag  ( Fix = 3       )
-
+SETRAD                     ( Modo Radian   )
+BINT105 ClrSysFlag         ( Modo Exacto   )
+BINT103 SetSysFlag         ( Modo Compeljo )
 
 
 *========================== VARIABLES ================================
@@ -167,12 +162,11 @@ BINT2 #=casedrop ( Cuando un field ha recibido un enfoque )
 *Caso letra D		
   BINT3	OVER#=case
   ::
-  BINT1 FALSE BINT116 BINT23 BINT10 BINT14
+  BINT1 FALSE BINT114 BINT23 BINT10 BINT14
   FLASHPTR IfSetFieldPos
   ;
-  
- TRUE
- ;
+TRUE
+;
 
 DROPFALSE
 ;
@@ -188,6 +182,12 @@ FLASHPTR IfMain
 
 *======================== MANEJO DE DATOS ============================
 BINT4 {}N         ( { A B C D }     )
+
+*Comprobar si hay un campo vacio
+DUP NOVAL SWAP
+matchob?
+ITE
+:: DROP xKILL ; DROP
 x->QPI            ( Symb{ A B C D } ) ( Numeros a simbolico )
 INCOMPDROP        ( A B C D         )
 
@@ -458,7 +458,7 @@ DROP
 
 
 *################ Rango
-LAM A FLASHPTR ZAbs DUP      ( |A| |A|    )
+LAM A FLASHPTR xABSext DUP   ( |A| |A|    )
 FLASHPTR QNeg                ( |A| -|A|   )
 LAM D                        ( |A| -|A| D )
 FLASHPTR QAdd                ( |A| Z      )
