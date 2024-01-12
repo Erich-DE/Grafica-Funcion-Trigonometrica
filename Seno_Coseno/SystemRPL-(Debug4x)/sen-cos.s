@@ -4,7 +4,7 @@ RPL
   Parte del projecto "SenCos.hpp"
   Creado por: <Erich>
   Fecha de creación: 30/12/2023
-  Último cambio:     05/01/2024 4:08 p.m
+  Último cambio:     12/01/2024 09:08 a.m
 )
 		
 ::
@@ -18,7 +18,7 @@ SaveSysFlags               ( FLAGS -> STO \ Pila virtual )
 SETRAD                     ( Modo Radian   )
 BINT105 ClrSysFlag         ( Modo Exacto   )
 BINT103 SetSysFlag         ( Modo Compeljo )
-
+BINT2   ClrSysFlag         ( Constantes simbolicas ) ( pi, euler )
 
 *========================== VARIABLES ================================
 %0 { LAM Op1 } BIND               ( Op1=0 )
@@ -118,39 +118,155 @@ BINT5 BINT23
 
 *----------------------------- Campos --------------------------------
 
-*Messege-Handler
 ' ::
-	 BINT5 #=casedrop
-	  ::                      ( -> ValorExeterno                      )
-	  DUP                     ( ValorExterno ValorExrerno             )
-	  FLASHPTR CASCRUNCH %0=  ( Es igual a cero?  -> FLAG             )
-      caseSIZEERR             ( Mensaje de Error "Bad Argument Value" )
-      TRUE                    ( ValorInterno TRUE                     )
-      ;
-  DROPFALSE   ( Fin del Messege-Handler)	
+	 BINT5 #=casedrop  ( Verificar campo )
+	   ::
+	   ( Valor Externo = ob )
+	
+*===Caso: NOVAL Solo es para evitar errores con Valor inicial	
+	   DUP                     ( ob ob         )
+				' xNOVAL                ( ob ob 'NOVAL' )
+			 EQUAL                   ( ob=NOVAL ?    ) ( FLAG         )
+    caseTRUE                ( ob FLAG       ) ( No hace nada )
+
+*===Caso: Expresion contiene una variable
+*         Nota: {} son las variables de la expresion
+*         si no hay variables implica que {} esta vacia
+    DUP                     ( ob ob      )
+    BINT105 SetSysFlag      ( Modo aproximado )
+				xEVAL                   ( ob ob'          ) ( Evalua, ->NUM )
+    BINT105 ClrSysFlag      ( Modo exacto     )
+			 FLASHPTR RLVARext       ( ob ob' {}  )
+			 SWAPDROP                ( ob {}      )
+			 DUPNULL{}?              ( ob {} FLAG )
+			 SWAPDROP                ( ob FLAG    )
+    NOTcase                 ( Mensaje de Error "Bad Argument Value" )
+							:: 2DROP DODEL.L SETSIZEERR TRUE ;
+	
+*===Caso: Es igual a cero
+	   DUP                     ( ob ob  )
+				FLASHPTR CASCRUNCH      ( ob ob' ) ( ->NUM )
+			 j%0=case                ( Mensaje de Error "Bad Argument Value" )
+							:: 2DROP DODEL.L SETSIZEERR TRUE ;
+
+*===Caso: Ingresa un valor correcto								
+			TRUE                     ( ob TRUE )
+   ;
+  DROPFALSE	
   ;
 * MsgHan    X  Y  a  h  tipo   ObjPermi        Decompile  Help          ChooData  ChooDec   VaReset  VaInic
 ( ARRIBA )  21 41 25 9  ONE    { 0 9 # FF }    FOUR       "Valor de A"  MINUSONE  MINUSONE  MINUSONE MINUSONE
 
 
-*Messege-Handler
+
 ' ::
-	 BINT5 #=casedrop
-	  ::                      ( -> ValorExeterno                      )
-	  DUP                     ( ValorExterno ValorExrerno             )
-	  FLASHPTR CASCRUNCH %0=  ( Es igual a cero?  -> FLAG             )
-      caseSIZEERR             ( Mensaje de Error "Bad Argument Value" )
-      TRUE                    ( ValorInterno TRUE                     )
-      ;
-  DROPFALSE	  ( Fin del Messege-Handler )
+	 BINT5 #=casedrop  ( Verificar campo )
+	   ::
+	   ( Valor Externo = ob )
+	
+*===Caso: NOVAL Solo es para evitar errores con Valor inicial	
+	   DUP                     ( ob ob         )
+				' xNOVAL                ( ob ob 'NOVAL' )
+			 EQUAL                   ( ob=NOVAL ?    ) ( FLAG         )
+    caseTRUE                ( ob FLAG       ) ( No hace nada )
+
+*===Caso: Expresion contiene una variable
+*         Nota: {} son las variables de la expresion
+*         si no hay variables implica que {} esta vacia
+    DUP                     ( ob ob      )
+    BINT105 SetSysFlag      ( Modo aproximado )
+				xEVAL                   ( ob ob'          ) ( Evalua, ->NUM )
+    BINT105 ClrSysFlag      ( Modo exacto     )
+			 FLASHPTR RLVARext       ( ob ob' {}  )
+			 SWAPDROP                ( ob {}      )
+			 DUPNULL{}?              ( ob {} FLAG )
+			 SWAPDROP                ( ob FLAG    )
+    NOTcase                 ( Mensaje de Error "Bad Argument Value" )
+							:: 2DROP DODEL.L SETSIZEERR TRUE ;
+	
+*===Caso: Es igual a cero
+	   DUP                     ( ob ob  )
+				FLASHPTR CASCRUNCH      ( ob ob' ) ( ->NUM )
+			 j%0=case                ( Mensaje de Error "Bad Argument Value" )
+							:: 2DROP DODEL.L SETSIZEERR TRUE ;
+
+*===Caso: Ingresa un valor correcto								
+			TRUE                     ( ob TRUE )
+   ;
+  DROPFALSE	
   ;
-
 * MsgHan    X  Y  a  h  tipo   ObjPermi        Decompile  Help          ChooData  ChooDec   VaReset  VaInic
-( ARRIBA )  81 41 25 9  ONE    { 0 9 # FF }    FOUR       "Valor de B"  MINUSONE  MINUSONE  MINUSONE MINUSONE
+( Arriba )  81 41 25 9  ONE    { 0 9 # FF }    FOUR       "Valor de B"  MINUSONE  MINUSONE  MINUSONE MINUSONE
 
-'DROPFALSE  21 54 25 9  ONE    { 0 9 # FF }    FOUR       "Valor de C"  MINUSONE  MINUSONE  MINUSONE MINUSONE
 
-'DROPFALSE  81 54 25 9  ONE    { 0 9 # FF }    FOUR       "Valor de D"  MINUSONE  MINUSONE  MINUSONE MINUSONE
+
+' ::
+	 BINT5 #=casedrop  ( Verificar campo )
+	   ::
+	   ( Valor Externo = ob )
+	
+*===Caso: NOVAL Solo es para evitar errores con Valor inicial	
+	   DUP                     ( ob ob         )
+				' xNOVAL                ( ob ob 'NOVAL' )
+			 EQUAL                   ( ob=NOVAL ?    ) ( FLAG         )
+    caseTRUE                ( ob FLAG       ) ( No hace nada )
+
+*===Caso: Expresion contiene una variable
+*         Nota: {} son las variables de la expresion
+*         si no hay variables implica que {} esta vacia
+    DUP                     ( ob ob      )
+    BINT105 SetSysFlag      ( Modo aproximado )
+				xEVAL                   ( ob ob'          ) ( Evalua, ->NUM )
+    BINT105 ClrSysFlag      ( Modo exacto     )
+			 FLASHPTR RLVARext       ( ob ob' {}  )
+			 SWAPDROP                ( ob {}      )
+			 DUPNULL{}?              ( ob {} FLAG )
+			 SWAPDROP                ( ob FLAG    )
+    NOTcase                 ( Mensaje de Error "Bad Argument Value" )
+							:: 2DROP DODEL.L SETSIZEERR TRUE ;
+
+*===Caso: Ingresa un valor correcto								
+			TRUE                     ( ob TRUE )
+   ;
+  DROPFALSE	
+  ;
+* MsgHan    X  Y  a  h  tipo   ObjPermi        Decompile  Help          ChooData  ChooDec   VaReset  VaInic
+( Arriba )  21 54 25 9  ONE    { 0 9 # FF }    FOUR       "Valor de C"  MINUSONE  MINUSONE  MINUSONE MINUSONE
+
+
+
+' ::
+	 BINT5 #=casedrop  ( Verificar campo )
+	   ::
+	   ( Valor Externo = ob )
+	
+*===Caso: NOVAL Solo es para evitar errores con Valor inicial	
+	   DUP                     ( ob ob         )
+				' xNOVAL                ( ob ob 'NOVAL' )
+			 EQUAL                   ( ob=NOVAL ?    ) ( FLAG         )
+    caseTRUE                ( ob FLAG       ) ( No hace nada )
+
+*===Caso: Expresion contiene una variable
+*         Nota: {} son las variables de la expresion
+*         si no hay variables implica que {} esta vacia
+    DUP                     ( ob ob      )
+    BINT105 SetSysFlag      ( Modo aproximado )
+				xEVAL                   ( ob ob'          ) ( Evalua, ->NUM )
+    BINT105 ClrSysFlag      ( Modo exacto     )
+			 FLASHPTR RLVARext       ( ob ob' {}  )
+			 SWAPDROP                ( ob {}      )
+			 DUPNULL{}?              ( ob {} FLAG )
+			 SWAPDROP                ( ob FLAG    )
+    NOTcase                 ( Mensaje de Error "Bad Argument Value" )
+							:: 2DROP DODEL.L SETSIZEERR TRUE ;
+
+*===Caso: Ingresa un valor correcto								
+			TRUE                     ( ob TRUE )
+   ;
+  DROPFALSE	
+  ;
+* MsgHan    X  Y  a  h  tipo   ObjPermi        Decompile  Help          ChooData  ChooDec   VaReset  VaInic
+( Arriba )  81 54 25 9  ONE    { 0 9 # FF }    FOUR       "Valor de D"  MINUSONE  MINUSONE  MINUSONE MINUSONE
 
 
 BINT6 BINT4             ( #Etiquetas #Campos )
@@ -161,37 +277,37 @@ BINT6 BINT4             ( #Etiquetas #Campos )
 ' ::
 BINT2 #=casedrop ( Cuando un field ha recibido un enfoque )
   ::
-  %15360_ % 0.05 DOBEEP
-  4GETLAM       ( LAM 'CurrentField )
-*Caso letra A		
-  BINT0	OVER#=case
-  ::
-  BINT1 FALSE BINT5 BINT23 BINT10 BINT14
-  FLASHPTR IfSetFieldPos
-  ;
+  %15360_ % 0.05 DOBEEP ( Sonido al cambiar de posición )
+  4GETLAM               ( LAM 'CurrentField )
+*  Caso letra A		
+    BINT0	OVER#=case
+    ::
+    BINT1 FALSE BINT5 BINT23 BINT10 BINT14
+    FLASHPTR IfSetFieldPos
+    ;
 		  	
-*Caso letra B		
-  BINT1	OVER#=case
-  ::
-  BINT1 FALSE BINT52 BINT23 BINT10 BINT14
-  FLASHPTR IfSetFieldPos
-  ;
+*   Caso letra B		
+    BINT1	OVER#=case
+    ::
+    BINT1 FALSE BINT52 BINT23 BINT10 BINT14
+    FLASHPTR IfSetFieldPos
+    ;
 		  		
-*Caso letra C		
-  BINT2	OVER#=case
-  ::
-  BINT1 FALSE BINT85 BINT23 BINT10 BINT14
-  FLASHPTR IfSetFieldPos
-  ;
+*   Caso letra C		
+    BINT2	OVER#=case
+    ::
+    BINT1 FALSE BINT85 BINT23 BINT10 BINT14
+    FLASHPTR IfSetFieldPos
+    ;
 		  	
-*Caso letra D		
-  BINT3	OVER#=case
-  ::
-  BINT1 FALSE BINT114 BINT23 BINT10 BINT14
-  FLASHPTR IfSetFieldPos
+*   Caso letra D		
+    BINT3	OVER#=case
+    ::
+    BINT1 FALSE BINT114 BINT23 BINT10 BINT14
+    FLASHPTR IfSetFieldPos
+    ;
+  TRUE
   ;
-TRUE
-;
 
 
 BINT16 #=casedrop ( Se presiono OK del SoftMenu ) ( -> flag TRUE / F )
@@ -203,12 +319,11 @@ BINT16 #=casedrop ( Se presiono OK del SoftMenu ) ( -> flag TRUE / F )
   matchob?                    ( Existe 'Noval' en {}?    ) ( TRUE / ob FALSE   )
   ITE
 * Caso Existe un NOVAL
-  :: "Faltan datos por ingresar\0A" FlashWarning FalseTrue ;	
+   :: "Faltan datos por ingresar\0A" FlashWarning FalseTrue ;	 ( F T )
 * Caso distinto a #0
-  :: DROP TrueTrue ;
-
- ;
-
+   :: DROP TrueTrue ;   ( T T )
+  ;
+ 
 DROPFALSE   ( Fin del Messege-Handler )
 ;
 
@@ -251,38 +366,13 @@ INCOMPDROP        ( A B C D         )
   BINT4 ROLL                  ( A  -B -C D  )
   ; 			
 ;
-
-(
-* Bucle para convertir
-* reales a enteros
-BINT5 ONE_DO
- ::
- BINT4 ROLL
- FLASHPTR  R>Z
- ;
-LOOP
-)	
+	
 
 *========================== VARIABLES ================================
 
 LAM Op1   ABND
 { LAM A LAM B LAM C LAM D LAM Op1 } BIND
 
-
-*========================= COMPROBACION ==============================
-(
-*Se peude agregar en la comprobacion del
-*Messege-Handler del Cammpo [ BINT0 y BINT1 ]
- LAM A ZINT 0 Z= LAM B ZINT 0 Z= OR  IT
-  ::
-  "ERROR:\0A\0AA y B tiene que ser dintinto de cero"
-  BINT15 BINT10
-  ROMPTR grobAlertIcon
-  ROMPTR MsgBoxMenu
-  ROMPTR DoMsgBox
-  DROP RestoreSysFlags ABND xKILL
-  ;
-)
 
 *===================== CREACION DE CARPETA ===========================
 
