@@ -1,4 +1,4 @@
-Saturn Assembler                                       Fri Jan 12 11:43:21 2024
+Saturn Assembler                                       Fri Jan 12 12:16:02 2024
 V3.0.9 (04/15/2007)                                      tan-cot.a      Page    1
 
     1               * File  tan-cot.s       1
@@ -2595,408 +2595,443 @@ V3.0.9 (04/15/2007)                                      tan-cot.a      Page    
  2033
  2034               * File  tan-cot.s       544
  2035
- 2036               * Bucle pata obtiener 5 imaganes   ( Z -> Z' )
- 2037               * a partir de las preimagenes
- 2038               * File  tan-cot.s       547
- 2039 021D2 00000           CON(5)  =BINT5
- 2040 021D7 00000           CON(5)  =ZERO_DO
- 2041               * File  tan-cot.s       548
- 2042 021DC 00000           CON(5)  =DOCOL
- 2043               * File  tan-cot.s       549
- 2044 021E1 00000           CON(5)  =DOIDNT
- 2045 021E6 40              CON(2)  4
- 2046 021E8 6457E63         NIBASC  \Func\
+ 2036               *Nota: Tanto en tangente como cotangente la imagen Z1' y Z2'
+ 2037               *      siempre sera infinito, por lo tanto lo mejor el colocar
+ 2038               *      dicho infinito de forma manual para ahorrar tiempo al momento
+ 2039               *      de ejecutar el comando SYMLIMIT
+ 2040               *      inf = infinito sin signo
+ 2041               * File  tan-cot.s       550
+ 2042
+ 2043               * File  tan-cot.s       551
+ 2044 021D2 00000           CON(5)  =DROP
+ 2045 021D7 00000           CON(5)  =DOFLASHP
+ 2046 021DC 0000000         CON(7)  =^INFINIext
+ 2047               * 'X' Z1 Z2 Z3 Z4 Z5 'Y' Z1 Z2 Z3 Z4 Inf
+ 2048               * File  tan-cot.s       552
+ 2049 021E3 00000           CON(5)  =BINT5
+ 2050 021E8 00000           CON(5)  =ROLL
+ 2051               * 'X' Z1 Z2 Z3 Z4 Z5 'Y' Z2 Z3 Z4 Inf Z1
+ 2052               * File  tan-cot.s       553
+ 2053 021ED 00000           CON(5)  =DROP
+ 2054 021F2 00000           CON(5)  =DOFLASHP
+ 2055 021F7 0000000         CON(7)  =^INFINIext
+ 2056               * 'X' Z1 Z2 Z3 Z4 Z5 'Y' Z2 Z3 Z4 Inf Inf
+ 2057               * File  tan-cot.s       554
+ 2058
+ 2059               * Bucle pata obtiener 3 imaganes   ( Z -> Z' )
+ 2060               * a partir de las preimagenes
+ 2061               * File  tan-cot.s       557
+ 2062 021FE 00000           CON(5)  =BINT3
+ 2063 02203 00000           CON(5)  =ZERO_DO
+ 2064               * File  tan-cot.s       558
+ 2065 02208 00000           CON(5)  =DOCOL
+ 2066               * File  tan-cot.s       559
+ 2067 0220D 00000           CON(5)  =DOIDNT
+ 2068 02212 40              CON(2)  4
+ 2069 02214 6457E63         NIBASC  \Func\
             6
- 2047 021F0 00000           CON(5)  =BINT6
- 2048 021F5 00000           CON(5)  =ROLL
- 2049               * 'Func' Z
- 2050               * File  tan-cot.s       550
- 2051 021FA 00000           CON(5)  =DOFLASHP
- 2052 021FF 0000000         CON(7)  =^SYMLIMIT
- 2053               * Z'
- 2054               * File  tan-cot.s       551
- 2055 02206 00000           CON(5)  =SEMI
- 2056               * File  tan-cot.s       552
- 2057 0220B 00000           CON(5)  =LOOP
- 2058               *| tan-cot.s: 552: error: Unmatched control word: LOOP
- 2059
- 2060               ****En la pila   ( 'X' Z1 Z2 Z3 Z4 Z5 'Y' Z1' Z2' Z3' Z4' Z5' )
- 2061               * File  tan-cot.s       554
- 2062
- 2063               * File  tan-cot.s       555
- 2064
- 2065               *Creacion del ARRY
- 2066               * File  tan-cot.s       557
- 2067 02210 00000           CON(5)  =DOLIST
- 2068 02215 00000           CON(5)  =%2
- 2069 0221A 00000           CON(5)  =%6
- 2070 0221F 00000           CON(5)  =SEMI
- 2071 02224 00000           CON(5)  =DOFLASHP
- 2072 02229 0000000         CON(7)  =^XEQ>ARRY
- 2073               * File  tan-cot.s       558
- 2074 02230 00000           CON(5)  ='
- 2075 02235 00000           CON(5)  =DOIDNT
- 2076 0223A 50              CON(2)  5
- 2077 0223C 451626C         NIBASC  \Tabla\
+ 2070 0221C 00000           CON(5)  =BINT6
+ 2071 02221 00000           CON(5)  =ROLL
+ 2072               * 'Func' Z
+ 2073               * File  tan-cot.s       560
+ 2074 02226 00000           CON(5)  =DOFLASHP
+ 2075 0222B 0000000         CON(7)  =^SYMLIMIT
+ 2076               * Z'
+ 2077               * File  tan-cot.s       561
+ 2078 02232 00000           CON(5)  =SEMI
+ 2079               * File  tan-cot.s       562
+ 2080 02237 00000           CON(5)  =LOOP
+ 2081               *| tan-cot.s: 562: error: Unmatched control word: LOOP
+ 2082
+ 2083               ****En la pila   ( 'X' Z1 Z2 Z3 Z4 Z5 'Y'  Z2' Z3' Z4' Inf Inf )
+ 2084               * File  tan-cot.s       564
+ 2085
+ 2086               * File  tan-cot.s       565
+ 2087 0223C 00000           CON(5)  =BINT5
+ 2088 02241 00000           CON(5)  =ROLL
+ 2089               * 'X' Z1 Z2 Z3 Z4 Z5 'Y' Inf Z2' Z3' Z4' Inf
+ 2090               * File  tan-cot.s       566
+ 2091
+ 2092               * File  tan-cot.s       567
+ 2093
+ 2094               * File  tan-cot.s       568
+ 2095
+ 2096               * File  tan-cot.s       569
+ 2097
+ 2098               *Creacion del ARRY
+ 2099               * File  tan-cot.s       571
+ 2100 02246 00000           CON(5)  =DOLIST
+ 2101 0224B 00000           CON(5)  =%2
+ 2102 02250 00000           CON(5)  =%6
+ 2103 02255 00000           CON(5)  =SEMI
+ 2104 0225A 00000           CON(5)  =DOFLASHP
+ 2105 0225F 0000000         CON(7)  =^XEQ>ARRY
+ 2106               * File  tan-cot.s       572
+ 2107 02266 00000           CON(5)  ='
+ 2108 0226B 00000           CON(5)  =DOIDNT
+ 2109 02270 50              CON(2)  5
+ 2110 02272 451626C         NIBASC  \Tabla\
             616
- 2078 02246 00000           CON(5)  =SAFESTO
- 2079               * obj -> 'Tabla' STO
- 2080               * File  tan-cot.s       559
- 2081
- 2082               *$$$ 6 ---------------------------------------------------------------
- 2083               * File  tan-cot.s       561
- 2084 0224B 00000           CON(5)  =GBUFF
- 2085               * File  tan-cot.s       562
- 2086 02250 00000           CON(5)  =BINT64
- 2087 02255 00000           CON(5)  =BINT39
- 2088 0225A 00000           CON(5)  =BINT73
- 2089 0225F 00000           CON(5)  =BINT49
- 2090 02264 00000           CON(5)  =FBoxG2
- 2091               * File  tan-cot.s       563
- 2092 02269 00000           CON(5)  =DROP
- 2093               * File  tan-cot.s       564
- 2094
- 2095               * File  tan-cot.s       565
- 2096
- 2097               *################ Intercepto en X
- 2098               * File  tan-cot.s       567
- 2099 0226E 00000           CON(5)  =DOIDNT
- 2100 02273 40              CON(2)  4
- 2101 02275 6457E63         NIBASC  \Func\
+ 2111 0227C 00000           CON(5)  =SAFESTO
+ 2112               * obj -> 'Tabla' STO
+ 2113               * File  tan-cot.s       573
+ 2114
+ 2115               *$$$ 6 ---------------------------------------------------------------
+ 2116               * File  tan-cot.s       575
+ 2117 02281 00000           CON(5)  =GBUFF
+ 2118               * File  tan-cot.s       576
+ 2119 02286 00000           CON(5)  =BINT64
+ 2120 0228B 00000           CON(5)  =BINT39
+ 2121 02290 00000           CON(5)  =BINT73
+ 2122 02295 00000           CON(5)  =BINT49
+ 2123 0229A 00000           CON(5)  =FBoxG2
+ 2124               * File  tan-cot.s       577
+ 2125 0229F 00000           CON(5)  =DROP
+ 2126               * File  tan-cot.s       578
+ 2127
+ 2128               * File  tan-cot.s       579
+ 2129
+ 2130               *################ Intercepto en X
+ 2131               * File  tan-cot.s       581
+ 2132 022A4 00000           CON(5)  =DOIDNT
+ 2133 022A9 40              CON(2)  4
+ 2134 022AB 6457E63         NIBASC  \Func\
             6
- 2102 0227D 00000           CON(5)  ='
- 2103 02282 00000           CON(5)  =DOIDNT
- 2104 02287 10              CON(2)  1
- 2105 02289 85              NIBASC  \X\
- 2106               * 'Func' 'X'
- 2107               * File  tan-cot.s       568
- 2108 0228B 00000           CON(5)  =DOFLASHP
- 2109 02290 0000000         CON(7)  =^ISOL1
- 2110               * 'X' 'InterceptoEnX'
- 2111               * File  tan-cot.s       569
- 2112 02297 00000           CON(5)  =SWAPDROP
- 2113 0229C 00000           CON(5)  =DOIDNT
- 2114 022A1 40              CON(2)  4
- 2115 022A3 0556279         NIBASC  \Peri\
+ 2135 022B3 00000           CON(5)  ='
+ 2136 022B8 00000           CON(5)  =DOIDNT
+ 2137 022BD 10              CON(2)  1
+ 2138 022BF 85              NIBASC  \X\
+ 2139               * 'Func' 'X'
+ 2140               * File  tan-cot.s       582
+ 2141 022C1 00000           CON(5)  =DOFLASHP
+ 2142 022C6 0000000         CON(7)  =^ISOL1
+ 2143               * 'X' 'InterceptoEnX'
+ 2144               * File  tan-cot.s       583
+ 2145 022CD 00000           CON(5)  =SWAPDROP
+ 2146 022D2 00000           CON(5)  =DOIDNT
+ 2147 022D7 40              CON(2)  4
+ 2148 022D9 0556279         NIBASC  \Peri\
             6
- 2116               * InterceptoEnX 'Peri'
- 2117               * File  tan-cot.s       570
- 2118 022AB 00000           CON(5)  ='
- 2119 022B0 00000           CON(5)  =DOIDNT
- 2120 022B5 10              CON(2)  1
- 2121 022B7 85              NIBASC  \X\
- 2122               * InterceptoEnX X 'Peri'
- 2123               * File  tan-cot.s       571
- 2124 022B9 00000           CON(5)  =DOFLASHP
- 2125 022BE 0000000         CON(7)  =^EvalNoCKx*
- 2126               * InterceptoEnX 'Peri'*X
- 2127               * File  tan-cot.s       572
- 2128 022C5 00000           CON(5)  =DOFLASHP
- 2129 022CA 0000000         CON(7)  =^EvalNoCKx+
- 2130               * InterceptoEnX+'Peri'*X
- 2131               * File  tan-cot.s       573
- 2132 022D1 00000           CON(5)  ='
- 2133 022D6 00000           CON(5)  =DOIDNT
- 2134 022DB 20              CON(2)  2
- 2135 022DD 9487            NIBASC  \Ix\
- 2136 022E1 00000           CON(5)  =SAFESTO
- 2137               * obj -> 'Ix' STO
- 2138               * File  tan-cot.s       574
- 2139
- 2140               *$$$ 7 ---------------------------------------------------------------
- 2141               * File  tan-cot.s       576
- 2142 022E6 00000           CON(5)  =GBUFF
- 2143               * File  tan-cot.s       577
- 2144 022EB 00000           CON(5)  =BINT73
- 2145 022F0 00000           CON(5)  =BINT39
- 2146 022F5 00000           CON(5)  =BINT81
- 2147 022FA 00000           CON(5)  =BINT49
- 2148 022FF 00000           CON(5)  =FBoxG2
- 2149 02304 00000           CON(5)  =DROP
- 2150               * File  tan-cot.s       578
- 2151
- 2152               * File  tan-cot.s       579
- 2153
- 2154               *################ Intercepto en Y
- 2155               * File  tan-cot.s       581
- 2156 02309 00000           CON(5)  =DOIDNT
- 2157 0230E 40              CON(2)  4
- 2158 02310 6457E63         NIBASC  \Func\
-            6
- 2159 02318 00000           CON(5)  =Z0_
- 2160               * File  tan-cot.s       582
- 2161 0231D 00000           CON(5)  =DOFLASHP
- 2162 02322 0000000         CON(7)  =^SYMLIMIT
- 2163               * File  tan-cot.s       583
- 2164 02329 00000           CON(5)  ='
- 2165 0232E 00000           CON(5)  =DOIDNT
- 2166 02333 20              CON(2)  2
- 2167 02335 9497            NIBASC  \Iy\
- 2168 02339 00000           CON(5)  =SAFESTO
- 2169               * obj -> 'Iy' STO
- 2170               * File  tan-cot.s       584
- 2171
- 2172               *$$$ 8 ---------------------------------------------------------------
- 2173               * File  tan-cot.s       586
- 2174 0233E 00000           CON(5)  =GBUFF
- 2175               * File  tan-cot.s       587
- 2176 02343 00000           CON(5)  =BINT81
- 2177 02348 00000           CON(5)  =BINT39
- 2178 0234D 00000           CON(5)  =BINT90
- 2179 02352 00000           CON(5)  =BINT49
- 2180 02357 00000           CON(5)  =FBoxG2
- 2181               * File  tan-cot.s       588
- 2182 0235C 00000           CON(5)  =DROP
- 2183               * File  tan-cot.s       589
+ 2149               * InterceptoEnX 'Peri'
+ 2150               * File  tan-cot.s       584
+ 2151 022E1 00000           CON(5)  ='
+ 2152 022E6 00000           CON(5)  =DOIDNT
+ 2153 022EB 10              CON(2)  1
+ 2154 022ED 85              NIBASC  \X\
+ 2155               * InterceptoEnX X 'Peri'
+ 2156               * File  tan-cot.s       585
+ 2157 022EF 00000           CON(5)  =DOFLASHP
+ 2158 022F4 0000000         CON(7)  =^EvalNoCKx*
+ 2159               * InterceptoEnX 'Peri'*X
+ 2160               * File  tan-cot.s       586
+ 2161 022FB 00000           CON(5)  =DOFLASHP
+ 2162 02300 0000000         CON(7)  =^EvalNoCKx+
+ 2163               * InterceptoEnX+'Peri'*X
+ 2164               * File  tan-cot.s       587
+ 2165 02307 00000           CON(5)  ='
+ 2166 0230C 00000           CON(5)  =DOIDNT
+ 2167 02311 20              CON(2)  2
+ 2168 02313 9487            NIBASC  \Ix\
+ 2169 02317 00000           CON(5)  =SAFESTO
+ 2170               * obj -> 'Ix' STO
+ 2171               * File  tan-cot.s       588
+ 2172
+ 2173               *$$$ 7 ---------------------------------------------------------------
+ 2174               * File  tan-cot.s       590
+ 2175 0231C 00000           CON(5)  =GBUFF
+ 2176               * File  tan-cot.s       591
+ 2177 02321 00000           CON(5)  =BINT73
+ 2178 02326 00000           CON(5)  =BINT39
+ 2179 0232B 00000           CON(5)  =BINT81
+ 2180 02330 00000           CON(5)  =BINT49
+ 2181 02335 00000           CON(5)  =FBoxG2
+ 2182 0233A 00000           CON(5)  =DROP
+ 2183               * File  tan-cot.s       592
  2184
- 2185               * File  tan-cot.s       590
+ 2185               * File  tan-cot.s       593
  2186
- 2187               *################ Asintota Vertical
- 2188               * File  tan-cot.s       592
- 2189 02361 00000           CON(5)  =DOIDNT
- 2190 02366 50              CON(2)  5
- 2191 02368 451626C         NIBASC  \Tabla\
-            616
- 2192 02372 00000           CON(5)  =BINT2
- 2193               * [ ] #2
- 2194               * File  tan-cot.s       593
- 2195 02377 00000           CON(5)  =DOFLASHP
- 2196 0237C 0000000         CON(7)  =^PULLEL[S]
- 2197               * -> [ ] ob
- 2198               * File  tan-cot.s       594
- 2199 02383 00000           CON(5)  =SWAPDROP
- 2200 02388 00000           CON(5)  =DOIDNT
- 2201 0238D 40              CON(2)  4
- 2202 0238F 0556279         NIBASC  \Peri\
+ 2187               *################ Intercepto en Y
+ 2188               * File  tan-cot.s       595
+ 2189 0233F 00000           CON(5)  =DOIDNT
+ 2190 02344 40              CON(2)  4
+ 2191 02346 6457E63         NIBASC  \Func\
             6
- 2203               * ob 'Peri'
- 2204               * File  tan-cot.s       595
- 2205 02397 00000           CON(5)  ='
- 2206 0239C 00000           CON(5)  =DOIDNT
- 2207 023A1 10              CON(2)  1
- 2208 023A3 85              NIBASC  \X\
- 2209               * ob X 'Peri'
- 2210               * File  tan-cot.s       596
- 2211 023A5 00000           CON(5)  =DOFLASHP
- 2212 023AA 0000000         CON(7)  =^EvalNoCKx*
- 2213               * ob 'Peri'*X
- 2214               * File  tan-cot.s       597
- 2215 023B1 00000           CON(5)  =DOFLASHP
- 2216 023B6 0000000         CON(7)  =^EvalNoCKx+
- 2217               * ob+'Peri'*X
- 2218               * File  tan-cot.s       598
- 2219 023BD 00000           CON(5)  ='
- 2220 023C2 00000           CON(5)  =DOIDNT
- 2221 023C7 30              CON(2)  3
- 2222 023C9 14E265          NIBASC  \A.V\
- 2223 023CF 00000           CON(5)  =SAFESTO
- 2224               * obj -> 'AV' STO
- 2225               * File  tan-cot.s       599
- 2226
- 2227               * File  tan-cot.s       600
- 2228
- 2229               *################ Dominio
- 2230               * File  tan-cot.s       602
- 2231 023D4 00000           CON(5)  =DOCSTR
- 2232 023D9 34000           CON(5)  67
- 2233 023DE 255616C         NIBASC  \Reales menos\
+ 2192 0234E 00000           CON(5)  =Z0_
+ 2193               * File  tan-cot.s       596
+ 2194 02353 00000           CON(5)  =DOFLASHP
+ 2195 02358 0000000         CON(7)  =^SYMLIMIT
+ 2196               * File  tan-cot.s       597
+ 2197 0235F 00000           CON(5)  ='
+ 2198 02364 00000           CON(5)  =DOIDNT
+ 2199 02369 20              CON(2)  2
+ 2200 0236B 9497            NIBASC  \Iy\
+ 2201 0236F 00000           CON(5)  =SAFESTO
+ 2202               * obj -> 'Iy' STO
+ 2203               * File  tan-cot.s       598
+ 2204
+ 2205               *$$$ 8 ---------------------------------------------------------------
+ 2206               * File  tan-cot.s       600
+ 2207 02374 00000           CON(5)  =GBUFF
+ 2208               * File  tan-cot.s       601
+ 2209 02379 00000           CON(5)  =BINT81
+ 2210 0237E 00000           CON(5)  =BINT39
+ 2211 02383 00000           CON(5)  =BINT90
+ 2212 02388 00000           CON(5)  =BINT49
+ 2213 0238D 00000           CON(5)  =FBoxG2
+ 2214               * File  tan-cot.s       602
+ 2215 02392 00000           CON(5)  =DROP
+ 2216               * File  tan-cot.s       603
+ 2217
+ 2218               * File  tan-cot.s       604
+ 2219
+ 2220               *################ Asintota Vertical
+ 2221               * File  tan-cot.s       606
+ 2222 02397 00000           CON(5)  =DOIDNT
+ 2223 0239C 50              CON(2)  5
+ 2224 0239E 451626C         NIBASC  \Tabla\
+            616
+ 2225 023A8 00000           CON(5)  =BINT2
+ 2226               * [ ] #2
+ 2227               * File  tan-cot.s       607
+ 2228 023AD 00000           CON(5)  =DOFLASHP
+ 2229 023B2 0000000         CON(7)  =^PULLEL[S]
+ 2230               * -> [ ] ob
+ 2231               * File  tan-cot.s       608
+ 2232 023B9 00000           CON(5)  =SWAPDROP
+ 2233 023BE 00000           CON(5)  =DOIDNT
+ 2234 023C3 40              CON(2)  4
+ 2235 023C5 0556279         NIBASC  \Peri\
+            6
+ 2236               * ob 'Peri'
+ 2237               * File  tan-cot.s       609
+ 2238 023CD 00000           CON(5)  ='
+ 2239 023D2 00000           CON(5)  =DOIDNT
+ 2240 023D7 10              CON(2)  1
+ 2241 023D9 85              NIBASC  \X\
+ 2242               * ob X 'Peri'
+ 2243               * File  tan-cot.s       610
+ 2244 023DB 00000           CON(5)  =DOFLASHP
+ 2245 023E0 0000000         CON(7)  =^EvalNoCKx*
+ 2246               * ob 'Peri'*X
+ 2247               * File  tan-cot.s       611
+ 2248 023E7 00000           CON(5)  =DOFLASHP
+ 2249 023EC 0000000         CON(7)  =^EvalNoCKx+
+ 2250               * ob+'Peri'*X
+ 2251               * File  tan-cot.s       612
+ 2252 023F3 00000           CON(5)  ='
+ 2253 023F8 00000           CON(5)  =DOIDNT
+ 2254 023FD 30              CON(2)  3
+ 2255 023FF 14E265          NIBASC  \A.V\
+ 2256 02405 00000           CON(5)  =SAFESTO
+ 2257               * obj -> 'AV' STO
+ 2258               * File  tan-cot.s       613
+ 2259
+ 2260               * File  tan-cot.s       614
+ 2261
+ 2262               *################ Dominio
+ 2263               * File  tan-cot.s       616
+ 2264 0240A 00000           CON(5)  =DOCSTR
+ 2265 0240F 34000           CON(5)  67
+ 2266 02414 255616C         NIBASC  \Reales menos\
             6563702
             D656E6F637
 
- 2234 023F6 A0              CON(2)  #A
- 2235 023F8 163796E         NIBASC  \asintotas vertical\
+ 2267 0242C A0              CON(2)  #A
+ 2268 0242E 163796E         NIBASC  \asintotas vertical\
             647F647
             16370267562747963616C6
 
- 2236               * File  tan-cot.s       603
- 2237 0241C 00000           CON(5)  ='
- 2238 02421 00000           CON(5)  =DOIDNT
- 2239 02426 30              CON(2)  3
- 2240 02428 44F6D6          NIBASC  \Dom\
- 2241 0242E 00000           CON(5)  =SAFESTO
- 2242               * obj -> 'Dom' STO
- 2243               * File  tan-cot.s       604
- 2244
- 2245               *$$$ 9 ---------------------------------------------------------------
- 2246               * File  tan-cot.s       606
- 2247 02433 00000           CON(5)  =GBUFF
- 2248               * File  tan-cot.s       607
- 2249 02438 00000           CON(5)  =BINT90
- 2250 0243D 00000           CON(5)  =BINT39
- 2251 02442 00000           CON(5)  =BINT99
- 2252 02447 00000           CON(5)  =BINT49
- 2253 0244C 00000           CON(5)  =FBoxG2
- 2254               * File  tan-cot.s       608
- 2255 02451 00000           CON(5)  =DROP
- 2256               * File  tan-cot.s       609
- 2257
- 2258               * File  tan-cot.s       610
- 2259
- 2260               *################ Rango
- 2261               * File  tan-cot.s       612
- 2262 02456 00000           CON(5)  =DOCSTR
- 2263 0245B 11000           CON(5)  17
- 2264 02460 255616C         NIBASC  \Reales\
+ 2269               * File  tan-cot.s       617
+ 2270 02452 00000           CON(5)  ='
+ 2271 02457 00000           CON(5)  =DOIDNT
+ 2272 0245C 30              CON(2)  3
+ 2273 0245E 44F6D6          NIBASC  \Dom\
+ 2274 02464 00000           CON(5)  =SAFESTO
+ 2275               * obj -> 'Dom' STO
+ 2276               * File  tan-cot.s       618
+ 2277
+ 2278               *$$$ 9 ---------------------------------------------------------------
+ 2279               * File  tan-cot.s       620
+ 2280 02469 00000           CON(5)  =GBUFF
+ 2281               * File  tan-cot.s       621
+ 2282 0246E 00000           CON(5)  =BINT90
+ 2283 02473 00000           CON(5)  =BINT39
+ 2284 02478 00000           CON(5)  =BINT99
+ 2285 0247D 00000           CON(5)  =BINT49
+ 2286 02482 00000           CON(5)  =FBoxG2
+ 2287               * File  tan-cot.s       622
+ 2288 02487 00000           CON(5)  =DROP
+ 2289               * File  tan-cot.s       623
+ 2290
+ 2291               * File  tan-cot.s       624
+ 2292
+ 2293               *################ Rango
+ 2294               * File  tan-cot.s       626
+ 2295 0248C 00000           CON(5)  =DOCSTR
+ 2296 02491 11000           CON(5)  17
+ 2297 02496 255616C         NIBASC  \Reales\
             65637
- 2265               * File  tan-cot.s       613
- 2266 0246C 00000           CON(5)  ='
- 2267 02471 00000           CON(5)  =DOIDNT
- 2268 02476 40              CON(2)  4
- 2269 02478 2516E67         NIBASC  \Rang\
+ 2298               * File  tan-cot.s       627
+ 2299 024A2 00000           CON(5)  ='
+ 2300 024A7 00000           CON(5)  =DOIDNT
+ 2301 024AC 40              CON(2)  4
+ 2302 024AE 2516E67         NIBASC  \Rang\
             6
- 2270 02480 00000           CON(5)  =SAFESTO
- 2271               * ARRAY -> 'Rang' STO
- 2272               * File  tan-cot.s       614
- 2273
- 2274               *$$$ 10 --------------------------------------------------------------
- 2275               * File  tan-cot.s       616
- 2276 02485 00000           CON(5)  =GBUFF
- 2277               * File  tan-cot.s       617
- 2278 0248A 00000           CON(5)  =BINT99
- 2279 0248F 00000           CON(5)  =BINT39
- 2280 02494 00000           CON(5)  =BINT108
- 2281 02499 00000           CON(5)  =BINT49
- 2282 0249E 00000           CON(5)  =FBoxG2
- 2283               * File  tan-cot.s       618
- 2284 024A3 00000           CON(5)  =DROP
- 2285               * File  tan-cot.s       619
- 2286
- 2287               *======================== ORDENAR VARIABLES ==========================
- 2288               * File  tan-cot.s       621
- 2289
- 2290               *Pag1
- 2291               *    F1        F2        F3        F4        F5        F6
- 2292               * File  tan-cot.s       624
- 2293 024A8 00000           CON(5)  ='
- 2294 024AD 00000           CON(5)  =DOIDNT
- 2295 024B2 40              CON(2)  4
- 2296 024B4 6457E63         NIBASC  \Func\
+ 2303 024B6 00000           CON(5)  =SAFESTO
+ 2304               * ARRAY -> 'Rang' STO
+ 2305               * File  tan-cot.s       628
+ 2306
+ 2307               *$$$ 10 --------------------------------------------------------------
+ 2308               * File  tan-cot.s       630
+ 2309 024BB 00000           CON(5)  =GBUFF
+ 2310               * File  tan-cot.s       631
+ 2311 024C0 00000           CON(5)  =BINT99
+ 2312 024C5 00000           CON(5)  =BINT39
+ 2313 024CA 00000           CON(5)  =BINT108
+ 2314 024CF 00000           CON(5)  =BINT49
+ 2315 024D4 00000           CON(5)  =FBoxG2
+ 2316               * File  tan-cot.s       632
+ 2317 024D9 00000           CON(5)  =DROP
+ 2318               * File  tan-cot.s       633
+ 2319
+ 2320               *======================== ORDENAR VARIABLES ==========================
+ 2321               * File  tan-cot.s       635
+ 2322
+ 2323               *Pag1
+ 2324               *    F1        F2        F3        F4        F5        F6
+ 2325               * File  tan-cot.s       638
+ 2326 024DE 00000           CON(5)  ='
+ 2327 024E3 00000           CON(5)  =DOIDNT
+ 2328 024E8 40              CON(2)  4
+ 2329 024EA 6457E63         NIBASC  \Func\
             6
- 2297 024BC 00000           CON(5)  ='
- 2298 024C1 00000           CON(5)  =DOIDNT
- 2299 024C6 40              CON(2)  4
- 2300 024C8 0556279         NIBASC  \Peri\
+ 2330 024F2 00000           CON(5)  ='
+ 2331 024F7 00000           CON(5)  =DOIDNT
+ 2332 024FC 40              CON(2)  4
+ 2333 024FE 0556279         NIBASC  \Peri\
             6
- 2301 024D0 00000           CON(5)  ='
- 2302 024D5 00000           CON(5)  =DOIDNT
- 2303 024DA 40              CON(2)  4
- 2304 024DC 4456376         NIBASC  \Desf\
+ 2334 02506 00000           CON(5)  ='
+ 2335 0250B 00000           CON(5)  =DOIDNT
+ 2336 02510 40              CON(2)  4
+ 2337 02512 4456376         NIBASC  \Desf\
             6
- 2305 024E4 00000           CON(5)  ='
- 2306 024E9 00000           CON(5)  =DOIDNT
- 2307 024EE 40              CON(2)  4
- 2308 024F0 3547560         NIBASC  \Step\
+ 2338 0251A 00000           CON(5)  ='
+ 2339 0251F 00000           CON(5)  =DOIDNT
+ 2340 02524 40              CON(2)  4
+ 2341 02526 3547560         NIBASC  \Step\
             7
- 2309 024F8 00000           CON(5)  ='
- 2310 024FD 00000           CON(5)  =DOIDNT
- 2311 02502 40              CON(2)  4
- 2312 02504 D4F6E6F         NIBASC  \Mono\
+ 2342 0252E 00000           CON(5)  ='
+ 2343 02533 00000           CON(5)  =DOIDNT
+ 2344 02538 40              CON(2)  4
+ 2345 0253A D4F6E6F         NIBASC  \Mono\
             6
- 2313 0250C 00000           CON(5)  ='
- 2314 02511 00000           CON(5)  =DOIDNT
- 2315 02516 50              CON(2)  5
- 2316 02518 451626C         NIBASC  \Tabla\
+ 2346 02542 00000           CON(5)  ='
+ 2347 02547 00000           CON(5)  =DOIDNT
+ 2348 0254C 50              CON(2)  5
+ 2349 0254E 451626C         NIBASC  \Tabla\
             616
- 2317               *Pag2
- 2318               * File  tan-cot.s       626
- 2319 02522 00000           CON(5)  ='
- 2320 02527 00000           CON(5)  =DOIDNT
- 2321 0252C 20              CON(2)  2
- 2322 0252E 9487            NIBASC  \Ix\
- 2323 02532 00000           CON(5)  ='
- 2324 02537 00000           CON(5)  =DOIDNT
- 2325 0253C 20              CON(2)  2
- 2326 0253E 9497            NIBASC  \Iy\
- 2327 02542 00000           CON(5)  ='
- 2328 02547 00000           CON(5)  =DOIDNT
- 2329 0254C 30              CON(2)  3
- 2330 0254E 14E265          NIBASC  \A.V\
- 2331 02554 00000           CON(5)  ='
- 2332 02559 00000           CON(5)  =DOIDNT
- 2333 0255E 30              CON(2)  3
- 2334 02560 44F6D6          NIBASC  \Dom\
- 2335 02566 00000           CON(5)  ='
- 2336 0256B 00000           CON(5)  =DOIDNT
- 2337 02570 40              CON(2)  4
- 2338 02572 2516E67         NIBASC  \Rang\
+ 2350               *Pag2
+ 2351               * File  tan-cot.s       640
+ 2352 02558 00000           CON(5)  ='
+ 2353 0255D 00000           CON(5)  =DOIDNT
+ 2354 02562 20              CON(2)  2
+ 2355 02564 9487            NIBASC  \Ix\
+ 2356 02568 00000           CON(5)  ='
+ 2357 0256D 00000           CON(5)  =DOIDNT
+ 2358 02572 20              CON(2)  2
+ 2359 02574 9497            NIBASC  \Iy\
+ 2360 02578 00000           CON(5)  ='
+ 2361 0257D 00000           CON(5)  =DOIDNT
+ 2362 02582 30              CON(2)  3
+ 2363 02584 14E265          NIBASC  \A.V\
+ 2364 0258A 00000           CON(5)  ='
+ 2365 0258F 00000           CON(5)  =DOIDNT
+ 2366 02594 30              CON(2)  3
+ 2367 02596 44F6D6          NIBASC  \Dom\
+ 2368 0259C 00000           CON(5)  ='
+ 2369 025A1 00000           CON(5)  =DOIDNT
+ 2370 025A6 40              CON(2)  4
+ 2371 025A8 2516E67         NIBASC  \Rang\
             6
- 2339               * File  tan-cot.s       627
- 2340
- 2341               * File  tan-cot.s       628
- 2342 0257A 00000           CON(5)  =BINT11
- 2343 0257F 00000           CON(5)  ={}N
- 2344               * { }
- 2345               * File  tan-cot.s       629
- 2346 02584 00000           CON(5)  =XEQORDER
- 2347               * File  tan-cot.s       630
- 2348
- 2349               * File  tan-cot.s       631
- 2350
- 2351               *====================== RESTABLECER PARAMETROS ======================
- 2352               * File  tan-cot.s       633
- 2353
- 2354               * File  tan-cot.s       634
- 2355 02589 00000           CON(5)  =PopMetaVStack
- 2356 0258E 00000           CON(5)  =NDROP
- 2357               * File  tan-cot.s       635
- 2358 02593 00000           CON(5)  =ABND
- 2359               * Abandona Variables temporales
- 2360               * File  tan-cot.s       636
- 2361 02598 00000           CON(5)  =RestoreSysFlags
- 2362               * Restablece variables del Usuario
- 2363               * File  tan-cot.s       637
- 2364               * Ref: SaveSysFlag
- 2365               * File  tan-cot.s       638
- 2366
- 2367               * File  tan-cot.s       639
- 2368
- 2369               *========================= PANTALLA FINAL ============================
- 2370               * File  tan-cot.s       641
- 2371
- 2372               *MEJORAR ESTA PANTALLA :(
- 2373               * File  tan-cot.s       643
- 2374 0259D 00000           CON(5)  =CLEARLCD
- 2375               * File  tan-cot.s       644
- 2376 025A2 00000           CON(5)  =DOCSTR
- 2377 025A7 77000           CON(5)  119
- 2378 025AC 6496E61         NIBASC  \Finalizado:\
+ 2372               * File  tan-cot.s       641
+ 2373
+ 2374               * File  tan-cot.s       642
+ 2375 025B0 00000           CON(5)  =BINT11
+ 2376 025B5 00000           CON(5)  ={}N
+ 2377               * { }
+ 2378               * File  tan-cot.s       643
+ 2379 025BA 00000           CON(5)  =XEQORDER
+ 2380               * File  tan-cot.s       644
+ 2381
+ 2382               * File  tan-cot.s       645
+ 2383
+ 2384               * File  tan-cot.s       646
+ 2385
+ 2386               *====================== RESTABLECER PARAMETROS ======================
+ 2387               * File  tan-cot.s       648
+ 2388
+ 2389               * File  tan-cot.s       649
+ 2390 025BF 00000           CON(5)  =PopMetaVStack
+ 2391 025C4 00000           CON(5)  =NDROP
+ 2392               * File  tan-cot.s       650
+ 2393 025C9 00000           CON(5)  =ABND
+ 2394               * Abandona Variables temporales
+ 2395               * File  tan-cot.s       651
+ 2396 025CE 00000           CON(5)  =RestoreSysFlags
+ 2397               * Restablece variables del Usuario
+ 2398               * File  tan-cot.s       652
+ 2399               * Ref: SaveSysFlag
+ 2400               * File  tan-cot.s       653
+ 2401
+ 2402               * File  tan-cot.s       654
+ 2403
+ 2404               *========================= PANTALLA FINAL ============================
+ 2405               * File  tan-cot.s       656
+ 2406
+ 2407               *MEJORAR ESTA PANTALLA :(
+ 2408               * File  tan-cot.s       658
+ 2409 025D3 00000           CON(5)  =CLEARLCD
+ 2410               * File  tan-cot.s       659
+ 2411 025D8 00000           CON(5)  =DOCSTR
+ 2412 025DD 77000           CON(5)  119
+ 2413 025E2 6496E61         NIBASC  \Finalizado:\
             6C696A7
             1646F6A3
- 2379 025C2 A0              CON(2)  #A
- 2380 025C4 A0              CON(2)  #A
- 2381 025C6 2556375         NIBASC  \Resultados\
+ 2414 025F8 A0              CON(2)  #A
+ 2415 025FA A0              CON(2)  #A
+ 2416 025FC 2556375         NIBASC  \Resultados\
             7C64716
             46F637
- 2382 025DA A0              CON(2)  #A
- 2383 025DC 16C6D61         NIBASC  \almacenados en\
+ 2417 02610 A0              CON(2)  #A
+ 2418 02612 16C6D61         NIBASC  \almacenados en\
             63656E6
             1646F6370256E6
 
- 2384 025F8 A0              CON(2)  #A
- 2385 025FA C616023         NIBASC  \la carpeta\
+ 2419 0262E A0              CON(2)  #A
+ 2420 02630 C616023         NIBASC  \la carpeta\
             6162707
             564716
- 2386 0260E A0              CON(2)  #A
- 2387 02610 7225543         NIBASC  \'RESUL'\
+ 2421 02644 A0              CON(2)  #A
+ 2422 02646 7225543         NIBASC  \'RESUL'\
             555C472
- 2388               * File  tan-cot.s       645
- 2389 0261E 00000           CON(5)  =BINT15
- 2390 02623 00000           CON(5)  =BINT10
- 2391               * File  tan-cot.s       646
- 2392 02628 00000           CON(5)  =MINUSONE
- 2393               * File  tan-cot.s       647
- 2394 0262D 00000           CON(5)  =DOROMP
- 2395 02632 000000          CON(6)  =~MsgBoxMenu
- 2396               * File  tan-cot.s       648
- 2397 02638 00000           CON(5)  =DOROMP
- 2398 0263D 000000          CON(6)  =~DoMsgBox
- 2399               * File  tan-cot.s       649
- 2400 02643 00000           CON(5)  =DROP
- 2401               * File  tan-cot.s       650
- 2402
- 2403               * File  tan-cot.s       651
- 2404 02648 00000           CON(5)  =SEMI
-Saturn Assembler                                       Fri Jan 12 11:43:21 2024
+ 2423               * File  tan-cot.s       660
+ 2424 02654 00000           CON(5)  =BINT15
+ 2425 02659 00000           CON(5)  =BINT10
+ 2426               * File  tan-cot.s       661
+ 2427 0265E 00000           CON(5)  =MINUSONE
+ 2428               * File  tan-cot.s       662
+ 2429 02663 00000           CON(5)  =DOROMP
+ 2430 02668 000000          CON(6)  =~MsgBoxMenu
+ 2431               * File  tan-cot.s       663
+ 2432 0266E 00000           CON(5)  =DOROMP
+ 2433 02673 000000          CON(6)  =~DoMsgBox
+ 2434               * File  tan-cot.s       664
+ 2435 02679 00000           CON(5)  =DROP
+ 2436               * File  tan-cot.s       665
+ 2437
+ 2438               * File  tan-cot.s       666
+ 2439 0267E 00000           CON(5)  =SEMI
+Saturn Assembler                                       Fri Jan 12 12:16:02 2024
 V3.0.9 (04/15/2007)   Symbol Table                       tan-cot.a      Page    2
 
  #=casedrop                        Ext                   -   624   764   904
@@ -3007,34 +3042,34 @@ V3.0.9 (04/15/2007)   Symbol Table                       tan-cot.a      Page    
  %0<                               Ext                   -  1373
  %0>                               Ext                   -  1711
  %15360_                           Ext                   -  1156
- %2                                Ext                   -  2068
- %6                                Ext                   -  2069
+ %2                                Ext                   -  2101
+ %6                                Ext                   -  2102
  '                                 Ext                   -   298   368   620
                                          637   760   777   900   917  1019  1036
                                         1147  1273  1459  1479  1499  1600  1669
                                         1750  1795  1839  1879  1935  2012  2022
-                                        2074  2102  2118  2132  2164  2205  2219
-                                        2237  2266  2293  2297  2301  2305  2309
-                                        2313  2319  2323  2327  2331  2335
+                                        2107  2135  2151  2165  2197  2238  2252
+                                        2270  2299  2326  2330  2334  2338  2342
+                                        2346  2352  2356  2360  2364  2368
  2DROP                             Ext                   -   686   707   826
                                          847   966  1085
  4GETLAM                           Ext                   -  1164
  ?SKIP                             Ext                   -  1336  1720
  ABND                              Ext                   -   436  1341  1424
-                                        2358
+                                        2393
  BEGIN                             Ext                   -   272
  BIND                              Ext                   -    71  1443
  BINT0                             Ext                   -  1168
  BINT1                             Ext                   -  1173  1188  1193
                                         1213  1233  1542  1543  1619  1951
  BINT10                            Ext                   -   577   597  1177
-                                        1197  1217  1237  2390
+                                        1197  1217  1237  2425
  BINT103                           Ext                   -    46
  BINT105                           Ext                   -    42   657   665
                                          797   805   937   945  1056  1064
- BINT108                           Ext                   -  2280
+ BINT108                           Ext                   -  2313
  BINT109                           Ext                   -  1567
- BINT11                            Ext                   -  2342
+ BINT11                            Ext                   -  2375
  BINT110                           Ext                   -  1574
  BINT114                           Ext                   -  1235
  BINT120                           Ext                   -    50
@@ -3045,57 +3080,59 @@ V3.0.9 (04/15/2007)   Symbol Table                       tan-cot.a      Page    
  BINT131                           Ext                   -  1522
  BINT14                            Ext                   -  1178  1198  1218
                                         1238
- BINT15                            Ext                   -  2389
+ BINT15                            Ext                   -  2424
  BINT16                            Ext                   -   312   380  1253
  BINT17                            Ext                   -   339   407
  BINT19                            Ext                   -  1572
  BINT2                             Ext                   -    55   292  1150
-                                        1208  1549  1550  2192
+                                        1208  1549  1550  2225
  BINT20                            Ext                   -  1533  1565
  BINT22                            Ext                   -  1681
  BINT23                            Ext                   -   569  1176  1196
                                         1216  1236
  BINT3                             Ext                   -   311   338  1228
+                                        2062
  BINT30                            Ext                   -  1683  1762
  BINT32                            Ext                   -   314   382
  BINT36                            Ext                   -  1573
  BINT37                            Ext                   -  1566
  BINT39                            Ext                   -  1682  1763  1764
-                                        1807  1808  1852  1892  2087  2145  2177
-                                        2250  2279
+                                        1807  1808  1852  1892  2120  2178  2210
+                                        2283  2312
  BINT4                             Ext                   -   512   552  1137
                                         1352  1388  1394  1400  1406  1556  1557
  BINT41                            Ext                   -   578   588
  BINT47                            Ext                   -   430  1532  1809
                                         1851
  BINT49                            Ext                   -  1684  1765  1810
-                                        1854  1894  2089  2147  2179  2252  2281
+                                        1854  1894  2122  2180  2212  2285  2314
  BINT5                             Ext                   -   362   568   623
-                                         763   903  1022  1175  1967  2005  2039
+                                         763   903  1022  1175  1967  2005  2049
+                                        2087
  BINT50                            Ext                   -  1568
  BINT51                            Ext                   -  1575
  BINT52                            Ext                   -  1195
  BINT54                            Ext                   -   598   608
  BINT55                            Ext                   -  1853  1891
- BINT6                             Ext                   -  1136  2047
+ BINT6                             Ext                   -  1136  2070
  BINT60                            Ext                   -   313
- BINT64                            Ext                   -  1893  2086
+ BINT64                            Ext                   -  1893  2119
  BINT67                            Ext                   -   379   406
  BINT7                             Ext                   -  2028
  BINT70                            Ext                   -   587   607
- BINT73                            Ext                   -  2088  2144
+ BINT73                            Ext                   -  2121  2177
  BINT76                            Ext                   -  1559
  BINT78                            Ext                   -  1552
  BINT79                            Ext                   -  1545
  BINT80                            Ext                   -  1521
- BINT81                            Ext                   -  2146  2176
+ BINT81                            Ext                   -  2179  2209
  BINT85                            Ext                   -  1215
  BINT9                             Ext                   -   513   553
- BINT90                            Ext                   -  2178  2249
- BINT99                            Ext                   -  2251  2278
+ BINT90                            Ext                   -  2211  2282
+ BINT99                            Ext                   -  2284  2311
  CHECKPICT                         Ext                   -   262
  CK0NOLASTWD                       Ext                   -    26
- CLEARLCD                          Ext                   -  2374
+ CLEARLCD                          Ext                   -  2409
  CREATERRP_                        Ext                   -  1503
  ClrDA1IsStat                      Ext                   -    82
  ClrSysFlag                        Ext                   -    43    56   666
@@ -3113,10 +3150,10 @@ V3.0.9 (04/15/2007)   Symbol Table                       tan-cot.a      Page    
                                         1171  1191  1211  1231  1258  1285  1303
                                         1339  1377  1385  1468  1477  1488  1498
                                         1635  1641  1722  1733  1742  1922  1928
-                                        1970  2042
+                                        1970  2065
  DOCSTR                            Ext                   -   573   583   593
                                          603   746   886  1005  1124  1287  1324
-                                        1526  1734  1743  2231  2262  2376
+                                        1526  1734  1743  2264  2295  2411
  DODEL.L                           Ext                   -   687   708   827
                                          848   967  1086
  DOFLASHP                          Ext                   -   669   698   809
@@ -3126,33 +3163,33 @@ V3.0.9 (04/15/2007)   Symbol Table                       tan-cot.a      Page    
                                         1652  1659  1663  1703  1707  1776  1783
                                         1787  1791  1827  1831  1835  1871  1875
                                         1923  1929  1941  1981  1985  1989  1993
-                                        2051  2071  2108  2124  2128  2161  2195
-                                        2211  2215
+                                        2045  2054  2074  2104  2141  2157  2161
+                                        2194  2228  2244  2248
  DOGROB                            Ext                   -    85   318   386
                                          482   522   560
  DOIDNT                            Ext                   -  1460  1480  1490
                                         1500  1504  1601  1670  1751  1796  1840
-                                        1865  1880  1936  1975  2013  2023  2044
-                                        2075  2099  2103  2113  2119  2133  2156
-                                        2165  2189  2200  2206  2220  2238  2267
-                                        2294  2298  2302  2306  2310  2314  2320
-                                        2324  2328  2332  2336
+                                        1865  1880  1936  1975  2013  2023  2067
+                                        2108  2132  2136  2146  2152  2166  2189
+                                        2198  2222  2233  2239  2253  2271  2300
+                                        2327  2331  2335  2339  2343  2347  2353
+                                        2357  2361  2365  2369
  DOLAM                             Ext                   -    67   299   369
                                          472  1379  1421  1427  1430  1433  1436
                                         1439  1592  1597  1608  1628  1656  1695
                                         1698  1717  1780  1821  1824  1913
  DOLIST                            Ext                   -    66   737   877
-                                         996  1115  1426  2067
+                                         996  1115  1426  2100
  DOREAL                            Ext                   -   344   348   412
                                          416  1157
- DOROMP                            Ext                   -  2394  2397
+ DOROMP                            Ext                   -  2429  2432
  DOVARS                            Ext                   -  1469  1493
  DRAWBOX#                          Ext                   -  1546  1553  1560
                                         1569  1576
  DROP                              Ext                   -   284   341   409
                                          437  1305  1489  1621  1686  1767  1812
-                                        1856  1897  2092  2149  2182  2255  2284
-                                        2400
+                                        1856  1897  2044  2053  2125  2182  2215
+                                        2288  2317  2435
  DROPFALSE                         Ext                   -   721   861   980
                                         1099  1315
  DROPTRUE                          Ext                   -   354   422   445
@@ -3167,14 +3204,14 @@ V3.0.9 (04/15/2007)   Symbol Table                       tan-cot.a      Page    
  FALSE                             Ext                   -   367   451  1174
                                         1194  1214  1234
  FBoxG2                            Ext                   -  1685  1766  1811
-                                        1855  1895  2090  2148  2180  2253  2282
+                                        1855  1895  2123  2181  2213  2286  2315
  FOUR                              Ext                   -   745   885  1004
                                         1123
  FalseTrue                         Ext                   -  1297
  FlashWarning                      Ext                   -  1295
  GBUFF                             Ext                   -   309   377  1679
-                                        1760  1805  1849  1889  2084  2142  2174
-                                        2247  2276
+                                        1760  1805  1849  1889  2117  2175  2207
+                                        2280  2309
  GROB!ZERO                         Ext                   -   315   383
  GROB+#                            Ext                   -   340   408  1534
  GROB>GDISP                        Ext                   -   259  1537
@@ -3184,12 +3221,12 @@ V3.0.9 (04/15/2007)   Symbol Table                       tan-cot.a      Page    
  IT                                Ext                   -  1374  1382
  ITE                               Ext                   -   477  1282  1464
                                         1484  1631  1730  1916
- LOOP                              Ext                   -  1998  2057
+ LOOP                              Ext                   -  1998  2080
  MAKEGROB                          Ext                   -  1523
  MINUSONE                          Ext                   -   749   750   751
                                          752   889   890   891   892  1008  1009
-                                        1010  1011  1127  1128  1129  1130  2392
- NDROP                             Ext                   -  2356
+                                        1010  1011  1127  1128  1129  1130  2427
+ NDROP                             Ext                   -  2391
  NOT                               Ext                   -  1723
  NOTcase                           Ext                   -   682   822   962
                                         1081
@@ -3199,17 +3236,17 @@ V3.0.9 (04/15/2007)   Symbol Table                       tan-cot.a      Page    
                                         1169  1189  1209  1229
  PATHDIR                           Ext                   -  1452
  PICK                              Ext                   -  1370
- PopMetaVStack                     Ext                   -  2355
+ PopMetaVStack                     Ext                   -  2390
  PopMetaVStackDROP                 Ext                   -  1906
  PushMetaVStack                    Ext                   -  1620
  PushMetaVStack&Drop               Ext                   -  1952
  ROLL                              Ext                   -  1389  1395  1401
-                                        1407  2029  2048
- RestoreSysFlags                   Ext                   -   435  1340  2361
+                                        1407  2029  2050  2071  2088
+ RestoreSysFlags                   Ext                   -   435  1340  2396
  SAFE@                             Ext                   -  1483
  SAFESTO                           Ext                   -  1673  1754  1799
-                                        1843  1883  2078  2136  2168  2223  2241
-                                        2270
+                                        1843  1883  2111  2169  2201  2256  2274
+                                        2303
  SEMI                              Ext                   -    70   357   425
                                          440   452   454   515   555   690   711
                                          719   724   744   830   851   859   864
@@ -3217,16 +3254,16 @@ V3.0.9 (04/15/2007)   Symbol Table                       tan-cot.a      Page    
                                         1102  1122  1183  1203  1223  1243  1247
                                         1300  1309  1311  1318  1343  1410  1412
                                         1442  1471  1495  1507  1509  1638  1646
-                                        1724  1737  1746  1925  1931  1996  2055
-                                        2070  2404
+                                        1724  1737  1746  1925  1931  1996  2078
+                                        2103  2439
  SETRAD                            Ext                   -    39
  SETSIZEERR                        Ext                   -   688   709   828
                                          849   968  1087
  STO                               Ext                   -   302   372
  SWAP                              Ext                   -  1275
  SWAPDROP                          Ext                   -   673   679   813
-                                         819   953   959  1072  1078  1948  2112
-                                        2199
+                                         819   953   959  1072  1078  1948  2145
+                                        2232
  SaveSysFlags                      Ext                   -    34
  SetSysFlag                        Ext                   -    47    51   658
                                          798   938  1057
@@ -3239,23 +3276,24 @@ V3.0.9 (04/15/2007)   Symbol Table                       tan-cot.a      Page    
  UNROT                             Ext                   -  2016
  UNTIL                             Ext                   -   456
  WaitForKey                        Ext                   -   281
- XEQORDER                          Ext                   -  2346
- Z0_                               Ext                   -  2159
+ XEQORDER                          Ext                   -  2379
+ Z0_                               Ext                   -  2192
  Z4_                               Ext                   -  1870
- ZERO_DO                           Ext                   -  1968  2040
+ ZERO_DO                           Ext                   -  1968  2063
  ^#>Z                              Ext                   -  1982
  ^CASCRUNCH                        Ext                   -   699   839  1372
                                         1708
- ^EvalNoCKx*                       Ext                   -  2125  2212
- ^EvalNoCKx+                       Ext                   -  2129  2216
- ^ISOL1                            Ext                   -  1942  2109
+ ^EvalNoCKx*                       Ext                   -  2158  2245
+ ^EvalNoCKx+                       Ext                   -  2162  2249
+ ^INFINIext                        Ext                   -  2046  2055
+ ^ISOL1                            Ext                   -  1942  2142
  ^IfGetNbFields                    Ext                   -  1266
  ^IfMain                           Ext                   -  1331
  ^IfPutFieldsOnStack               Ext                   -  1261
  ^IfSetFieldPos                    Ext                   -  1181  1201  1221
                                         1241
  ^LASTCOMP                         Ext                   -  1456
- ^PULLEL[S]                        Ext                   -  2196
+ ^PULLEL[S]                        Ext                   -  2229
  ^QAdd                             Ext                   -  1612  1660  1990
  ^QDiv                             Ext                   -  1788  1828  1872
  ^QMul                             Ext                   -  1605  1653  1704
@@ -3266,8 +3304,8 @@ V3.0.9 (04/15/2007)   Symbol Table                       tan-cot.a      Page    
                                         1069
  ^SIMPLIFY                         Ext                   -  1616  1664  1792
                                         1836  1876  1994
- ^SYMLIMIT                         Ext                   -  2052  2162
- ^XEQ>ARRY                         Ext                   -  2072
+ ^SYMLIMIT                         Ext                   -  2075  2195
+ ^XEQ>ARRY                         Ext                   -  2105
  ^pi                               Ext                   -  1777
  ^xABSext                          Ext                   -  1784
  ^xCOSext                          Ext                   -  1924
@@ -3287,10 +3325,10 @@ V3.0.9 (04/15/2007)   Symbol Table                       tan-cot.a      Page    
                                         1037  1274
  xPURGE                            Ext                   -  1470  1494
  {}N                               Ext                   -  1270  1353  2006
-                                        2343
- ~DoMsgBox                         Ext                   -  2398
- ~MsgBoxMenu                       Ext                   -  2395
-Saturn Assembler                                       Fri Jan 12 11:43:21 2024
+                                        2376
+ ~DoMsgBox                         Ext                   -  2433
+ ~MsgBoxMenu                       Ext                   -  2430
+Saturn Assembler                                       Fri Jan 12 12:16:02 2024
 V3.0.9 (04/15/2007)   Statistics                         tan-cot.a      Page    3
 
 Input Parameters

@@ -542,15 +542,29 @@ INCOMPDROP                  ( 'X' {} Z1 Z2 Z3 Z4 Z5                 )
 BINT7 ROLL INCOMPDROP       ( 'X' Z1 Z2 Z3 Z4 Z5 'Y' Z1 Z2 Z3 Z4 Z5 )
 
 
-* Bucle pata obtiener 5 imaganes   ( Z -> Z' )
+*Nota: Tanto en tangente como cotangente la imagen Z1' y Z2'
+*      siempre sera infinito, por lo tanto lo mejor el colocar
+*      dicho infinito de forma manual para ahorrar tiempo al momento
+*      de ejecutar el comando SYMLIMIT
+*      inf = infinito sin signo
+
+DROP FLASHPTR INFINIext    ( 'X' Z1 Z2 Z3 Z4 Z5 'Y' Z1 Z2 Z3 Z4 Inf  )
+BINT5 ROLL                 ( 'X' Z1 Z2 Z3 Z4 Z5 'Y' Z2 Z3 Z4 Inf Z1  )
+DROP FLASHPTR INFINIext    ( 'X' Z1 Z2 Z3 Z4 Z5 'Y' Z2 Z3 Z4 Inf Inf )
+
+* Bucle pata obtiener 3 imaganes   ( Z -> Z' )
 * a partir de las preimagenes
-BINT5 ZERO_DO
+BINT3 ZERO_DO
   ::
   ID Func BINT6 ROLL        ( 'Func' Z  )
   FLASHPTR SYMLIMIT         ( Z'        )
   ;	
-LOOP	
-****En la pila   ( 'X' Z1 Z2 Z3 Z4 Z5 'Y' Z1' Z2' Z3' Z4' Z5' )
+LOOP
+****En la pila   ( 'X' Z1 Z2 Z3 Z4 Z5 'Y'  Z2' Z3' Z4' Inf Inf )
+
+BINT5 ROLL	      ( 'X' Z1 Z2 Z3 Z4 Z5 'Y' Inf Z2' Z3' Z4' Inf )
+
+
 
 
 *Creacion del ARRY
@@ -629,6 +643,7 @@ BINT11 {}N              ( { } )
 XEQORDER
 
 	
+
 *====================== RESTABLECER PARAMETROS ======================
 
 PopMetaVStack NDROP
