@@ -422,7 +422,7 @@ LAM Op1 ITE                     ( A SIN/COS[B*X켅] )
 *CasoTangente:		
   :: FLASHPTR xTANext ;
 *CasoCotangente:
-  :: FLASHPTR xTANext FLASHPTR xINVext ;  ( EvalNoCKxINV ) ( xINVext )
+  :: FLASHPTR xTANext FLASHPTR xINVext ;
 
 FLASHPTR QMul                   ( A*[SIN/COS[B*X켅]]  )
 LAM D FLASHPTR QAdd             ( A*[SIN/COS[B*X켅]+D )
@@ -499,7 +499,7 @@ DROP
 
 
 *################ Tabulacion
-																							          ( Borra la pila virtual anterior    )
+                                 ( Borra la pila virtual anterior    )
 PopMetaVStackDROP      ( B*X켅 ) ( -> Pila virtual ) ( Ver linea 307 )
 
 LAM Op1 ITE            ( Symb )  ( Sin[B*X켅] ) ( Cos[B*X켅] )
@@ -510,14 +510,14 @@ LAM Op1 ITE            ( Symb )  ( Sin[B*X켅] ) ( Cos[B*X켅] )
 
 ' ID X                ( Symb 'X' )
 FLASHPTR ISOL1        ( 'X' I ) ( Iguala Symb a cero y despeja 'X'
-																						            Ademas evalua n1=0                )
+                                  Ademas evalua n1=0               )
 SWAPDROP              ( I     )
 BINT1 PushMetaVStack&Drop ( Alamcena 'I' en la pila virtual )
 																						
-* Si se usa el comando 'ISOLALL' retorna un simbolico
-* mas un factor 'n1' que simboliza los periodos de las funciones
-* trigonometricas, por eso se usa 'ISOL1' ya que no devuelve una
-* expresion sino un entero ya evaluado
+* Nota: Si se usa el comando 'ISOLALL' retorna un simbolico
+*       mas un factor 'n1' que simboliza los periodos de las funciones
+*       trigonometricas, por eso se usa 'ISOL1' ya que no devuelve una
+*       expresion sino un entero ya evaluado
 
 
 * Bucle para obtener        ( -> Z1 Z2 Z3 Z4 Z5 )
@@ -546,7 +546,7 @@ BINT7 ROLL INCOMPDROP       ( 'X' Z1 Z2 Z3 Z4 Z5 'Y' Z1 Z2 Z3 Z4 Z5 )
 *      siempre sera infinito, por lo tanto lo mejor el colocar
 *      dicho infinito de forma manual para ahorrar tiempo al momento
 *      de ejecutar el comando SYMLIMIT
-*      inf = infinito sin signo
+*      Inf = infinito sin signo
 
 DROP FLASHPTR INFINIext    ( 'X' Z1 Z2 Z3 Z4 Z5 'Y' Z1 Z2 Z3 Z4 Inf  )
 BINT5 ROLL                 ( 'X' Z1 Z2 Z3 Z4 Z5 'Y' Z2 Z3 Z4 Inf Z1  )
@@ -560,12 +560,9 @@ BINT3 ZERO_DO
   FLASHPTR SYMLIMIT         ( Z'        )
   ;	
 LOOP
-****En la pila   ( 'X' Z1 Z2 Z3 Z4 Z5 'Y'  Z2' Z3' Z4' Inf Inf )
+****En la pila   ( 'X' Z1 Z2 Z3 Z4 Z5 'Y' Z2' Z3' Z4' Inf Inf )
 
-BINT5 ROLL	      ( 'X' Z1 Z2 Z3 Z4 Z5 'Y' Inf Z2' Z3' Z4' Inf )
-
-
-
+BINT5 ROLL       ( 'X' Z1 Z2 Z3 Z4 Z5 'Y' Inf Z2' Z3' Z4' Inf )
 
 *Creacion del ARRY
 { %2 %6 } FLASHPTR XEQ>ARRY
@@ -613,7 +610,7 @@ FLASHPTR EvalNoCKx+     ( ob+'Peri'*X )
 
 
 *################ Dominio
-"Reales menos\0Aasintotas vertical"
+"Reales menos\0Aasintota vertical"
 ' ID Dom SAFESTO        ( obj -> 'Dom' STO )
 
 *$$$ 9 ---------------------------------------------------------------
