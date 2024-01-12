@@ -8,7 +8,7 @@ KeepAll=0
 UseDefaultEntryList=1
 WarnRamChanges=1
 LoadOnly=0
-EMUVisible=1
+EMUVisible=0
 ProjectTab=1
 InformHeight=50
 EntryPointList=
@@ -28,5 +28,3 @@ SasmParams=
 LRFiles=
 [Files]
 file1=tan-cot.s
-[Edit]
-edit2=>tan-cot.s

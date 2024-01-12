@@ -127,9 +127,9 @@ BINT5 BINT23
 	  ::                      ( -> ValorExeterno                      )
 	  DUP                     ( ValorExterno ValorExrerno             )
 	  FLASHPTR CASCRUNCH %0=  ( Es igual a cero?  -> FLAG             )
-      caseSIZEERR             ( Mensaje de Error "Bad Argument Value" )
-      TRUE                    ( ValorInterno TRUE                     )
-      ;
+   caseSIZEERR             ( Mensaje de Error "Bad Argument Value" )
+   TRUE                    ( ValorInterno TRUE                     )
+   ;
   DROPFALSE   ( Fin del Messege-Handler)	
   ;
 * MsgHan    X  Y  a  h  tipo   ObjPermi        Decompile  Help          ChooData  ChooDec   VaReset  VaInic
@@ -144,7 +144,7 @@ BINT5 BINT23
 	  FLASHPTR CASCRUNCH %0=  ( Es igual a cero?  -> FLAG             )
    caseSIZEERR             ( Mensaje de Error "Bad Argument Value" )
    TRUE                    ( ValorInterno TRUE                     )
-      ;
+   ;
   DROPFALSE	  ( Fin del Messege-Handler )
   ;
 
@@ -517,15 +517,6 @@ DROP
 
 BINT11 {}N              ( { } )
 XEQORDER
-
-
-
-
-
-
-
-
-
 
 
 *====================== RESTABLECER PARAMETROS ======================

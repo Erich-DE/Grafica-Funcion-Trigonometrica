@@ -1,4 +1,4 @@
-Saturn Assembler                                       Tue Jan 09 18:36:03 2024
+Saturn Assembler                                       Thu Jan 11 23:48:29 2024
 V3.0.9 (04/15/2007)                                      tan-cot.a      Page    1
 
     1               * File  tan-cot.s       1
@@ -3027,89 +3027,71 @@ V3.0.9 (04/15/2007)                                      tan-cot.a      Page    
  2157
  2158               * File  tan-cot.s       521
  2159
- 2160               * File  tan-cot.s       522
- 2161
- 2162               * File  tan-cot.s       523
- 2163
- 2164               * File  tan-cot.s       524
- 2165
+ 2160               *====================== RESTABLECER PARAMETROS ======================
+ 2161               * File  tan-cot.s       523
+ 2162
+ 2163               * File  tan-cot.s       524
+ 2164 02C11 00000           CON(5)  =PopMetaVStack
+ 2165 02C16 00000           CON(5)  =NDROP
  2166               * File  tan-cot.s       525
- 2167
- 2168               * File  tan-cot.s       526
- 2169
- 2170               * File  tan-cot.s       527
- 2171
- 2172               * File  tan-cot.s       528
- 2173
- 2174               * File  tan-cot.s       529
+ 2167 02C1B 00000           CON(5)  =ABND
+ 2168               * Abandona Variables temporales
+ 2169               * File  tan-cot.s       526
+ 2170 02C20 00000           CON(5)  =RestoreSysFlags
+ 2171               * Restablece variables del Usuario
+ 2172               * File  tan-cot.s       527
+ 2173               * Ref: SaveSysFlag
+ 2174               * File  tan-cot.s       528
  2175
- 2176               * File  tan-cot.s       530
+ 2176               * File  tan-cot.s       529
  2177
- 2178               *====================== RESTABLECER PARAMETROS ======================
- 2179               * File  tan-cot.s       532
+ 2178               *========================= PANTALLA FINAL ============================
+ 2179               * File  tan-cot.s       531
  2180
- 2181               * File  tan-cot.s       533
- 2182 02C11 00000           CON(5)  =PopMetaVStack
- 2183 02C16 00000           CON(5)  =NDROP
+ 2181               *MEJORAR ESTA PANTALLA :(
+ 2182               * File  tan-cot.s       533
+ 2183 02C25 00000           CON(5)  =CLEARLCD
  2184               * File  tan-cot.s       534
- 2185 02C1B 00000           CON(5)  =ABND
- 2186               * Abandona Variables temporales
- 2187               * File  tan-cot.s       535
- 2188 02C20 00000           CON(5)  =RestoreSysFlags
- 2189               * Restablece variables del Usuario
- 2190               * File  tan-cot.s       536
- 2191               * Ref: SaveSysFlag
- 2192               * File  tan-cot.s       537
- 2193
- 2194               * File  tan-cot.s       538
- 2195
- 2196               *========================= PANTALLA FINAL ============================
- 2197               * File  tan-cot.s       540
- 2198
- 2199               *MEJORAR ESTA PANTALLA :(
- 2200               * File  tan-cot.s       542
- 2201 02C25 00000           CON(5)  =CLEARLCD
- 2202               * File  tan-cot.s       543
- 2203 02C2A 00000           CON(5)  =DOCSTR
- 2204 02C2F 77000           CON(5)  119
- 2205 02C34 6496E61         NIBASC  \Finalizado:\
+ 2185 02C2A 00000           CON(5)  =DOCSTR
+ 2186 02C2F 77000           CON(5)  119
+ 2187 02C34 6496E61         NIBASC  \Finalizado:\
             6C696A7
             1646F6A3
- 2206 02C4A A0              CON(2)  #A
- 2207 02C4C A0              CON(2)  #A
- 2208 02C4E 2556375         NIBASC  \Resultados\
+ 2188 02C4A A0              CON(2)  #A
+ 2189 02C4C A0              CON(2)  #A
+ 2190 02C4E 2556375         NIBASC  \Resultados\
             7C64716
             46F637
- 2209 02C62 A0              CON(2)  #A
- 2210 02C64 16C6D61         NIBASC  \almacenados en\
+ 2191 02C62 A0              CON(2)  #A
+ 2192 02C64 16C6D61         NIBASC  \almacenados en\
             63656E6
             1646F6370256E6
 
- 2211 02C80 A0              CON(2)  #A
- 2212 02C82 C616023         NIBASC  \la carpeta\
+ 2193 02C80 A0              CON(2)  #A
+ 2194 02C82 C616023         NIBASC  \la carpeta\
             6162707
             564716
- 2213 02C96 A0              CON(2)  #A
- 2214 02C98 7225543         NIBASC  \'RESUL'\
+ 2195 02C96 A0              CON(2)  #A
+ 2196 02C98 7225543         NIBASC  \'RESUL'\
             555C472
- 2215               * File  tan-cot.s       544
- 2216 02CA6 00000           CON(5)  =BINT15
- 2217 02CAB 00000           CON(5)  =BINT10
- 2218               * File  tan-cot.s       545
- 2219 02CB0 00000           CON(5)  =MINUSONE
- 2220               * File  tan-cot.s       546
- 2221 02CB5 00000           CON(5)  =DOROMP
- 2222 02CBA 000000          CON(6)  =~MsgBoxMenu
- 2223               * File  tan-cot.s       547
- 2224 02CC0 00000           CON(5)  =DOROMP
- 2225 02CC5 000000          CON(6)  =~DoMsgBox
- 2226               * File  tan-cot.s       548
- 2227 02CCB 00000           CON(5)  =DROP
- 2228               * File  tan-cot.s       549
- 2229
- 2230               * File  tan-cot.s       550
- 2231 02CD0 00000           CON(5)  =SEMI
-Saturn Assembler                                       Tue Jan 09 18:36:03 2024
+ 2197               * File  tan-cot.s       535
+ 2198 02CA6 00000           CON(5)  =BINT15
+ 2199 02CAB 00000           CON(5)  =BINT10
+ 2200               * File  tan-cot.s       536
+ 2201 02CB0 00000           CON(5)  =MINUSONE
+ 2202               * File  tan-cot.s       537
+ 2203 02CB5 00000           CON(5)  =DOROMP
+ 2204 02CBA 000000          CON(6)  =~MsgBoxMenu
+ 2205               * File  tan-cot.s       538
+ 2206 02CC0 00000           CON(5)  =DOROMP
+ 2207 02CC5 000000          CON(6)  =~DoMsgBox
+ 2208               * File  tan-cot.s       539
+ 2209 02CCB 00000           CON(5)  =DROP
+ 2210               * File  tan-cot.s       540
+ 2211
+ 2212               * File  tan-cot.s       541
+ 2213 02CD0 00000           CON(5)  =SEMI
+Saturn Assembler                                       Thu Jan 11 23:48:29 2024
 V3.0.9 (04/15/2007)   Symbol Table                       tan-cot.a      Page    2
 
  #=casedrop                        Ext                   -   763   826   959
@@ -3132,14 +3114,14 @@ V3.0.9 (04/15/2007)   Symbol Table                       tan-cot.a      Page    
  4GETLAM                           Ext                   -   971
  ?SKIP                             Ext                   -  1079  1530
  ABND                              Ext                   -   430  1084  1139
-                                        1236  2185
+                                        1236  2167
  BEGIN                             Ext                   -   266
  BIND                              Ext                   -    65  1255
  BINT0                             Ext                   -   975
  BINT1                             Ext                   -   980   995  1000
                                         1020  1040  1354  1355  1431  1761
  BINT10                            Ext                   -   715   735   984
-                                        1004  1024  1044  1126  2217
+                                        1004  1024  1044  1126  2199
  BINT103                           Ext                   -    46
  BINT105                           Ext                   -    42
  BINT108                           Ext                   -  2089
@@ -3155,7 +3137,7 @@ V3.0.9 (04/15/2007)   Symbol Table                       tan-cot.a      Page    
  BINT131                           Ext                   -  1334
  BINT14                            Ext                   -   985  1005  1025
                                         1045
- BINT15                            Ext                   -  1125  2216
+ BINT15                            Ext                   -  1125  2198
  BINT16                            Ext                   -   306   374
  BINT17                            Ext                   -   333   401
  BINT19                            Ext                   -  1384
@@ -3205,7 +3187,7 @@ V3.0.9 (04/15/2007)   Symbol Table                       tan-cot.a      Page    
  BINT99                            Ext                   -  2060  2087
  CHECKPICT                         Ext                   -   256
  CK0NOLASTWD                       Ext                   -    26
- CLEARLCD                          Ext                   -  2201
+ CLEARLCD                          Ext                   -  2183
  CREATERRP_                        Ext                   -  1315
  ClrDA1IsStat                      Ext                   -    76
  ClrSysFlag                        Ext                   -    43
@@ -3223,7 +3205,7 @@ V3.0.9 (04/15/2007)   Symbol Table                       tan-cot.a      Page    
                                         1732  1738  1780  1852
  DOCSTR                            Ext                   -   711   721   731
                                          741   809   874   903   932  1067  1117
-                                        1338  1544  1553  2041  2071  2203
+                                        1338  1544  1553  2041  2071  2185
  DOFLASHP                          Ext                   -   771   834   987
                                         1007  1027  1047  1073  1166  1185  1191
                                         1197  1267  1416  1423  1427  1448  1454
@@ -3249,15 +3231,15 @@ V3.0.9 (04/15/2007)   Symbol Table                       tan-cot.a      Page    
                                          894   923  1238  1877
  DOREAL                            Ext                   -   338   342   406
                                          410   965
- DOROMP                            Ext                   -  1130  1133  2221
-                                        2224
+ DOROMP                            Ext                   -  1130  1133  2203
+                                        2206
  DOVARS                            Ext                   -  1281  1305
  DRAWBOX#                          Ext                   -  1358  1365  1372
                                         1381  1388
  DROP                              Ext                   -   278   335   403
                                          431  1144  1301  1433  1498  1577  1622
                                         1666  1707  1902  1959  1992  2064  2093
-                                        2227
+                                        2209
  DROPFALSE                         Ext                   -   784   847  1058
  DROPTRUE                          Ext                   -   348   416   439
  DUP                               Ext                   -   768   831  1102
@@ -3287,8 +3269,8 @@ V3.0.9 (04/15/2007)   Symbol Table                       tan-cot.a      Page    
  MINUSONE                          Ext                   -   812   813   814
                                          815   877   878   879   880   906   907
                                          908   909   935   936   937   938  1128
-                                        2219
- NDROP                             Ext                   -  2183
+                                        2201
+ NDROP                             Ext                   -  2165
  NOT                               Ext                   -  1533
  NOVAL                             Ext                   -  1103
  ONE                               Ext                   -   799   864   893
@@ -3297,14 +3279,14 @@ V3.0.9 (04/15/2007)   Symbol Table                       tan-cot.a      Page    
                                          976   996  1016  1036
  PATHDIR                           Ext                   -  1264
  PICK                              Ext                   -  1165
- PopMetaVStack                     Ext                   -  2182
+ PopMetaVStack                     Ext                   -  2164
  PopMetaVStackDROP                 Ext                   -  1716
  PushMetaVStack                    Ext                   -  1432
  PushMetaVStack&Drop               Ext                   -  1762
  ROLL                              Ext                   -  1184  1190  1196
                                         1202  1839  1858
  RestoreSysFlags                   Ext                   -   429  1083  1138
-                                        2188
+                                        2170
  SAFE@                             Ext                   -  1295
  SAFESTO                           Ext                   -  1485  1564  1609
                                         1653  1693  1888  1946  1978  2033  2050
@@ -3315,7 +3297,7 @@ V3.0.9 (04/15/2007)   Symbol Table                       tan-cot.a      Page    
                                         1010  1030  1050  1054  1061  1086  1142
                                         1205  1207  1254  1283  1307  1319  1321
                                         1450  1458  1534  1547  1556  1735  1741
-                                        1806  1865  1880  2231
+                                        1806  1865  1880  2213
  SETRAD                            Ext                   -    39
  STO                               Ext                   -   296   366
  SWAP                              Ext                   -  1104
@@ -3368,9 +3350,9 @@ V3.0.9 (04/15/2007)   Symbol Table                       tan-cot.a      Page    
  xKILL                             Ext                   -   432  1085  1140
  xPURGE                            Ext                   -  1282  1306
  {}N                               Ext                   -  1096  1816  2152
- ~DoMsgBox                         Ext                   -  1134  2225
- ~MsgBoxMenu                       Ext                   -  1131  2222
-Saturn Assembler                                       Tue Jan 09 18:36:03 2024
+ ~DoMsgBox                         Ext                   -  1134  2207
+ ~MsgBoxMenu                       Ext                   -  1131  2204
+Saturn Assembler                                       Thu Jan 11 23:48:29 2024
 V3.0.9 (04/15/2007)   Statistics                         tan-cot.a      Page    3
 
 Input Parameters
