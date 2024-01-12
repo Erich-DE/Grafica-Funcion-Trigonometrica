@@ -193,6 +193,22 @@ BINT2 #=casedrop ( Cuando un field ha recibido un enfoque )
 TRUE
 ;
 
+
+BINT16 #=casedrop ( Se presiono OK del SoftMenu ) ( -> flag TRUE / F )
+  ::
+		FLASHPTR IfPutFieldsOnStack ( ob1 ob2...obn            ) ( Campos del IfMain )
+  FLASHPTR IfGetNbFields      ( ob1 ob2...obn #n         ) ( Número de campos  )
+  {}N                         ( { ob1 ob2...obn }        )
+  ' xNOVAL SWAP               ( xNOVAL { ob1 ob2...obn } )
+  matchob?                    ( Existe 'Noval' en {}?    ) ( TRUE / ob FALSE   )
+  ITE
+* Caso Existe un NOVAL
+  :: "Faltan datos por ingresar\0A" FlashWarning FalseTrue ;	
+* Caso distinto a #0
+  :: DROP TrueTrue ;
+
+ ;
+
 DROPFALSE   ( Fin del Messege-Handler )
 ;
 
@@ -209,21 +225,7 @@ FLASHPTR IfMain
 
 BINT4 {}N         ( { A B C D } )
 
-*Comprobar si hay un campo vacio
-DUP NOVAL SWAP    ( {} {} NOVAL )
-matchob?          ( ob comp -> T ) ( ob comp -> ob F )
-ITE
-  ::
-  DoBadKey
-  "ERROR:\0A\0ANo se ingresaron datos"
-  BINT15 BINT10
-  MINUSONE
-  ROMPTR MsgBoxMenu
-  ROMPTR DoMsgBox
-  xDROP2
-  RestoreSysFlags ABND xKILL
-  ;
-DROP              ( Borra ob='NOVAL' )
+
 
 x->QPI            ( Symb{ A B C D } ) ( Numeros a simbolico )
 INCOMPDROP        ( A B C D         )
