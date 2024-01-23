@@ -1,4 +1,3 @@
-%%HP: T(0)A(D)F(.);
 
 @ Autor: Erich Daniel Enamorado Aceituno
 @ E-mail: erich.enamorado@unah.hn  
@@ -106,9 +105,13 @@ a*Asen(bX+c)+d" MSGBOX
 
  C B / NEG EVAL 'Desf' STO
 
-@==================================== PASO ====================================@
+@=================================== PERIODO ==================================@
 
- Peri 2 / EVAL  'Step' STO                         
+ 2 B ABS / EVAL 'Peri' STO 
+
+@==================================== PASO ====================================@
+      
+ Peri 2 / EVAL  'Step' STO                          
 
 @================================== MONOTONIA =================================@
  
@@ -121,8 +124,8 @@ a*Asen(bX+c)+d" MSGBOX
  'Monot' STO
  
 @=============================== CICLO EN DOMINIO =============================@
- 
- B NUM 0 > « -1 » « 1 » IFTE 
+ @          
+ B NUM 0 > « -1 » « 1 » IFTE  
  
  C NEG + B / EVAL         @LIMITE IZQUIERDO
  
